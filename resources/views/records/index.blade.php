@@ -3,5 +3,5 @@
 @section('title') Sistema USP @endsection
 
 @section('content')
-    TESTE
+TESTE
 @endsection

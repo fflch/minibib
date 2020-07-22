@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Record;
 use Illuminate\Http\Request;
+use App\Http\Requests\RecordRequest;
 
 class RecordController extends Controller
 {
@@ -24,7 +25,7 @@ class RecordController extends Controller
      */
     public function create()
     {
-        //
+        return view('records.create');
     }
 
     /**
@@ -33,9 +34,9 @@ class RecordController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RecordRequest $request)
     {
-        //
+        echo $request->titulo;
     }
 
     /**
