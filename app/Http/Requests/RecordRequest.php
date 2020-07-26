@@ -36,7 +36,7 @@ class RecordRequest extends FormRequest
             'idioma'      => 'required',
             'isbn'        => 'required|integer',
             'issn'        => 'required|integer',
-            'options'     => 'required',
+            'tipo'        => 'required',
         ];
     }
 }

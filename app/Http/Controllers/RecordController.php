@@ -15,7 +15,8 @@ class RecordController extends Controller
      */
     public function index()
     {
-        return view('records.index');
+        $records = Record::all();
+        return view('records.index',compact('records'));
     }
 
     /**
@@ -25,7 +26,7 @@ class RecordController extends Controller
      */
     public function create()
     {
-        return view('records.create');
+        return view('records.create')->with('record',new Record);
     }
 
     /**
@@ -36,7 +37,23 @@ class RecordController extends Controller
      */
     public function store(RecordRequest $request)
     {
-        echo $request->titulo;
+        $record = New Record;
+
+        $record->autores = $request->autores;
+        $record->titulo = $request->titulo;
+        $record->desc_f = $request->desc_f;
+        $record->editora = $request->editora;
+        $record->assunto = $request->assunto;
+        $record->local_p = $request->local_p;
+        $record->localizacao = $request->localizacao;
+        $record->edicao = $request->edicao;
+        $record->ano = $request->ano;
+        $record->idioma = $request->idioma;
+        $record->isbn = $request->isbn;
+        $record->issn = $request->issn;
+        $record->tipo = $request->tipo;
+        $record->save();
+        return redirect('/records');
     }
 
     /**
@@ -47,7 +64,7 @@ class RecordController extends Controller
      */
     public function show(Record $record)
     {
-        //
+        return view('records.show')->with('record',$record);
     }
 
     /**
@@ -58,7 +75,7 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
-        //
+        return view('records.edit')->with('record',$record);
     }
 
     /**

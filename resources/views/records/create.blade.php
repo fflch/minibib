@@ -68,38 +68,28 @@
             <input type="text" class="form-control" id="issn" name="issn" value="{{old('issn')}}">
         </div>
     </div>
-    <div class="btn-group btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="livro"> Livro
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="panfleto"> Panfleto
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="tese"> Tese
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="periodico"> Periódico
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="artigo_p"> Artigo de Periódico
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="manuscrito"> Manuscrito
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="iconografico"> Iconográfico
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="audiovisual"> Audiovisual
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="musica"> Música (Som)
-        </label>
-        <label class="btn btn-outline-info">
-            <input type="radio" name="options" id="partitura"> Partitura
-        </label>
-    </div>
+    <div class="form-group">
+        <label for="tipo" class="required"><b>Escolha o tipo: </b></label>          
+            <select name="tipo" class="form-control" id="tipo">
+
+            <option value="" selected="">- Selecione -</option>
+            @foreach ($record->tipoOptions() as $option)
+
+                {{-- 1. Situação em que não houve tentativa de submissão e é uma edição --}}
+                @if (old('tipo') == '' and isset($record->tipo))
+                <option value="{{$option}}" {{ ( $estagio->tipo == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+                {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
+                @else
+                <option value="{{$option}}" {{ ( old('tipo') == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+                @endif
+                
+            @endforeach
+            </select> 
+    </div></div>
     </br>
     </br>
     <div class="col-sm form-group">
