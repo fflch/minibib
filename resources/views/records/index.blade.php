@@ -6,12 +6,12 @@
 
 <div class="card">
   <div class="card-body">
-    <table class="table table-striped"> 
+    <table class="table table-striped">
       <thead class="card-header">
         <tr>
-          <th>Avisos</th>
+          <th>Título</th>
           <th>Ações</th>
-        </tr>  
+        </tr>
       </thead>
       <tbody>
         @foreach($records as $record)
@@ -20,13 +20,13 @@
           <td >
             <a class="row-sm" href="/records/{{$record->id}}/edit"><i class="far fa-edit"></i></a>
             <a class="row-sm" href="/records/{{$record->id}}"><i class="fas fa-external-link-alt"></i></a>
-           
-          
+
+
             <form class="row-sm" method="POST" action="/records/{{$record->id}}">
               @csrf
-              
+
               <button type="submit" class=" btn btn-outline-primary btn-sm"><i class="fas fa-trash-alt"></i></button>
-            </form> 
+            </form>
           </td>
         </tr>
         @endforeach

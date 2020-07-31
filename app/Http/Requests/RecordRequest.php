@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Record;
 
 class RecordRequest extends FormRequest
 {
@@ -23,6 +25,7 @@ class RecordRequest extends FormRequest
      */
     public function rules()
     {
+        $record = new Record;
         return [
             'autores'     => 'required',
             'titulo'      => 'required',
@@ -36,7 +39,7 @@ class RecordRequest extends FormRequest
             'idioma'      => 'required',
             'isbn'        => 'required|integer',
             'issn'        => 'required|integer',
-            'tipo'        => 'required',
+            'tipo'        => ['required', Rule::in($record->tipoOptions())],
         ];
     }
 }
