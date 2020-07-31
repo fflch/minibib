@@ -1,18 +1,18 @@
 <?php
 
-$submenu1 =  [
+$cadastro =  [
     [
-        'text' => 'SubItem 1',
-        'url'  => '/subitem1'
+        'text' => 'Cadastrar',
+        'url'  => '/records/create'
     ],
     [
-        'text' => 'SubItem 2',
-        'url'  => '/subitem2',
+        'text' => 'subitem 2',
+        'url'  => '/',
         'can'  => 'admin',
     ],
     [
-        'text' => 'SubItem 3',
-        'url'  => '/subitem3',
+        'text' => 'Listar',
+        'url'  => '/records',
     ],
 ];
 
@@ -50,8 +50,8 @@ return [
             'can'  => 'admin',
         ],
         [
-            'text'    => 'SubMenu1',
-            'submenu' => $submenu1,
+            'text'    => 'Catálogo',
+            'submenu' => $cadastro,
         ],
         [
             'text'    => 'SubMenu2',
