@@ -30,7 +30,7 @@
       </thead>
       <tbody>
       <tr>
-        <td>{{$record->autores }}</td>       
+        <td><div class="font-weight-bold">Autores:</div>{{$record->autores }}</td>       
         <td><div class="text-center">
           <a class="row-sm btn-lg" href="/records/{{$record->id}}/edit"><i class="far fa-edit"></i></a>
           <a class="row-sm btn-lg" href="/records/{{$record->id}}"><i class="fas fa-external-link-alt"></i></a>

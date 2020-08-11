@@ -1,9 +1,9 @@
 <?php
 
-$cadastro =  [
+$submenu1 =  [
     [
-        'text' => 'Cadastrar',
-        'url'  => '/records/create'
+        'text' => 'subitem 1',
+        'url'  => '/'
     ],
     [
         'text' => 'subitem 2',
@@ -11,8 +11,8 @@ $cadastro =  [
         'can'  => 'admin',
     ],
     [
-        'text' => 'Listar',
-        'url'  => '/records/',
+        'text' => 'subitem 3',
+        'url'  => '/',
     ],
 ];
 
@@ -36,13 +36,12 @@ return [
     'login_url' => '/login',
     'menu' => [
         [
-            'text' => 'Item 1',
-            'url'  => '/item1'
+            'text' => 'Ver Catálogo',
+            'url'  => '/records'
         ],
         [
-            'text' => 'Item 2',
-            'url'  => '/item2',
-            'can'  => '',
+            'text' => 'Cadastrar Material',
+            'url'  => '/records/create',            
         ],
         [
             'text' => 'Item 3',
@@ -50,8 +49,9 @@ return [
             'can'  => 'admin',
         ],
         [
-            'text'    => 'Catálogo',
-            'submenu' => $cadastro,
+            'text'    => 'SubMenu1',
+            'submenu' => $submenu1,
+            'can'  => 'admin',
         ],
         [
             'text'    => 'SubMenu2',
