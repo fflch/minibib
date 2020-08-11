@@ -12,7 +12,7 @@ $cadastro =  [
     ],
     [
         'text' => 'Listar',
-        'url'  => '/records',
+        'url'  => '/records/',
     ],
 ];
 

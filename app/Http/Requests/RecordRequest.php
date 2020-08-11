@@ -37,8 +37,8 @@ class RecordRequest extends FormRequest
             'edicao'      => 'required',
             'ano'         => 'required|integer',
             'idioma'      => 'required',
-            'isbn'        => 'required|integer',
-            'issn'        => 'required|integer',
+            'isbn'        => 'required|',
+            'issn'        => '',
             'tipo'        => ['required', Rule::in($record->tipoOptions())],
         ];
     }

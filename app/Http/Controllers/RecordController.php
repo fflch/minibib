@@ -13,10 +13,14 @@ class RecordController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $records = Record::all();
-        return view('records.index',compact('records'));
+        if(isset($request->busca)) {
+            $records = Record::where('titulo','LIKE',"%{$request->busca}%")->paginate(10);
+        } else {
+        $records = Record::paginate(15);
+        }
+        return view('records.index')->with('records',$records);
     }
 
     /**
@@ -37,22 +41,10 @@ class RecordController extends Controller
      */
     public function store(RecordRequest $request)
     {
-        $record = New Record;
+        $validated = $request->validated();
 
-        $record->autores = $request->autores;
-        $record->titulo = $request->titulo;
-        $record->desc_f = $request->desc_f;
-        $record->editora = $request->editora;
-        $record->assunto = $request->assunto;
-        $record->local_p = $request->local_p;
-        $record->localizacao = $request->localizacao;
-        $record->edicao = $request->edicao;
-        $record->ano = $request->ano;
-        $record->idioma = $request->idioma;
-        $record->isbn = $request->isbn;
-        $record->issn = $request->issn;
-        $record->tipo = $request->tipo;
-        $record->save();
+        Record::create($validated);
+
         return redirect('/records');
     }
 
@@ -85,9 +77,12 @@ class RecordController extends Controller
      * @param  \App\Record  $record
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Record $record)
+    public function update(RecordRequest $request, Record $record)
     {
-        //
+        $validated = $request->validated();
+        $record->update($validated);
+
+        return redirect("records/$record->id");
     }
 
     /**
@@ -98,6 +93,7 @@ class RecordController extends Controller
      */
     public function destroy(Record $record)
     {
-        //
+        $record->delete();
+        return redirect('/records');
     }
 }
