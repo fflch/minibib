@@ -7,16 +7,8 @@ use Faker\Generator as Faker;
 
 $factory->define(Record::class, function (Faker $faker) {
 
-    $tipo = ['Livro',
-        'Panfleto',
-        'Tese',
-        'Periódico',
-        'Artigo de Periódico',
-        'Manuscrito',
-        'Iconográfico',
-        'Audiovisual',
-        'Música (Som)',
-        'Partitura'];
+    $record = new Record;
+    $tipo = $record->tipoOptions();
 
     return [
         'autores' => $faker->name,

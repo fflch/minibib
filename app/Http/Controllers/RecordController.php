@@ -18,7 +18,7 @@ class RecordController extends Controller
         if(isset($request->busca)) {
             $records = Record::where('titulo','LIKE',"%{$request->busca}%")->paginate(10);
         } else {
-        $records = Record::paginate(15);
+            $records = Record::paginate(15);
         }
         return view('records.index')->with('records',$records);
     }
