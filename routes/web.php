@@ -13,4 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Rotas para Record
 Route::resource('records','RecordController');
+
+// Rotas para Instance
+Route::resource('/instance','InstanceController');

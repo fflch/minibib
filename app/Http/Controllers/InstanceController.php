@@ -12,9 +12,14 @@ class InstanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(isset($request->busca)) {
+            $instances = Instance::where('tombo','LIKE',"%{$request->busca}%")->paginate(10);
+        } else {
+        $instances=Instance::paginate(15);
+        }
+        return view('instance.index')->with("instances",$instances);
     }
 
     /**
