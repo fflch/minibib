@@ -37,7 +37,8 @@
           <a class="row-sm btn-lg" href="/instance/{{$instance->id}}/edit"><i class="far fa-edit"></i></a>
           <a class="row-sm btn-lg" href="/instance/{{$instance->id}}"><i class="fas fa-external-link-alt"></i></a>
           <form class="row-sm" method="POST" action="/instance/{{$instance->id}}">
-            
+          @csrf
+          @method('delete')
             <button type="submit" class=" btn btn-outline-primary btn-sm" onclick="return confirm('Tem certeza que deseja apagar?');" ><i class="fas fa-trash-alt"></i></button>
           </form></div>
         </td>

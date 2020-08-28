@@ -2,29 +2,23 @@
 
 $submenu1 =  [
     [
-        'text' => 'subitem 1',
-        'url'  => '/'
+        'text' => 'Listar Catálogo',
+        'url'  => '/records'
     ],
     [
-        'text' => 'subitem 2',
-        'url'  => '/',
-        'can'  => 'admin',
-    ],
-    [
-        'text' => 'subitem 3',
-        'url'  => '/',
+        'text' => 'Cadastrar Material',
+        'url'  => '/records/create',
     ],
 ];
 
 $submenu2 =  [
     [
-        'text' => 'SubItem 1',
-        'url'  => '/subitem1'
+        'text' => 'Listar Registros',
+        'url'  => '/instance'
     ],
     [
-        'text' => 'SubItem 2',
-        'url'  => '/subitem2',
-        'can'  => 'admin',
+        'text' => 'Cadastrar ID',
+        'url'  => '/instance/create',
     ],
 ];
 
@@ -36,27 +30,22 @@ return [
     'login_url' => '/login',
     'menu' => [
         [
-            'text' => 'Ver Catálogo',
-            'url'  => '/records'
-        ],
-        [
-            'text' => 'Cadastrar Material',
-            'url'  => '/records/create',            
-        ],
-        [
-            'text' => 'Item 3',
-            'url'  => '/item3',
+            'text' => 'Item 1',
+            'url'  => '/',
             'can'  => 'admin',
         ],
         [
-            'text'    => 'SubMenu1',
+            'text' => 'Item 2',
+            'url'  => '/',  
+            'can'  => 'admin',          
+        ],
+        [
+            'text'    => 'Catálogo de Material',
             'submenu' => $submenu1,
-            'can'  => 'admin',
         ],
         [
-            'text'    => 'SubMenu2',
+            'text'    => 'ID E Tombo',
             'submenu' => $submenu2,
-            'can'  => 'admin',
         ]
     ]
 ];
