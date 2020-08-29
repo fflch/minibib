@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             RecordSeeder::class,
             InstanceSeeder::class,
             UserSeeder::class,
+            EmprestimoSeeder::class,
         ]);
     }
 }
