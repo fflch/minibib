@@ -22,7 +22,7 @@
             
 <div class="card">
   <div class="card-body">
-    <table class="table text-break text-justify ">
+    <table class="table ">
       <thead class="thead ">
         @foreach($instances as $instance)
         <tr class="table  bg-light"> 

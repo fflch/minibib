@@ -37,7 +37,7 @@
           <form class="row-sm" method="POST" action="/records/{{$record->id}}">
             @csrf
             @method('delete')
-            <button type="submit" class=" btn btn-outline-primary btn-sm"><i class="fas fa-trash-alt"></i></button>
+            <button type="submit" class=" btn btn-outline-primary btn-sm" onclick="return confirm('Tem certeza que deseja apagar?');"><i class="fas fa-trash-alt"></i></button>
           </form></div>
         </td>
         </td>

@@ -18,3 +18,6 @@ Route::resource('records','RecordController');
 
 // Rotas para Instance
 Route::resource('/instance','InstanceController');
+
+// Rotas para Users
+Route::resource('/users', 'UserController');

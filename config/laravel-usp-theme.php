@@ -22,6 +22,18 @@ $submenu2 =  [
     ],
 ];
 
+$submenu3 =  [
+    [
+        'text' => 'Listar Usuários',
+        'url'  => '/users'
+    ],
+    [
+        'text' => 'Cadastrar Usuários',
+        'url'  => '/users/create',
+    ],
+];
+
+
 return [
     'title'=> 'USPdev',
     'dashboard_url' => '/',
@@ -35,17 +47,16 @@ return [
             'can'  => 'admin',
         ],
         [
-            'text' => 'Item 2',
-            'url'  => '/',  
-            'can'  => 'admin',          
-        ],
-        [
             'text'    => 'Catálogo de Material',
             'submenu' => $submenu1,
         ],
         [
             'text'    => 'ID E Tombo',
             'submenu' => $submenu2,
-        ]
+        ],
+        [
+            'text' => 'Usuários',
+            'submenu' => $submenu3,          
+        ],
     ]
 ];
