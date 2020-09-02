@@ -14,10 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Rotas para Record
-Route::resource('records','RecordController');
+Route::resource('/records','RecordController');
 
 // Rotas para Instance
-Route::resource('/instance','InstanceController');
+Route::resource('/instance','InstanceController')->except(['create']);
+// Rota para Instance que recebe o id do record
+Route::get('/instance/create/{record}','InstanceController@create')->name('instance.create');
 
 // Rotas para Users
 Route::resource('/users', 'UserController');

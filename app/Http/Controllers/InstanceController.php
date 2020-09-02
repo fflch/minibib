@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Instance;
 use Illuminate\Http\Request;
 use App\Http\Requests\InstanceRequest;
+use App\Record;
 
 class InstanceController extends Controller
 {
@@ -15,10 +16,13 @@ class InstanceController extends Controller
      */
     public function index(Request $request)
     {
-        if(isset($request->busca)) {
-            $instances = Instance::where('tombo','LIKE',"%{$request->busca}%")->paginate(10);
+        if($request->busca) {
+            $instances = Instance::with('record:id,titulo')
+                ->where('tombo','LIKE',"%{$request->busca}%")
+                ->paginate(10);
         } else {
-            $instances=Instance::paginate(15);
+            $instances = Instance::with('record:id,titulo')
+                ->paginate(10);
         }
         return view('instance.index')->with("instances",$instances);
     }
@@ -28,9 +32,10 @@ class InstanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($record)
     {
-        return view('instance.create')->with('instance',new Instance);
+        $record = Record::find($record, ['id','titulo']);
+        return view('instance.create')->with(['record' => $record]);
     }
 
     /**
@@ -56,7 +61,11 @@ class InstanceController extends Controller
      */
     public function show(Instance $instance)
     {
-        return view('instance.show')->with('instance',$instance);
+        $record = Record::find($instance->record_id, 'titulo');
+        return view('instance.show')->with([
+            'instance' => $instance,
+            'record'   => $record,
+        ]);
     }
 
     /**
@@ -67,7 +76,11 @@ class InstanceController extends Controller
      */
     public function edit(Instance $instance)
     {
-        return view('instance.edit')->with('instance',$instance);
+        $record = Record::find($instance->record_id, ['id','titulo']);
+        return view('instance.edit')->with([
+            'instance' => $instance,
+            'record'   => $record,
+        ]);
     }
 
     /**

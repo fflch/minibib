@@ -15,9 +15,10 @@ class CreateInstancesTable extends Migration
     {
         Schema::create('instances', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('record_id')->unsigned();
             $table->timestamps();
-            $table->integer('record_id');
             $table->string('tombo');
+            $table->foreign('record_id')->references('id')->on('records');
         });
     }
 
@@ -28,6 +29,7 @@ class CreateInstancesTable extends Migration
      */
     public function down()
     {
+        $table->dropForeign(['record_id']);
         Schema::dropIfExists('instances');
     }
 }

@@ -1,12 +1,15 @@
+<input type="hidden" name="record_id" value="{{ $record->id }}"
 <div class="form-group">
     <div class="form-row">
         <div class="form-group col-md-6 font-weight-bold">
-            <label for="record_id">ID do Registro:</label>
-            <input type="text" class="form-control" id="record_id" name="record_id" value="{{old('record_id',$instance->record_id)}}">
+            <label for="titulo">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo"
+                    value="{{ $record->titulo }}">
         </div>
         <div class="form-group col-md-6 font-weight-bold">
-            <label for="tombo">Tombo do Registro:</label>
-            <input type="text" class="form-control" id="tombo" name="tombo" value="{{old('tombo',$instance->tombo)}}">
+            <label for="tombo">Tombo</label>
+            <input type="text" class="form-control" id="tombo" name="tombo"
+                    value="{{ $instance->tombo ?? old('tombo') }}">
         </div>
     </div>
 </div>

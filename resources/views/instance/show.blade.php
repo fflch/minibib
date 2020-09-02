@@ -8,8 +8,10 @@
   <div class="card-header border-info bg-light">
     <div class="container">
       <div class="row">
-        <div class="col p-4 text-break"><h6 class="font-weight-bold">ID de Registro:</h6>{{ $instance->record_id }}</div>        
-        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Tombo:</h6> {{ $instance->tombo }}</div>
+        <div class="col p-4 text-break"><h6 class="font-weight-bold">Título</h6>
+          {{ $record->titulo }}</div>
+        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Tombo</h6>
+          {{ $instance->tombo }}</div>
       </div>
     </div>
  </div>
@@ -17,6 +19,6 @@
 </br>
 <a class="btn btn-success btn-md" href="/instance" role="button">Voltar</a>
 <a class="btn btn-outline-success btn-md" href="/instance/{{$instance->id}}/edit" role="button">Editar</a>
-  
+
 @endsection('content')
-      
+

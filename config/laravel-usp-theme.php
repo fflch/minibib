@@ -2,33 +2,29 @@
 
 $submenu1 =  [
     [
-        'text' => 'Listar Catálogo',
+        'text' => 'Listar',
         'url'  => '/records'
     ],
     [
-        'text' => 'Cadastrar Material',
+        'text' => 'Cadastrar',
         'url'  => '/records/create',
     ],
 ];
 
 $submenu2 =  [
     [
-        'text' => 'Listar Registros',
+        'text' => 'Listar',
         'url'  => '/instance'
-    ],
-    [
-        'text' => 'Cadastrar ID',
-        'url'  => '/instance/create',
     ],
 ];
 
 $submenu3 =  [
     [
-        'text' => 'Listar Usuários',
+        'text' => 'Listar',
         'url'  => '/users'
     ],
     [
-        'text' => 'Cadastrar Usuários',
+        'text' => 'Cadastrar',
         'url'  => '/users/create',
     ],
 ];
@@ -47,16 +43,16 @@ return [
             'can'  => 'admin',
         ],
         [
-            'text'    => 'Catálogo de Material',
+            'text'    => 'Material',
             'submenu' => $submenu1,
         ],
         [
-            'text'    => 'ID E Tombo',
+            'text'    => 'Acervo',
             'submenu' => $submenu2,
         ],
         [
             'text' => 'Usuários',
-            'submenu' => $submenu3,          
+            'submenu' => $submenu3,
         ],
     ]
 ];

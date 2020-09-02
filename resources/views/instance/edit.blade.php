@@ -5,7 +5,7 @@
 @section('content')
 @include('flash')
 
-<form method="POST" action="/instance/{{$instance->id}}"> 
+<form method="POST" action="/instance/{{$instance->id}}">
 @csrf
 @method('patch')
 <div class="card">

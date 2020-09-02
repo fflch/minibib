@@ -14,12 +14,12 @@ class InstanceSeeder extends Seeder
     {
         //
         $registro = [
-            'record_id' => '65',
+            'record_id' => '1',
             'tombo' => '4569852',
         ];
 
         Instance::create($registro);
 
-        factory(Instance::class, 100)->create();
+        factory(Instance::class, 50)->create();
     }
 }
