@@ -2,31 +2,33 @@
 
 $submenu1 =  [
     [
-        'text' => 'subitem 1',
-        'url'  => '/'
+        'text' => 'Listar',
+        'url'  => '/records'
     ],
     [
-        'text' => 'subitem 2',
-        'url'  => '/',
-        'can'  => 'admin',
-    ],
-    [
-        'text' => 'subitem 3',
-        'url'  => '/',
+        'text' => 'Cadastrar',
+        'url'  => '/records/create',
     ],
 ];
 
 $submenu2 =  [
     [
-        'text' => 'SubItem 1',
-        'url'  => '/subitem1'
-    ],
-    [
-        'text' => 'SubItem 2',
-        'url'  => '/subitem2',
-        'can'  => 'admin',
+        'text' => 'Listar',
+        'url'  => '/instance'
     ],
 ];
+
+$submenu3 =  [
+    [
+        'text' => 'Listar',
+        'url'  => '/users'
+    ],
+    [
+        'text' => 'Cadastrar',
+        'url'  => '/users/create',
+    ],
+];
+
 
 return [
     'title'=> 'USPdev',
@@ -36,27 +38,21 @@ return [
     'login_url' => '/login',
     'menu' => [
         [
-            'text' => 'Ver Catálogo',
-            'url'  => '/records'
-        ],
-        [
-            'text' => 'Cadastrar Material',
-            'url'  => '/records/create',            
-        ],
-        [
-            'text' => 'Item 3',
-            'url'  => '/item3',
+            'text' => 'Item 1',
+            'url'  => '/',
             'can'  => 'admin',
         ],
         [
-            'text'    => 'SubMenu1',
+            'text'    => 'Material',
             'submenu' => $submenu1,
-            'can'  => 'admin',
         ],
         [
-            'text'    => 'SubMenu2',
+            'text'    => 'Acervo',
             'submenu' => $submenu2,
-            'can'  => 'admin',
-        ]
+        ],
+        [
+            'text' => 'Usuários',
+            'submenu' => $submenu3,
+        ],
     ]
 ];

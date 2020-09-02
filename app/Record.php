@@ -22,4 +22,9 @@ class Record extends Model
             'Partitura'
         ];
     }
+
+    public function instances(){
+        return $this->hasMany('App\Instance');
+    }
+
 }
