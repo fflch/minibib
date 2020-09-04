@@ -59,12 +59,11 @@ class InstanceController extends Controller
      * @param  \App\Instance  $instance
      * @return \Illuminate\Http\Response
      */
-    public function show(Instance $instance)
+    public function show($instance)
     {
-        $record = Record::find($instance->record_id, 'titulo');
+        $instance = Instance::with('record:id,titulo')->find($instance);
         return view('instance.show')->with([
             'instance' => $instance,
-            'record'   => $record,
         ]);
     }
 
@@ -74,12 +73,11 @@ class InstanceController extends Controller
      * @param  \App\Instance  $instance
      * @return \Illuminate\Http\Response
      */
-    public function edit(Instance $instance)
+    public function edit($instance)
     {
-        $record = Record::find($instance->record_id, ['id','titulo']);
+        $instance = Instance::with('record:id,titulo')->find($instance);
         return view('instance.edit')->with([
             'instance' => $instance,
-            'record'   => $record,
         ]);
     }
 

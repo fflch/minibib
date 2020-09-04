@@ -1,15 +1,16 @@
-<input type="hidden" name="record_id" value="{{ $record->id }}"
+<input type="hidden" name="record_id" value="{{ $instance->record->id ??
+                                      $record->id }}"
 <div class="form-group">
     <div class="form-row">
         <div class="form-group col-md-6 font-weight-bold">
             <label for="titulo">Título</label>
             <input type="text" class="form-control" id="titulo" name="titulo"
-                    value="{{ $record->titulo }}">
+                  value="{{ $instance->record->titulo ?? $record->titulo }}">
         </div>
         <div class="form-group col-md-6 font-weight-bold">
             <label for="tombo">Tombo</label>
             <input type="text" class="form-control" id="tombo" name="tombo"
-                    value="{{ $instance->tombo ?? old('tombo') }}">
+                  value="{{ $instance->tombo ?? old('tombo') }}">
         </div>
     </div>
 </div>
