@@ -15,12 +15,12 @@ class CreateEmprestimosTable extends Migration
     {
         Schema::create('emprestimos', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->unsignedBigInteger('instance_id');
+            $table->unsignedBigInteger('user_id');
             $table->date('data_emprestimo');
             $table->date('data_devolucao');
-            $table->unsignedBigInteger('user_id');
             $table->string('n_usp');
+            $table->timestamps();
             $table->foreign('instance_id')->references('id')->on('instances');
             $table->foreign('user_id')->references('id')->on('users');
         });

@@ -29,16 +29,8 @@ class RecordRequest extends FormRequest
         return [
             'autores'     => 'required',
             'titulo'      => 'required',
-            'desc_f'      => '',
-            'editora'     => '',
-            'assunto'     => '',
-            'local_p'     => '',
-            'localizacao' => '',
-            'edicao'      => '',
             'ano'         => 'required|integer',
             'idioma'      => 'required',
-            'isbn'        => '',
-            'issn'        => '',
             'tipo'        => ['required', Rule::in($record->tipoOptions())],
         ];
     }
