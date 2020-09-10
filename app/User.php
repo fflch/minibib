@@ -41,4 +41,12 @@ class User extends Authenticatable
             'Inativo'
         ];
     }
+
+    public function emprestimo(){
+        return $this->belongsTo('App\Emprestimo');
+    }
+
+    public function instance(){
+        return $this->belongsTo('App\Instance');
+    }
 }

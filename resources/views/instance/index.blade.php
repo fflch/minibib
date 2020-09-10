@@ -36,11 +36,11 @@
         <td colspan="3"><div class="font-weight-bold">Tombo:</div>{{$instance->tombo }}</td>
         <td><div class="text-center">
           <form class="row-sm" method="POST" action="/instance/{{$instance->id}}">
-          <a class="row-sm btn-lg" href="/instance/{{$instance->id}}/edit"><i class="far fa-edit"></i></a>
-          <a class="row-sm btn-lg" href="/instance/{{$instance->id}}"><i class="fas fa-external-link-alt"></i></a>
+          <a class="btn btn-outline-success btn-md" data-toggle="tooltip" title="Editar" href="/instance/{{$instance->id}}/edit"><i class="far fa-edit"></i></a>
+          <a class="btn btn-outline-success btn-md" data-toggle="tooltip" title="Ver" href="/instance/{{$instance->id}}"><i class="fas fa-external-link-alt"></i></a>
           @csrf
           @method('delete')
-            <button type="submit" class=" btn btn-outline-primary btn-sm" onclick="return confirm('Tem certeza que deseja apagar?');" ><i class="fas fa-trash-alt"></i></button>
+            <button type="submit" class=" btn btn-outline-danger btn-md" onclick="return confirm('Tem certeza que deseja apagar?');" ><i class="fas fa-trash-alt"></i></button>
           </form></div>
         </td>
         </td>

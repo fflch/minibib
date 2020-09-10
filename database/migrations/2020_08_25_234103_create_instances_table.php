@@ -15,7 +15,7 @@ class CreateInstancesTable extends Migration
     {
         Schema::create('instances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('record_id')->unsigned();
+            $table->unsignedBigInteger('record_id');
             $table->timestamps();
             $table->string('tombo');
             $table->foreign('record_id')->references('id')->on('records');
