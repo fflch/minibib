@@ -16,11 +16,13 @@ class CreateEmprestimosTable extends Migration
         Schema::create('emprestimos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('tombo');
+            $table->unsignedBigInteger('instance_id');
             $table->date('data_emprestimo');
             $table->date('data_devolucao');
-            $table->string('id_user');
-            $table->string('codpes');
+            $table->unsignedBigInteger('user_id');
+            $table->string('n_usp');
+            $table->foreign('instance_id')->references('id')->on('instances');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -31,6 +33,8 @@ class CreateEmprestimosTable extends Migration
      */
     public function down()
     {
+        $table->dropForeign(['instance_id']);
+        $table->dropForeign(['user_id']);
         Schema::dropIfExists('emprestimos');
     }
 }

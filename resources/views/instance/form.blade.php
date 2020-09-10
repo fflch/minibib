@@ -4,7 +4,7 @@
         <div class="form-group col-md-6 font-weight-bold">
             <label for="titulo">Título</label>
             <input type="text" class="form-control" id="titulo" name="titulo"
-                    value="{{ $record->titulo }}">
+                    value="{{ $record->titulo }}" readonly>
         </div>
         <div class="form-group col-md-6 font-weight-bold">
             <label for="tombo">Tombo</label>

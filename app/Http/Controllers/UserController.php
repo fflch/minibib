@@ -48,10 +48,10 @@ class UserController extends Controller
         return redirect('/users');
     }
 
-    /**
+   /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\User  $usuario
      * @return \Illuminate\Http\Response
      */
     public function show(User $usuario)

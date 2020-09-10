@@ -33,13 +33,13 @@
         <td><div class="font-weight-bold">Autores:</div>{{$record->autores }}</td>
         <td><div class="text-center">
           <form class="row-sm" method="POST" action="/records/{{$record->id}}">
-          <a class="row-sm btn-lg" href="/records/{{$record->id}}/edit"><i class="far fa-edit"></i></a>
-          <a class="row-sm btn-lg" href="/records/{{$record->id}}"><i class="fas fa-external-link-alt"></i></a>
+          <a class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar" href="/records/{{$record->id}}/edit"><i class="far fa-edit"></i></a>
+          <a class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Ver" href="/records/{{$record->id}}"><i class="fas fa-external-link-alt"></i></a>
             @csrf
             @method('delete')
-            <button type="submit" class=" btn btn-outline-primary btn-sm" onclick="return confirm('Tem certeza que deseja apagar?');"><i class="fas fa-trash-alt"></i></button>
-            <a class="btn btn-primary" href="{{ route('instance.create',
-            $record->id) }}">Cadastrar Tombo</a>
+            <button type="submit" class=" btn btn-outline-danger btn-lg" onclick="return confirm('Tem certeza que deseja apagar?');"><i class="fas fa-trash"></i></button>
+            <a class="btn btn-outline-primary btn-sm" href="{{ route('instance.create',
+            $record->id) }}">Cadastrar Tombo</br><i class="fas fa-barcode"></i></a>
           </form>
           </div>
         </td>
