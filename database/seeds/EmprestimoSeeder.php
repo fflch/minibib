@@ -13,11 +13,11 @@ class EmprestimoSeeder extends Seeder
     public function run()
     {
         $entrada = [
-            'tombo' => '4578125',
+            'instance_id' => '1',
             'data_emprestimo' => '2020-08-25',
             'data_devolucao' => '2020-09-25',
-            'id_user' => '56',
-            'codpes' => '11170411',
+            'user_id' => '1',
+            'n_usp' => '11170411',
         ];
 
         Emprestimo::create($entrada);

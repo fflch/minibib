@@ -18,16 +18,16 @@ class CreateRecordsTable extends Migration
             $table->timestamps();
             $table->text('autores');
             $table->text('titulo');
-            $table->text('desc_f');
-            $table->text('editora');
-            $table->text('assunto');
-            $table->text('local_p');
-            $table->text('localizacao');
-            $table->string('edicao');
+            $table->text('desc_f')->nullable();
+            $table->text('editora')->nullable();
+            $table->text('assunto')->nullable();
+            $table->text('local_p')->nullable();
+            $table->text('localizacao')->nullable();
+            $table->string('edicao')->nullable();
             $table->text('ano');
             $table->text('idioma');
-            $table->string('isbn');
-            $table->string('issn');
+            $table->string('isbn')->nullable();
+            $table->string('issn')->nullable();
             $table->string('tipo');
         });
     }

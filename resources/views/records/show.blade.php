@@ -9,7 +9,7 @@
   <div class="card-header border-info bg-light">
     <div class="container">
       <div class="row">
-        <div class="col p-auto"><div class="bg-light text-break text-uppercase font-weight-bold text-info">{{ $record->titulo }}</div></div>
+        <div class="col p-auto"><h4 class="bg-light text-break text-uppercase font-weight-bold text-info">{{ $record->titulo }}</h4></div>
         <div class="col p-auto"><h6 class="font-weight-bold">Categoria:</h6><div class="bg-light text-uppercase">{{ $record->tipo }}</div></div>
       </div>
     </div>
@@ -45,8 +45,9 @@
   </div>
 </div>
 </br>
-<a class="btn btn-success btn-md" href="/records" role="button">Voltar</a>
+<a class="btn btn-outline-success btn-md" href="/records" role="button">Voltar</a>
 <a class="btn btn-outline-success btn-md" href="/records/{{$record->id}}/edit" role="button">Editar</a>
+<a class="btn btn-outline-primary btn-md" href="{{ route('instance.create', $record->id) }}" role="button">Cadastrar Tombo</a>
 
   
 @endsection('content')
