@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Emprestimo;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +25,21 @@ Route::get('/instance/create/{record}','InstanceController@create')->name('insta
 
 // Rotas para Users
 Route::resource('/users', 'UserController');
+
+// Rotas para Emprestimo
+Route::resource('/emprestimo', 'EmprestimoController')->except(['create']);
+Route::get('/emprestimo/create/{instance}','EmprestimoController@create')->name('emprestimo.create');
+
+
+/* Route::get('/teste', function (){
+    $funcionarios = \App\User::all();
+    dd($funcionarios->funcionario);
+    
+    
+    } );
+
+    echo($instanciados->instance_id);
+    echo($instanciados->n_usp);
+    echo($instanciados->user_id);
+    
+}); */ 

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Emprestimo;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmprestimoRequest;
+use App\Instance;
+use App\User;
 
 class EmprestimoController extends Controller
 {
@@ -12,9 +15,9 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // $emprestimo
     }
 
     /**

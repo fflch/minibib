@@ -30,7 +30,7 @@ class User extends Authenticatable
      * The attributes that should be cast to native types.
      *
      * @var array
-     */
+     */ 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -41,4 +41,17 @@ class User extends Authenticatable
             'Inativo'
         ];
     }
+
+    public function funcionario()
+    {
+        return $this->hasMany(Emprestimo::class);
+    }
+
+    /** public function emprestado(){
+        return $this->hasOneThrough( 
+            Instance::class,
+            Emprestimo::class, 
+            'instance_id',
+            'n_usp');
+    } */
 }
