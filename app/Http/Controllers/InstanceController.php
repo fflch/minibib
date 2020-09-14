@@ -50,7 +50,7 @@ class InstanceController extends Controller
 
         Instance::create($validated);
 
-        return redirect('/instance');
+        return redirect("/records/{$validated['record_id']}");
     }
 
     /**
@@ -76,6 +76,7 @@ class InstanceController extends Controller
     public function edit($instance)
     {
         $instance = Instance::with('record:id,titulo')->find($instance);
+
         return view('instance.edit')->with([
             'instance' => $instance,
         ]);

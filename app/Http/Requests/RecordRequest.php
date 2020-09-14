@@ -31,7 +31,7 @@ class RecordRequest extends FormRequest
             'titulo'      => 'required',
             'ano'         => 'required|integer',
             'idioma'      => 'required',
-            'tipo'        => ['required', Rule::in($record->tipoOptions())],
+            'tipo'        => ['required', Rule::in($record->tipoOptions())]
         ];
     }
 }

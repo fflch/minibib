@@ -15,6 +15,7 @@ class RecordController extends Controller
      */
     public function index(Request $request)
     {
+        # Buscar por autor - busca por tombo
         if(isset($request->busca)) {
             $records = Record::where('titulo','LIKE',"%{$request->busca}%")->paginate(10);
         } else {
