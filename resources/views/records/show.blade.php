@@ -49,5 +49,10 @@
 <a class="btn btn-outline-success btn-md" href="/records/{{$record->id}}/edit" role="button">Editar</a>
 <a class="btn btn-outline-primary btn-md" href="{{ route('instance.create', $record->id) }}" role="button">Cadastrar Tombo</a>
 
+<br>
+@foreach ($record->instances as $instance) 
+  {{ $instance->tombo }} <br>
+@endforeach
+
   
 @endsection('content')

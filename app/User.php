@@ -42,16 +42,11 @@ class User extends Authenticatable
         ];
     }
 
-    public function funcionario()
-    {
-        return $this->hasMany(Emprestimo::class);
+    public function emprestimo(){
+        return $this->belongsTo('App\Emprestimo');
     }
 
-    /** public function emprestado(){
-        return $this->hasOneThrough( 
-            Instance::class,
-            Emprestimo::class, 
-            'instance_id',
-            'n_usp');
-    } */
+    public function instance(){
+        return $this->belongsTo('App\Instance');
+    }
 }

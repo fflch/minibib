@@ -8,13 +8,8 @@
   <div class="card-header border-info bg-light">
     <div class="container">
       <div class="row">
-<<<<<<< HEAD
-        <div class="col p-4 text-break" ><h6 class="font-weight-bold">Título</h6>
-          {{ $record->titulo }} </div>
-=======
         <div class="col p-4 text-break"><h6 class="font-weight-bold">Título</h6>
           {{ $instance->record->titulo }}</div>
->>>>>>> upstream/master
         <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Tombo</h6>
           {{ $instance->tombo }}</div>
       </div>
