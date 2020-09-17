@@ -45,14 +45,23 @@
   </div>
 </div>
 </br>
-<a class="btn btn-outline-success btn-md" href="/records" role="button">Voltar</a>
-<a class="btn btn-outline-success btn-md" href="/records/{{$record->id}}/edit" role="button">Editar</a>
-<a class="btn btn-outline-primary btn-md" href="{{ route('instance.create', $record->id) }}" role="button">Cadastrar Tombo</a>
-
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-4">
+      <a class="btn btn-outline-success btn-md" href="/records" role="button">Voltar</a>
+      <a class="btn btn-outline-success btn-md" href="/records/{{$record->id}}/edit" role="button">Editar</a>
+      <a class="btn btn-outline-primary btn-md" href="{{ route('instance.create', $record->id) }}" role="button">Cadastrar Tombo</a>
+    </div>
+    <div class="col-4">
+      <div class="list-group">
+      <li class="list-group-item text-primary">Links de Tombos Associados</li>
+      @foreach ($record->instances as $instance) 
+      <a href="{{ route('instance.show', $instance->id) }}" class="list-group-item list-group-item-action">{{ $instance->tombo }} </a>
+      @endforeach
+      </div>
+    </div>
+  </div>
+</div>
 <br>
-@foreach ($record->instances as $instance) 
-  {{ $instance->tombo }} <br>
-@endforeach
 
-  
 @endsection('content')

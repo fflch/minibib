@@ -24,7 +24,7 @@ class EmprestimoRequest extends FormRequest
      */
     public function rules()
     {
-        $emprestimo = new Emprestimo;
+        $instances = new Emprestimo;
         return [
             'instance_id'     => '',
             'data_emprestimo' => 'required',

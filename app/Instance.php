@@ -10,9 +10,9 @@ class Instance extends Model
 
     public function record(){
         return $this->belongsTo('App\Record');
-    }
+    }  
 
-    public function emprestado()
+    public function instance()
     {
         return $this->hasOne(Emprestimo::class);
     } 

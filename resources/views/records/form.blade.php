@@ -1,4 +1,26 @@
 <div class="form-group">
+    <div class="form-group">
+        <label for="tipo" class="required">Escolha o tipo: </label>          
+            <select name="tipo" class="form-control" id="tipo">
+
+            <option value="" selected="">- Selecione -</option>
+            @foreach ($record->tipoOptions() as $option)
+
+                {{-- 1. Situação em que não houve tentativa de submissão e é uma edição --}}
+                @if (old('tipo') == '' and isset($record->tipo))
+                <option value="{{$option}}" {{ ( $record->tipo == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+                {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
+                @else
+                <option value="{{$option}}" {{ ( old('tipo') == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+                @endif
+                
+            @endforeach
+            </select> 
+    </div>
         <label for="autores">Autores</label>
         <input type="text" class="form-control" id="autores" name="autores" value="{{old('autores',$record->autores)}}">
     </div>
@@ -56,28 +78,7 @@
             <input type="text" class="form-control" id="issn" name="issn" value="{{old('issn',$record->issn)}}">
         </div>
     </div>
-    <div class="form-group">
-        <label for="tipo" class="required"><b>Escolha o tipo: </b></label>          
-            <select name="tipo" class="form-control" id="tipo">
-
-            <option value="" selected="">- Selecione -</option>
-            @foreach ($record->tipoOptions() as $option)
-
-                {{-- 1. Situação em que não houve tentativa de submissão e é uma edição --}}
-                @if (old('tipo') == '' and isset($record->tipo))
-                <option value="{{$option}}" {{ ( $record->tipo == $option) ? 'selected' : ''}}>
-                    {{$option}}
-                </option>
-                {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
-                @else
-                <option value="{{$option}}" {{ ( old('tipo') == $option) ? 'selected' : ''}}>
-                    {{$option}}
-                </option>
-                @endif
-                
-            @endforeach
-            </select> 
-    </div></div>
+    </div>
     </br>
     </br>
     <div class="col-sm form-group">

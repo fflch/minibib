@@ -53,6 +53,18 @@
         <td><div class="font-weight-bold">Categoria:</div>{{ $record->tipo }}</td>
         <td><div class="font-weight-bold">ISBN:</div> {{ $record->isbn }}</td>
       </tr>
+      <tr>
+        <td>
+        <div class="font-weight-bold">Links de Tombos Associados:</div>
+          <div class="col-3">
+            <div class="list-group list-group-horizontal-sm">
+            @foreach ($record->instances as $instance) 
+            <a href="{{ route('instance.show', $instance->id) }}" class="list-group-item list-group-item-action">{{ $instance->tombo }} </a>
+            @endforeach
+            </div>
+          </div>
+        </td>
+      </tr>
       @endforeach
       </tbody>
     </table>
