@@ -56,13 +56,12 @@
       <tr>
         <td>
         <div class="font-weight-bold">Links de Tombos Associados:</div>
-          <div class="col-3">
-            <div class="list-group list-group-horizontal-sm">
+          <ul class="list-inline">
             @foreach ($record->instances as $instance) 
-            <a href="{{ route('instance.show', $instance->id) }}" class="list-group-item list-group-item-action">{{ $instance->tombo }} </a>
+            <a class="list-inline-item" href="{{ route('instance.show', $instance->id) }}">{{ $instance->tombo }} </a>
             @endforeach
-            </div>
-          </div>
+          </ul>
+        </div>   
         </td>
       </tr>
       @endforeach

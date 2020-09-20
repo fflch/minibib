@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Record;
 use Illuminate\Http\Request;
 use App\Http\Requests\RecordRequest;
+use App\Instance;
 
 class RecordController extends Controller
 {
@@ -17,10 +18,20 @@ class RecordController extends Controller
     {
         # Buscar por autor - busca por tombo
         if(isset($request->busca)) {
-            $records = Record::where('titulo','LIKE',"%{$request->busca}%")->paginate(10);
+            $records = Record::where('titulo','LIKE',"%{$request->busca}%")->paginate(15);
         } else {
             $records = Record::paginate(15);
         }
+    
+
+        // if ($request->busca){
+        // $records = Record::with('instance:id,tombo')
+        //     ->where('tombo','LIKE',"%{$request->busca}%")
+        //     ->paginate(15);
+        // } else {
+        //     $records = Record::with('instance:id,tombo')
+        //         ->paginate(15);
+        // }
         return view('records.index')->with('records',$records);
     }
 
