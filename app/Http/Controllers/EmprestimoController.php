@@ -39,7 +39,7 @@ class EmprestimoController extends Controller
      */
     public function create()
     {
-        //
+        return view('emprestimos.create');
     }
 
     /**
@@ -51,6 +51,9 @@ class EmprestimoController extends Controller
     public function store(EmprestimoRequest $request)
     {
         $validated = $request->validated();
+
+        $emprestimo->n_usp = $request->n_usp; // pessoa q ta levando o livro
+        $emprestimo->user_id = 1;  //Emprestando;
 
         Emprestimo::create($validated);
 

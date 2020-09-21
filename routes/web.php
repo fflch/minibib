@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Emprestimo;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,8 +26,8 @@ Route::get('/instance/create/{record}','InstanceController@create')->name('insta
 Route::resource('/users', 'UserController');
 
 // Rotas para Emprestimo
-Route::resource('/emprestimo', 'EmprestimoController')->except(['create']);
-Route::get('/emprestimo/create/{instance}','EmprestimoController@create')->name('emprestimo.create');
+Route::resource('/emprestimos', 'EmprestimoController')->except(['create']);
+Route::get('/emprestimos/create/{instance}','EmprestimoController@create')->name('emprestimo.create');
 
 
 /* Route::get('/teste', function (){

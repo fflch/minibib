@@ -4,6 +4,7 @@
 
 use App\Record;
 use Faker\Generator as Faker;
+use App\Instance;
 
 $factory->define(Record::class, function (Faker $faker) {
 
@@ -23,6 +24,6 @@ $factory->define(Record::class, function (Faker $faker) {
         'localizacao' => $faker->company,
         'local_p' => $faker->state,
         'issn' => $faker->ean8,
-        'desc_f' => $faker->text,
+        'desc_f' => $faker->text
     ];
 });

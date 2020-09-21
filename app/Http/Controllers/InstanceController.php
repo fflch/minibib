@@ -76,9 +76,8 @@ class InstanceController extends Controller
     public function edit($instance)
     {
         $instance = Instance::with('record:id,titulo')->find($instance);
-
         return view('instance.edit')->with([
-            'instance' => $instance,
+            'instance' => $instance
         ]);
     }
 
@@ -94,7 +93,7 @@ class InstanceController extends Controller
         $validated = $request->validated();
         $instance->update($validated);
 
-        return redirect("instance/$instance->id");
+        return redirect("/records/{$validated['record_id']}");
     }
 
     /**

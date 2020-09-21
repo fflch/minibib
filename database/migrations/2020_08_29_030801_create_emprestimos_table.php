@@ -18,7 +18,7 @@ class CreateEmprestimosTable extends Migration
             $table->unsignedBigInteger('instance_id');
             $table->unsignedBigInteger('user_id');
             $table->date('data_emprestimo');
-            $table->date('data_devolucao');
+            $table->date('data_devolucao')->nullable();
             $table->string('n_usp');
             $table->timestamps();
             $table->foreign('instance_id')->references('id')->on('instances');
@@ -33,8 +33,5 @@ class CreateEmprestimosTable extends Migration
      */
     public function down()
     {
-        $table->dropForeign(['instance_id']);
-        $table->dropForeign(['user_id']);
-        Schema::dropIfExists('emprestimos');
     }
 }

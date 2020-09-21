@@ -6,6 +6,7 @@ use App\Record;
 use Illuminate\Http\Request;
 use App\Http\Requests\RecordRequest;
 use App\Instance;
+use Illuminate\Database\Eloquent\Builder;
 
 class RecordController extends Controller
 {
@@ -16,22 +17,15 @@ class RecordController extends Controller
      */
     public function index(Request $request)
     {
-        # Buscar por autor - busca por tombo
+        # Buscar por tombo, título e autor 
         if(isset($request->busca)) {
-            $records = Record::where('titulo','LIKE',"%{$request->busca}%")->paginate(15);
+            $records = Record::whereHas('instances', function (Builder $query) use ($request) {
+                $query->where('tombo','LIKE',"%{$request->busca}%");
+            })->orWhere('titulo','LIKE',"%{$request->busca}%")
+              ->orWhere('autores','LIKE',"%{$request->busca}%")->paginate(15);
         } else {
             $records = Record::paginate(15);
         }
-    
-
-        // if ($request->busca){
-        // $records = Record::with('instance:id,tombo')
-        //     ->where('tombo','LIKE',"%{$request->busca}%")
-        //     ->paginate(15);
-        // } else {
-        //     $records = Record::with('instance:id,tombo')
-        //         ->paginate(15);
-        // }
         return view('records.index')->with('records',$records);
     }
 

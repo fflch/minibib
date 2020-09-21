@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Instance;
+use App\Utils\Idioma;
 
 class Record extends Model
 {
@@ -22,6 +23,10 @@ class Record extends Model
             'Música (Som)',
             'Partitura'
         ];
+    }
+
+    public function idiomasOptions(){
+        return Idioma::lista();
     }
 
     public function instances(){
