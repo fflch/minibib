@@ -17,7 +17,7 @@
  </div>
 </div>
 </br>
-<a class="btn btn-success btn-md" href="/instance" role="button">Voltar</a>
+<a class="btn btn-success btn-md" href="{{ route('records.show', $instance->record->id) }}" role="button">Voltar</a>
 <a class="btn btn-outline-success btn-md" href="/instance/{{$instance->id}}/edit" role="button">Editar</a>
 
 @endsection('content')

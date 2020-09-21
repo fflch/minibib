@@ -27,11 +27,19 @@ class RecordRequest extends FormRequest
     {
         $record = new Record;
         return [
-            'autores'     => 'required',
-            'titulo'      => 'required',
-            'ano'         => 'required|integer',
-            'idioma'      => 'required',
-            'tipo'        => ['required', Rule::in($record->tipoOptions())]
+            'autores'      => 'required',
+            'titulo'       => 'required',
+            'desc_f'       => 'nullable',
+            'editora'      => 'nullable',
+            'assunto'      => 'nullable',
+            'local_p'      => 'nullable',
+            'localizacao'  => 'nullable',
+            'edicao'       => 'nullable',
+            'isbn'         => 'nullable',
+            'issn'         => 'nullable',
+            'ano'          => 'required|integer',
+            'idioma'       => 'required',
+            'tipo'         => ['required', Rule::in($record->tipoOptions())]
         ];
     }
 }

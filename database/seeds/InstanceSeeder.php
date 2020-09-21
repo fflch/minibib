@@ -20,6 +20,6 @@ class InstanceSeeder extends Seeder
 
         Instance::create($registro);
 
-        factory(Instance::class, 50)->create();
+        factory(Instance::class, 200)->create();
     }
 }
