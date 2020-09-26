@@ -1,7 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Instance;
+use App\Models\Instance;
 
 class InstanceSeeder extends Seeder
 {

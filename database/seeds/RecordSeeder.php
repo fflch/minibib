@@ -1,7 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Record;
+use App\Models\Record;
 
 class RecordSeeder extends Seeder
 {

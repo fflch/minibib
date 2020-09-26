@@ -1,7 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Emprestimo;
+use App\Models\Emprestimo;
 
 class EmprestimoSeeder extends Seeder
 {

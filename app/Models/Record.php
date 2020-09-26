@@ -1,13 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Instance;
-use App\Utils\Idioma;
+use App\Models\Instance;
+use App\Models\Utils\Idioma;
 
 class Record extends Model
 {
+    use HasFactory;
+
     protected $guarded = ['id'];
 
     public function tipoOptions(){
