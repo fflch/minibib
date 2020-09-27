@@ -30,8 +30,8 @@
             <textarea type="text" class="form-control" id="titulo" name="titulo">{{old('titulo',$record->titulo)}}</textarea>
         </div>
         <div class="form-group col-md-6">
-            <label for="desc_f">Descrição física</label>
-            <textarea type="text" class="form-control" id="desc_f" name="desc_f" >{{old('desc_f',$record->desc_f)}}</textarea>
+            <label for="desc_fisica">Descrição física</label>
+            <textarea type="text" class="form-control" id="desc_fisica" name="desc_fisica" >{{old('desc_fisica',$record->desc_fisica)}}</textarea>
         </div>
     </div>
     <div class="form-row">
@@ -46,8 +46,8 @@
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="local_p">Local de publicação</label>
-            <input type="text" class="form-control" id="local_p" name="local_p" value="{{old('local_p',$record->local_p)}}">
+            <label for="local_publicacao">Local de publicação</label>
+            <input type="text" class="form-control" id="local_publicacao" name="local_publicacao" value="{{old('local_publicacao',$record->local_publicacao)}}">
         </div>
         <div class="form-group col-md-6">
             <label for="localizacao">Localização</label>

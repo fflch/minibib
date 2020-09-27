@@ -36,9 +36,9 @@ class RecordFactory extends Factory
             'idioma' => $this->faker->sentence,
             'isbn' => $this->faker->isbn13,
             'localizacao' => $this->faker->company,
-            'local_p' => $this->faker->state,
+            'local_publicacao' => $this->faker->state,
             'issn' => $this->faker->ean8,
-            'desc_f' => $this->faker->text
+            'desc_fisica' => $this->faker->text
         ];
     }
 }

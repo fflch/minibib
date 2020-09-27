@@ -29,10 +29,10 @@ class RecordRequest extends FormRequest
         return [
             'autores'      => 'required',
             'titulo'       => 'required',
-            'desc_f'       => 'nullable',
+            'desc_fisica'       => 'nullable',
             'editora'      => 'nullable',
             'assunto'      => 'nullable',
-            'local_p'      => 'nullable',
+            'local_publicacao'      => 'nullable',
             'localizacao'  => 'nullable',
             'edicao'       => 'nullable',
             'isbn'         => 'nullable',

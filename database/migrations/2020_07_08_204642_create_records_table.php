@@ -18,10 +18,10 @@ class CreateRecordsTable extends Migration
             $table->timestamps();
             $table->text('autores');
             $table->text('titulo');
-            $table->text('desc_f')->nullable();
+            $table->text('desc_fisica')->nullable();
             $table->text('editora')->nullable();
             $table->text('assunto')->nullable();
-            $table->text('local_p')->nullable();
+            $table->text('local_publicacao')->nullable();
             $table->text('localizacao')->nullable();
             $table->string('edicao')->nullable();
             $table->text('ano');

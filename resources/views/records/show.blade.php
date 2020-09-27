@@ -33,13 +33,13 @@
       </div>
       <div class="row">
         <div class="col p-4 text-break"><h6 class="font-weight-bold">Localização:</h6> {{ $record->localizacao }}</div>
-        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Local de publicação:</h6>{{ $record->local_p}}</div>
+        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Local de publicação:</h6>{{ $record->local_publicacao}}</div>
         <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">ISSN:</h6>{{ $record->issn}}</div>
       </div>
     </div>
     <div class="container bg-light">
       <div class="row">
-        <div class="text-break p-xl-4 bg-light text-justify"><h6 class="font-weight-bold">Descrição Física:</h6>{{ $record->desc_f }}</div>
+        <div class="text-break p-xl-4 bg-light text-justify"><h6 class="font-weight-bold">Descrição Física:</h6>{{ $record->desc_fisica }}</div>
       </div>
     </div>  
   </div>
