@@ -22,6 +22,6 @@ class InstanceSeeder extends Seeder
 
         Instance::create($registro);
 
-        factory(Instance::class, 200)->create();
+        Instance::factory(200)->create();
     }
 }

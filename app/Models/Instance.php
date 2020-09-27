@@ -12,7 +12,7 @@ class Instance extends Model
     protected $guarded = ['id'];
 
     public function record(){
-        return $this->belongsTo('App\Record');
+        return $this->belongsTo(Record::class);
     }  
 
     public function instance()

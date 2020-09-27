@@ -31,6 +31,6 @@ class RecordSeeder extends Seeder
         ];
         Record::create($entrada);
 
-        factory(Record::class, 50)->create();
+        Record::factory(50)->create();
     }
 }

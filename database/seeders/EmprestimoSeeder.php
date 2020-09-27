@@ -24,6 +24,6 @@ class EmprestimoSeeder extends Seeder
 
         Emprestimo::create($entrada);
 
-        factory(Emprestimo::class, 50)->create();
+        Emprestimo::factory(50)->create();
     }
 }

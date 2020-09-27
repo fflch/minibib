@@ -33,7 +33,7 @@ class Record extends Model
     }
 
     public function instances(){
-        return $this->hasMany('App\Instance');
+        return $this->hasMany(Instance::class);
     }
 
 }

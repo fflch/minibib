@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Emprestimo;
+use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmprestimoRequest;
-use App\Instance;
-use App\User;
+use App\Models\Instance;
+use App\Models\User;
 
 class EmprestimoController extends Controller
 {

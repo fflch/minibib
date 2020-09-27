@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Emprestimo;
+use App\Models\Emprestimo;
 
 class EmprestimoRequest extends FormRequest
 {

@@ -44,10 +44,10 @@ class User extends Authenticatable
     }
 
     public function emprestimo(){
-        return $this->belongsTo('App\Emprestimo');
+        return $this->belongsTo(Emprestimo::class);
     }
 
     public function instance(){
-        return $this->belongsTo('App\Instance');
+        return $this->belongsTo(Instance::class);
     }
 }

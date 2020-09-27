@@ -12,10 +12,10 @@ class Emprestimo extends Model
     protected $guarded = ['id'];
 
     public function users(){
-        return $this->hasMany('App\User');
+        return $this->hasMany(User::class);
     }
 
     public function instances(){
-        return $this->hasMany('App\Instance');
+        return $this->hasMany(Instance::class);
     }
 }

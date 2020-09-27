@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Record;
+use App\Models\Record;
 use Illuminate\Http\Request;
 use App\Http\Requests\RecordRequest;
-use App\Instance;
+use App\Models\Instance;
 use Illuminate\Database\Eloquent\Builder;
 
 class RecordController extends Controller
