@@ -64,8 +64,26 @@
             <input type="text" class="form-control" id="ano" name="ano" value="{{old('ano',$record->ano)}}">
         </div>
         <div class="form-group col-md-4">
-            <label for="idioma">Idioma</label>
-            <input type="text" class="form-control" id="idioma" name="idioma" value="{{old('idioma',$record->idioma)}}">
+        <label for="idioma" class="required">Escolha o Idioma: </label>          
+            <select name="idioma" class="form-control" id="idioma">
+
+            <option value="" selected="">- Selecione -</option>
+            @foreach ($record->idiomasOptions() as $option)
+
+                {{-- 1. Situação em que não houve tentativa de submissão e é uma edição --}}
+                @if (old('idioma') == '' and isset($record->idioma))
+                <option value="{{$option}}" {{ ( $record->idioma == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+                {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
+                @else
+                <option value="{{$option}}" {{ ( old('idioma') == $option) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+                @endif
+                
+            @endforeach
+            </select> 
         </div>
     </div>
     <div class="form-row">

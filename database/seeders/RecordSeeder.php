@@ -22,7 +22,7 @@ class RecordSeeder extends Seeder
             'editora' => 'Campo Azul',
             'edicao' => '3º',
             'assunto' => 'Literatura',
-            'idioma' => 'Português',
+            'idioma' => 'português do Brasil',
             'isbn' => '9788533307650',
             'localizacao' => 'Biblioteca Florestan Fernandes',
             'local_publicacao' => 'São Paulo',

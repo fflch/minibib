@@ -38,7 +38,7 @@ class RecordRequest extends FormRequest
             'isbn'         => 'nullable',
             'issn'         => 'nullable',
             'ano'          => 'required|integer',
-            'idioma'       => 'required',
+            'idioma'       => ['required', Rule::in($record->idiomasOptions())],
             'tipo'         => ['required', Rule::in($record->tipoOptions())]
         ];
     }
