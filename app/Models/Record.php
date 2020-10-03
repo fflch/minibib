@@ -32,7 +32,7 @@ class Record extends Model
         return Idioma::lista();
     }
 
-    public function instances(){
+    public function record(){
         return $this->hasMany(Instance::class);
     }
 

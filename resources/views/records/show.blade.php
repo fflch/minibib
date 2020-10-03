@@ -2,6 +2,10 @@
 
 @section('title') Sistema USP @endsection
 
+@section('javascripts_head')
+<script type="text/javascript" src="{{asset('js/record.js')}}"></script>
+@endsection
+
 @section('content')
 
 
@@ -29,12 +33,12 @@
       <div class="row">
         <div class="col p-4 text-break"><h6 class="font-weight-bold">Assunto:</h6>{{ $record->assunto }}</div>
         <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Idioma:</h6> {{ $record->idioma }}</div>
-        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">ISBN:</h6> {{ $record->isbn }}</div>
+        <div class="col p-4 col-xl-3 isbn"><h6 class="font-weight-bold">ISBN:</h6> {{ $record->isbn }}</div>
       </div>
       <div class="row">
         <div class="col p-4 text-break"><h6 class="font-weight-bold">Localização:</h6> {{ $record->localizacao }}</div>
         <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Local de publicação:</h6>{{ $record->local_publicacao}}</div>
-        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">ISSN:</h6>{{ $record->issn}}</div>
+        <div class="col p-4 col-xl-3 issn"><h6 class="font-weight-bold">ISSN:</h6>{{ $record->issn}}</div>
       </div>
     </div>
     <div class="container bg-light">
@@ -55,7 +59,7 @@
     <div class="col-4">
       <div class="list-group">
       <li class="list-group-item text-primary">Links de Tombos Associados</li>
-      @foreach ($record->instances as $instance) 
+      @foreach ($record->record as $instance) 
       <a href="{{ route('instance.show', $instance->id) }}" class="list-group-item list-group-item-action">{{ $instance->tombo }} </a>
       @endforeach
       </div>

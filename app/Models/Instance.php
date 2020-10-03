@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Record;
+use App\Models\Emprestimo;
 
 class Instance extends Model
 {
@@ -15,8 +17,8 @@ class Instance extends Model
         return $this->belongsTo(Record::class);
     }  
 
-    public function instance()
+    public function instances()
     {
-        return $this->hasOne(Emprestimo::class);
+        return $this->hasMany(Emprestimo::class);
     } 
 }

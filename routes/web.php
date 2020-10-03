@@ -28,6 +28,6 @@ Route::get('instance/create/{record}', [InstanceController::class,'create'])->na
 Route::resource('users', UserController::class);
 
 // Rotas para Emprestimo
-Route::resource('emprestimos', EmprestimoController::class)->except(['create']);
-Route::get('emprestimos/create/{instance}', [EmprestimoController::class, 'create'])->name('emprestimo.create');
+Route::resource('emprestimo', EmprestimoController::class)->except(['create']);
+Route::get('emprestimo/create/{instance}', [EmprestimoController::class, 'create'])->name('emprestimo.create');
 

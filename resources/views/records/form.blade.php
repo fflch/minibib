@@ -1,3 +1,7 @@
+@section('javascripts_head')
+<script type="text/javascript" src="{{asset('js/record.js')}}"></script>
+@endsection
+
 <div class="form-group">
     <div class="form-group">
         <label for="tipo" class="required">Escolha o tipo: </label>          
@@ -89,11 +93,11 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <label for="isbn">ISBN</label>
-            <input type="text" class="form-control" id="isbn" name="isbn" value="{{old('isbn',$record->isbn)}}">
+            <input type="text" class="form-control isbn" id="isbn" name="isbn" value="{{old('isbn',$record->isbn)}}">
         </div>
         <div class="form-group col-md-6">
             <label for="issn">ISSN</label>
-            <input type="text" class="form-control" id="issn" name="issn" value="{{old('issn',$record->issn)}}">
+            <input type="text" class="form-control issn" id="issn" name="issn" value="{{old('issn',$record->issn)}}">
         </div>
     </div>
     </div>
