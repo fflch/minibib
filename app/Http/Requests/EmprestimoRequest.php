@@ -27,8 +27,8 @@ class EmprestimoRequest extends FormRequest
         $instances = new Emprestimo;
         return [
             'instance_id'     => '',
-            'data_emprestimo' => 'required',
-            'data_devolucao'  => 'required',
+            'data_emprestimo' => '',
+            'data_devolucao'  => '',
             'n_usp'           => 'required',
             'user_id'         => '', 
         ];

@@ -29,7 +29,6 @@
         <tr>           
           <td><div class="font-weight-bold">Data do Empréstimo:</div>{{ $emprestimo->data_emprestimo}} </td>
           
-          <td><div class="font-weight-bold">Nº USP:</div>  </td>
         </tr>
           <td><div class="font-weight-bold">Data Devolução:</div>{{ $emprestimo->data_devolucao}} </td>          
           <td><div class="font-weight-bold">Nº USP do Aluno:</div> {{ $emprestimo->n_usp}}</td>          
@@ -41,8 +40,5 @@
   </div>
 </div>
 
-          @foreach ($instances->instances as $instance)
-          <td><div class="font-weight-bold">Nº USP:</div> {{ $instance->tombo }} </td>
-          @endforeach
 
 @endsection('content')

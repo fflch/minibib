@@ -25,6 +25,7 @@
             @endforeach
             </select> 
     </div>
+    <div class="form-group">
         <label for="autores">Autores</label>
         <input type="text" class="form-control" id="autores" name="autores" value="{{old('autores',$record->autores)}}">
     </div>
