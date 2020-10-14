@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Instance;
+use App\Models\Instance;
 use Illuminate\Http\Request;
 use App\Http\Requests\InstanceRequest;
-use App\Record;
+use App\Models\Record;
 
 class InstanceController extends Controller
 {

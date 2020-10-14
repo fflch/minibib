@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Emprestimo;
+use App\Models\Emprestimo;
 use Illuminate\Http\Request;
 use App\Http\Requests\EmprestimoRequest;
-use App\Instance;
-use App\User;
+use App\Models\Instance;
+use App\Models\User;
+use App\Models\Record;
 
 class EmprestimoController extends Controller
 {
@@ -15,20 +16,16 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Instance $instance)
+    public function index(Request $request)
     {
-        // if($request->busca) {
-        //     $instances = Emprestimo::with('instance:id,instance_id')
-        //         ->where('user_id','LIKE',"%{$request->busca}%")
-        //         ->paginate(2);
-        // } else {
-        //     $instances = Emprestimo::with('instance:id,instance_id')
-        //         ->paginate(2);
-        // }
-        $instances = Emprestimo::find(1); //('instance:id,instance_id');
-        //dd($emprestimos);
-        //$funcionarios = User::with('user:id,user_id');
-        return view ('emprestimos.index')->with("instances", $instances); 
+        if(isset($request->busca)) {
+            $emprestimos = Emprestimo::whereHas('instances', function (Builder $query) use ($request) {
+                $query->where('tombo','LIKE',"%{$request->busca}%");
+            })->orWhere('n_usp','LIKE',"%{$request->busca}%")->paginate(15);
+        } else {
+            $emprestimos = Emprestimo::paginate(15);
+        }
+        return view ('emprestimos.index')->with('emprestimos', $emprestimos); 
 
     }
 
@@ -37,9 +34,12 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($instances)
     {
-        return view('emprestimos.create');
+        $instances = Instance::find($instances, ['id','tombo']);
+        return view('emprestimos.create')->with([
+            'instances' => $instances
+            ]);
     }
 
     /**
@@ -66,9 +66,12 @@ class EmprestimoController extends Controller
      * @param  \App\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function show(Emprestimo $emprestimo)
+    public function show($emprestimo)
     {
-        //
+        $emprestimo = Emprestimo::with('instances:id,tombo')->find($emprestimo);
+        return view('emprestimos.show')->with([
+            'emprestimo', $emprestimo
+        ]);
     }
 
     /**
@@ -77,9 +80,12 @@ class EmprestimoController extends Controller
      * @param  \App\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Emprestimo $emprestimo)
+    public function edit($emprestimo)
     {
-        //
+        $emprestimo = Emprestimo::with('instances:id,tombo')->find($emprestimo);
+        return view('emprestimos.show')->with([
+            'emprestimo', $emprestimo
+        ]);
     }
 
     /**

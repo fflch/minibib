@@ -1,29 +1,46 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Record;
-use Faker\Generator as Faker;
-use App\Instance;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Record;
+use App\Models\Instance;
 
-$factory->define(Record::class, function (Faker $faker) {
+class RecordFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Record::class;
 
-    $record = new Record;
-    $tipo = $record->tipoOptions();
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $record = new Record;
+        $tipo = $record->tipoOptions();
+        $idioma = $record->idiomasOptions();
 
-    return [
-        'autores' => $faker->name,
-        'titulo' => $faker->sentence,
-        'tipo' => $tipo[array_rand($tipo)],
-        'ano' => $faker->year($max = 'now'),
-        'editora' => $faker->word,
-        'edicao' => $faker->randomDigit,
-        'assunto' => $faker->word,
-        'idioma' => $faker->sentence,
-        'isbn' => $faker->isbn13,
-        'localizacao' => $faker->company,
-        'local_p' => $faker->state,
-        'issn' => $faker->ean8,
-        'desc_f' => $faker->text
-    ];
-});
+        return [
+            'autores' => $this->faker->name,
+            'titulo' => $this->faker->sentence,
+            'tipo' => $tipo[array_rand($tipo)],
+            'ano' => $this->faker->year($max = 'now'),
+            'editora' => $this->faker->word,
+            'edicao' => $this->faker->randomDigit,
+            'assunto' => $this->faker->word,
+            'idioma' => $idioma[array_rand($idioma)],
+            'isbn' => $this->faker->isbn13,
+            'localizacao' => $this->faker->company,
+            'local_publicacao' => $this->faker->state,
+            'issn' => $this->faker->ean8,
+            'desc_fisica' => $this->faker->text
+        ];
+    }
+}
+

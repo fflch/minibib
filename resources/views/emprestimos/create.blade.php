@@ -11,7 +11,7 @@
 <div class="card">
     <h5 class="card-header font-weight-bold">Novo Empréstimo</h5>
     <div class="card-body">
-    @include('empresimos.form')
+    @include('emprestimos.form')
     </div>
 </div>
 </form>

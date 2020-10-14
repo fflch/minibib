@@ -1,13 +1,16 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Instance;
+use App\Models\Instance;
 use App\Utils\Idioma;
 
 class Record extends Model
 {
+    use HasFactory;
+
     protected $guarded = ['id'];
 
     public function tipoOptions(){
@@ -29,8 +32,8 @@ class Record extends Model
         return Idioma::lista();
     }
 
-    public function instances(){
-        return $this->hasMany('App\Instance');
+    public function record(){
+        return $this->hasMany(Instance::class);
     }
 
 }

@@ -1,21 +1,36 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Emprestimo;
-use Faker\Generator as Faker;
-use App\User;
-use App\Instance;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Emprestimo;
+use App\Models\User;
+use App\Models\Instance;
 
-$factory->define(Emprestimo::class, function (Faker $faker) {
+class EmprestimoFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Emprestimo::class;
 
-    $entrada = new Emprestimo;
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        $entrada = new Emprestimo;
 
-    return [
-        'instance_id'     => factory(Instance::class)->create()->id,
-        'data_emprestimo' => $faker->dateTimeThisMonth->format('Y-m-d'),
-        'data_devolucao'  => $faker->dateTimeBetween($startDate = '-1 month', $endDate = '+ 1 month')->format('Y-m-d'),
-        'user_id'         => factory(User::class)->create()->id,
-        'n_usp'           => $faker->graduacao(),
-    ];
-});
+        return [
+            'instance_id'     => Instance::factory()->create()->id,
+            'data_emprestimo' => $this->faker->dateTimeThisMonth->format('Y-m-d'),
+            'data_devolucao'  => $this->faker->dateTimeBetween($startDate = '-1 month', $endDate = '+ 1 month')->format('Y-m-d'),
+            'user_id'         => User::factory()->create()->id,
+            'n_usp'           => $this->faker->graduacao(),
+        ];
+    }
+}

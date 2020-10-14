@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Emprestimo;
+use App\Models\Emprestimo;
 
 class EmprestimoRequest extends FormRequest
 {
@@ -27,8 +27,8 @@ class EmprestimoRequest extends FormRequest
         $instances = new Emprestimo;
         return [
             'instance_id'     => '',
-            'data_emprestimo' => 'required',
-            'data_devolucao'  => 'required',
+            'data_emprestimo' => '',
+            'data_devolucao'  => '',
             'n_usp'           => 'required',
             'user_id'         => '', 
         ];

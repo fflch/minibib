@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Record;
+use App\Models\Record;
 
 class RecordRequest extends FormRequest
 {
@@ -29,16 +29,16 @@ class RecordRequest extends FormRequest
         return [
             'autores'      => 'required',
             'titulo'       => 'required',
-            'desc_f'       => 'nullable',
+            'desc_fisica'       => 'nullable',
             'editora'      => 'nullable',
             'assunto'      => 'nullable',
-            'local_p'      => 'nullable',
+            'local_publicacao'      => 'nullable',
             'localizacao'  => 'nullable',
             'edicao'       => 'nullable',
             'isbn'         => 'nullable',
             'issn'         => 'nullable',
             'ano'          => 'required|integer',
-            'idioma'       => 'required',
+            'idioma'       => ['required', Rule::in($record->idiomasOptions())],
             'tipo'         => ['required', Rule::in($record->tipoOptions())]
         ];
     }

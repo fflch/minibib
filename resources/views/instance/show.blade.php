@@ -17,10 +17,14 @@
  </div>
 </div>
 </br>
-<a class="btn btn-success btn-md" href="{{ route('records.show', $instance->record->id) }}" role="button">Voltar</a>
-<a class="btn btn-outline-success btn-md" href="/instance/{{$instance->id}}/edit" role="button">Editar</a>
-
-<a class="btn btn-outline-success btn-md" href="/emprestimos/{{$instance->id}}" role="button">Emprestar</a>
+<form class="row-sm" method="POST" action="/instance/{{$instance->id}}">
+  <a class="btn btn-success btn-md" href="{{ route('records.show', $instance->record->id) }}" role="button">Voltar</a>
+  <a class="btn btn-outline-success btn-md" href="/instance/{{$instance->id}}/edit" role="button">Editar</a>
+  <a class="btn btn-outline-success btn-md" href="/emprestimos/{{$instance->id}}" role="button">Emprestar</a>
+  @csrf
+  @method('delete')
+  <button type="submit" class=" btn btn-outline-danger btn-md" onclick="return confirm('Tem certeza que deseja apagar?');" >Excluir</button>
+</form>
 
 @endsection('content')
 

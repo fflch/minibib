@@ -2,6 +2,10 @@
 
 @section('title') Sistema USP @endsection
 
+@section('javascripts_head')
+<script type="text/javascript" src="{{asset('js/record.js')}}"></script>
+@endsection
+
 @section('content')
 
 <form method="get" action="/records">
@@ -51,13 +55,13 @@
       </tr>
       <tr>
         <td><div class="font-weight-bold">Categoria:</div>{{ $record->tipo }}</td>
-        <td><div class="font-weight-bold">ISBN:</div> {{ $record->isbn }}</td>
+        <td class="isbn"><div class="font-weight-bold">ISBN:</div> {{ $record->isbn }}</td>
       </tr>
       <tr>
         <td>
         <div class="font-weight-bold">Links de Tombos Associados:</div>
           <ul class="list-inline">
-            @foreach ($record->instances as $instance) 
+            @foreach ($record->record as $instance) 
             <a class="list-inline-item" href="{{ route('instance.show', $instance->id) }}">{{ $instance->tombo }} </a>
             @endforeach
           </ul>

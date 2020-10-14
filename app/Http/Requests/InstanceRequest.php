@@ -3,7 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Instance;
+use App\Models\Instance;
 
 class InstanceRequest extends FormRequest
 {

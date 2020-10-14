@@ -1,7 +1,9 @@
 <?php
 
+namespace Database\Seeders;
+
 use Illuminate\Database\Seeder;
-use App\Instance;
+use App\Models\Instance;
 
 class InstanceSeeder extends Seeder
 {
@@ -20,6 +22,6 @@ class InstanceSeeder extends Seeder
 
         Instance::create($registro);
 
-        factory(Instance::class, 200)->create();
+        Instance::factory(200)->create();
     }
 }

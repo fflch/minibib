@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Emprestimo;
-
+use App\Http\Controllers\RecordController;
+use App\Http\Controllers\InstanceController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\EmprestimoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,30 +17,17 @@ use App\Emprestimo;
 */
 
 // Rotas para Record
-Route::resource('/records','RecordController');
+Route::resource('records', RecordController::class);
 
 // Rotas para Instance
-Route::resource('/instance','InstanceController')->except(['create']);
+Route::resource('instance', InstanceController::class)->except(['create']);
 // Rota para Instance que recebe o id do record
-Route::get('/instance/create/{record}','InstanceController@create')->name('instance.create');
+Route::get('instance/create/{record}', [InstanceController::class,'create'])->name('instance.create');
 
 // Rotas para Users
-Route::resource('/users', 'UserController');
+Route::resource('users', UserController::class);
 
 // Rotas para Emprestimo
-Route::resource('/emprestimos', 'EmprestimoController')->except(['create']);
-Route::get('/emprestimos/create/{instance}','EmprestimoController@create')->name('emprestimo.create');
+Route::resource('emprestimo', EmprestimoController::class)->except(['create']);
+Route::get('emprestimo/create/{instance}', [EmprestimoController::class, 'create'])->name('emprestimo.create');
 
-
-/* Route::get('/teste', function (){
-    $funcionarios = \App\User::all();
-    dd($funcionarios->funcionario);
-    
-    
-    } );
-
-    echo($instanciados->instance_id);
-    echo($instanciados->n_usp);
-    echo($instanciados->user_id);
-    
-}); */ 

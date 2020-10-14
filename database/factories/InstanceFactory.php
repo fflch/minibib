@@ -1,14 +1,30 @@
 <?php
 
-/** @var \Illuminate\Database\Eloquent\Factory $factory */
+namespace Database\Factories;
 
-use App\Instance;
-use Faker\Generator as Faker;
-use App\Record;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Instance;
+use App\Models\Record;
 
-$factory->define(Instance::class, function (Faker $faker) {
-    return [
-        'record_id' => factory(Record::class)->create()->id,
-        'tombo' => $faker->unique()->numberBetween($min = 1000, $max = 90000),
-    ];
-});
+class InstanceFactory extends Factory
+{
+    /**
+     * The name of the factory's corresponding model.
+     *
+     * @var string
+     */
+    protected $model = Instance::class;
+
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    public function definition()
+    {
+        return [
+            'record_id' => Record::factory()->create()->id,
+            'tombo' => $this->faker->unique()->numberBetween($min = 1000, $max = 90000),
+        ];
+    }
+}
