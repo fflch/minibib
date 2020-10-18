@@ -61,7 +61,7 @@
         <td>
         <div class="font-weight-bold">Links de Tombos Associados:</div>
           <ul class="list-inline">
-            @foreach ($record->record as $instance) 
+            @foreach ($record->instances as $instance) 
             <a class="list-inline-item" href="{{ route('instance.show', $instance->id) }}">{{ $instance->tombo }} </a>
             @endforeach
           </ul>
