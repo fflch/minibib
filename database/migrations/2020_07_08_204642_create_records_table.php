@@ -24,8 +24,8 @@ class CreateRecordsTable extends Migration
             $table->text('local_publicacao')->nullable();
             $table->text('localizacao')->nullable();
             $table->string('edicao')->nullable();
-            $table->text('ano');
-            $table->text('idioma');
+            $table->string('ano')->nullable();;
+            $table->text('idioma')->nullable();;
             $table->string('isbn')->nullable();
             $table->string('issn')->nullable();
             $table->string('tipo');
