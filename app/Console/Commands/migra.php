@@ -6,6 +6,10 @@ use Illuminate\Console\Command;
 
 use Scriptotek\Marc\Record as Marc;
 use App\Models\Record;
+use App\Models\Instance;
+use Illuminate\Support\Facades\DB;
+use PDO;
+use Storage;
 
 class migra extends Command
 {
@@ -40,43 +44,294 @@ class migra extends Command
      */
     public function handle()
     {
+        #
         # Neste exemplo vou fazer para um registro, que será 10492
         # 1. Fazer um loop para aplicar em todos
 
         # 2. Vou ler um string, mas esse campo deve vir do banco postgres da tabela
         # select record from cataloging_biblio where record_serial=10492;
-        $marc = "00661cam a2200193 a 4500001000800000005001900008008004100027020007900068040000800147041000800155090002400163100002200187245006600209260004000275500005600315650002800371700002000399710004800419\x1E0039476\x1E20150514144821.952\x1E130227s||||     bl|||||||||||||||||por|u\x1E  \x1Fa4789004732 9784789004732 4789004996 9784789004992 4789004724 9784789004725\x1E  \x1Fbpor\x1E0 \x1Fajap\x1E  \x1FaA 811.1\x1FbMo83t\x1Fcv.1\x1E1 \x1FaMotohashi, Fujiko\x1E10\x1Fa24 Tasks for basic modern Japanese = \x1FbNihongo kite hanashite\x1E  \x1FaTokyo : \x1FbJapan Times, Ltd., \x1Fc1989\x1E  \x1FaTo be used with An Introduction to Modern Japanese.\x1E 4\x1FaLÍNGUA JAPONESA\x1FxAUDIO\x1E1_\x1FaHayashi, Satoko\x1E0_\x1FaTsuda Center for Japanese Language Teaching\x1E\x1D";
-        #$marc = "00702nas a2200181 a 4500001000800000005001900008008004100027041000800068090001600076245017500092260004700267300001100314500003000325650003600355650003300391650003300424711006300457\x1E0039089\x1E20150317140542.822\x1E120912s||||     bl|||||||||||||||||por|u\x1E0 \x1Fapor\x1E  \x1FaP\x1FbEn58\x1Fc11\x1E10\x1Fa Anais [do] XI Encontro nacional de professores universitários de língua, literatura e cultura japonesa [e] I Encontro de estudos japoneses :\x1Fb1 e 2 de setembro de 2000\x1E  \x1FaBrasília\x1FbUniversidade de Brasília\x1Fc2000\x1E  \x1Fa485 p.\x1E  \x1Fa1 e 2 de setembro de 2000\x1E 4\x1FaLITERATURA JAPONESA\x1FxCONGRESSOS\x1E  \x1FaCULTURA JAPONESA\x1FxCONGRESSOS\x1E  \x1FaLÍNGUA JAPONESA\x1FxCONGRESSOS\x1E0 \x1FaEncontro de estudos japoneses (1. : 2000 : Brasília, DF).\x1E\x1D";
 
-        # 3. parser
-        $fields = Marc::fromString($marc)->jsonSerialize();
-        #dd($fields);
+        #### Instruções ####
+        /* No arquivo abaixo
+         * vendor/scriptotek/marc/src/Fields/SerializableField.php
+         * Deixar a linha:
+         *    <-- return (string) $this; -->
+         * Assim:
+         *    <-- return $this; -->
+         */
 
-        # 4. Gravando dados no model desse sistema
-        $record = new Record;
-        #$record->id = # record_serial;
+        /* criar as seguintes variáveis no .env */
+        $host = env('POSTGRES_HOST');
+        $db = env('POSTGRES_DATABASE');
+        $username = env('POSTGRES_USERNAME');
+        $password = env('POSTGRES_PASSWORD');
 
-        $autores = ''; 
-        foreach($fields['creators'] as $autor){
-            $autores = $autores . ', ' . $autor['name'];
+        try {
+            $myPdo = new PDO("pgsql:host=$host, dbname=$db", $username, $password);
         }
-        $record->autores = $autores;
+        catch(Exception $e) {
+            echo "error $e->getMessage() \n";
+        }
+        $instance_orfao = $myPdo->query('select count(ch.holding_serial)
+                       from cataloging_holdings ch where ch.record_serial not in
+                       (select cb.record_serial from cataloging_biblio cb)');
+        foreach($instance_orfao as $total){
+            $total_instance_orfao = $total['count'];
+        }
+        $result = $myPdo->query('select record_serial, record
+                                 from cataloging_biblio order by record_serial');
+        $total_registro = 0;
+        $total_registro_inserido = 0;
+        $total_instance = 0;
+        $total_record_sem_titulo = 0;
+        foreach($result as $value) {
+            $biblio_records = Marc::fromString($value['record']);
 
-        $record->titulo = $fields['title'];
-        $record->editora = $fields['publisher'];
-        $record->ano = $fields['pub_year'];
-        $record->tipo = 'Livro';
-        $record->save();
+            $total_registro += 1;
+            $biblio_id = $this->getId($biblio_records) ?: $value['record_serial'];
 
-        # pegar as instâncias
-        # tombo: asset_holding
-        # localização: está em marc e com problema...
-        # select record  from cataloging_holdings where record_serial=678;
-        $loc = "00215nu  a2200097un 4500001000800000004000400008005001900012090001900031541005700050949001000107\x1E0000636\x1E678\x1E20120911145122.156\x1E  \x1Fa334.462\x1FbMe38a\x1E 4\x1FaProfa. Dra. Luiza Nana Yoshida\x1Fcdoação\x1Fd11/09/2012\x1E  \x1Fa31926\x1E\x1D";
-        dd(preg_replace('/[\x00-\x1F\x7F-\xFF]/', '', explode(' ',$loc)[5]));
-        $fields = Marc::fromString($loc)->jsonSerialize();
-        dd($fields);
+            $cataloging_holdings = $myPdo->query("select holding_serial, record
+                    from cataloging_holdings where record_serial = $biblio_id");
 
-        return 0;
+            # 4. Gravando dados no model desse sistema
+                echo $biblio_id . "\n";
+                DB::transaction(function ()
+                    use($biblio_id, $biblio_records, $cataloging_holdings,
+                        &$total_instance, &$total_registro_inserido,
+                        &$total_record_sem_titulo) {
+                    $record = new Record;
+                    $record->id = $biblio_id;
+                    $record->autores = $this->getAutor($biblio_records);
+                    $record->titulo = $this->getTitulo($biblio_records);
+                    $record->desc_fisica = $this->getDescFisica($biblio_records);
+                    $record->editora = $this->getEditora($biblio_records);
+                    $record->assunto = $this->getAssunto($biblio_records);
+                    $record->local_publicacao = $this->getLocalPublicacao($biblio_records);
+                    $record->localizacao = $this->getLocalizacao($biblio_records);
+                    $record->edicao = $this->getEdicao($biblio_records);
+                    $record->ano = $this->getAnoPublicacao($biblio_records);
+                    $record->idioma = $this->getIdioma($biblio_records);
+                    $record->isbn = $this->getIsbn($biblio_records);
+                    $record->issn = $this->getIssn($biblio_records);
+                    $record->tipo = 'Livro';
+
+                    if($record->titulo) {
+                        $record->save();
+                        $total_registro_inserido += 1;
+
+                        if($cataloging_holdings->rowCount() > 0) {
+                            foreach($cataloging_holdings as $value) {
+                                $holdings_records = Marc::fromString($value['record']);
+                                $instance = new Instance;
+                                $instance->id = $value['holding_serial'];
+                                $instance->tombo = $this->getTombo($holdings_records);
+                                $instance->localizacao = $this->getLocalizacao($holdings_records);
+                                $instance->record_id = $biblio_id;
+                                $instance->save();
+                                $total_instance += 1;
+                            }
+                        }
+                    }
+                    else {
+                        $total_record_sem_titulo += 1;
+                        $this->makeFileOffTitle($record);
+                    }
+                });
+
+        }
+
+        $instance_record_off = $myPdo->query('select ch.record from cataloging_holdings ch
+        where ch.record_serial not in (select cb.record_serial from cataloging_biblio cb)');
+
+        if($instance_record_off->rowCount() > 0) {
+            foreach($instance_record_off as $value) {
+                $marc_records = Marc::fromString($value['record']);
+                $this->makeFileOffRecord($marc_records);
+            }
+        }
+
+        echo "\nTotal de records = $total_registro\n";
+        echo "Total de records inserido = $total_registro_inserido\n";
+        echo "Records não inseridos porque não possui título = $total_record_sem_titulo\n";
+        echo "Total de instances inserido = $total_instance\n";
+        echo "Total de instance orfão = $total_instance_orfao\n";
+        echo "Arquivos gerados estão em storage/app/, são eles:
+                 offrecords.txt e offtitle.txt\n";
+
     }
+
+    private function getData($marc, $field, $code_subfield) {
+        if($marc->getField($field)) {
+            foreach($marc->getField($field)->getSubfields() as $subfield) {
+                if($subfield->getCode() == $code_subfield) {
+                    return trim($subfield->getData());
+                }
+            }
+        }
+        return null;
+    }
+    private function getLocalizacao($marc) {
+        $localizacao = [];
+        if($marc->getField('90')) {
+            foreach($marc->getField('90')->getSubfields() as $subfields) {
+                    $localizacao[] = trim($subfields->getData());
+            }
+            return implode(' ', $localizacao);
+        }
+        return null;
+    }
+
+    private function getTitulo($marc) {
+        $field = '245';
+        $code_subfield = 'a';
+        if($this->getData($marc, $field, $code_subfield))
+            return $this->getData($marc, $field, $code_subfield);
+        else {
+            $field = '240';
+            return $this->getData($marc, $field, $code_subfield);
+        }
+
+        return null;
+    }
+
+    private function getIsbn($marc) {
+        $field = '020';
+        $code_subfield = 'a';
+        return $this->getData($marc, $field, $code_subfield);
+    }
+
+    private function getIssn($marc) {
+        $field = '022';
+        $code_subfield = 'a';
+        return $this->getData($marc, $field, $code_subfield);
+    }
+
+    private function getLocalPublicacao($marc) {
+        $field = '260';
+        $code_subfield = 'a';
+        return $this->getData($marc, $field, $code_subfield);
+    }
+
+    private function getEdicao($marc) {
+        $field = '250';
+        $code_subfield = 'a';
+        return $this->getData($marc, $field, $code_subfield);
+    }
+
+    private function getAnoPublicacao($marc) {
+        $field = '260';
+        $code_subfield = 'c';
+        return $this->getData($marc, $field, $code_subfield);
+    }
+
+    private function getEditora($marc) {
+        $field = '260';
+        $code_subfield = 'b';
+        return $this->getData($marc, $field, $code_subfield);
+    }
+
+    private function getIdioma($marc) {
+        $field = '041';
+        $code_subfield = 'a';
+        $idioma = $this->getData($marc, $field, $code_subfield);
+        $japones = ['jap', 'jpn', 'ja', 'jp'];
+        $ingles =  ['en', 'ing', 'eng'];
+        $portugues = ['por', 'prt'];
+        if($idioma) {
+            if(in_array(strtolower(substr($idioma, 0, 3)), $japones)){
+                return 'ja';
+            }
+            elseif(in_array(strtolower(substr($idioma, 0, 3)), $ingles)){
+                return 'en';
+            }
+            elseif(in_array(strtolower(substr($idioma, 0, 3)), $portugues)){
+                return 'pt_BR';
+            }
+            else {
+                return null;
+            }
+        }
+        return $idioma;
+    }
+
+    private function getDescFisica($marc) {
+        $descricao_fisica = [];
+        if($marc->getField('300')) {
+            foreach($marc->getField('300')->getSubfields() as $subfield){
+                $descricao_fisica[] = trim($subfield->getData());
+            }
+            return implode(' ', $descricao_fisica);
+        }
+        return null;
+    }
+
+    private function getAssunto($marc) {
+        $assunto = [];
+        if($marc->getField('650')) {
+            foreach($marc->getField('650')->getSubfields() as $subfield){
+                $assunto[] = trim($subfield->getData());
+            }
+            return implode(' - ', $assunto);
+        }
+        return null;
+    }
+
+    private function getAutor($marc) {
+        $fields = $marc->jsonSerialize();
+        $autores = [];
+        foreach($fields['creators'] as $autor) {
+            $autores[] = $autor['name'];
+        }
+        return implode(' - ', $autores);
+    }
+
+    private function getId($marc) {
+        if($marc->getField('001')) {
+            return $marc->getField('001')->getData();
+        }
+        return null;
+    }
+
+    private function getTombo($marc) {
+        $field = '949';
+        $code_subfield = 'a';
+        return $this->getData($marc, $field, $code_subfield);
+    }
+
+    private function makeFileOffTitle($record) {
+        try {
+            $txt = "record_serial = $record->id\n";
+            $txt .= "autor(es) = $record->autores\n";
+            $txt .= "título = $record->titulo\n";
+            $txt .= "descrição física = $record->desc_fisica\n";
+            $txt .= "editora = $record->editora\n";
+            $txt .= "assunto = $record->assunto\n";
+            $txt .= "local publicação = $record->local_publicacao\n";
+            $txt .= "localização = $record->localizacao\n";
+            $txt .= "edição = $record->edicao\n";
+            $txt .= "ano = $record->ano\n";
+            $txt .= "idioma = $record->idioma\n";
+            $txt .= "isbn = $record->isbn\n";
+            $txt .= "issn = $record->issn\n";
+            $txt .= "\n=====================================================\n";
+            Storage::disk('local')->append("offtitle.txt", $txt);
+        }
+        catch(Exception $e) {
+            echo "Erro ao gravar no arquivo $e";
+        }
+    }
+
+    private function makeFileOffRecord($marc_records) {
+        try {
+            $txt = "Tombo = " . $this->getTombo($marc_records) . "\n";
+            $txt .= "Localização = " . $this->getLocalizacao($marc_records) . "\n";
+            $txt .= "\n=====================================================\n";
+            Storage::disk('local')->append("offrecord.txt", $txt);
+        }
+        catch(Exception $e) {
+            echo "Erro ao gravar no arquivo $e";
+        }
+    }
+
 }
+
