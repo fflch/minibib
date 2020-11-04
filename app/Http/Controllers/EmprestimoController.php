@@ -34,12 +34,11 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($instances)
+    public function create(Instance $instances, Record $record)
     {
-        $instances = Instance::find($instances, ['id','tombo']);
-        return view('emprestimos.create')->with([
-            'instances' => $instances
-            ]);
+        $instances = Emprestimo::find($instances, ['id','tombo']);
+        $record = Record::find($record, 'titulo');
+        return view('emprestimos.create', compact('instances','record'));
     }
 
     /**

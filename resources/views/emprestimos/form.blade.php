@@ -3,11 +3,12 @@ data_emprestimo
 data_devolucao
 user_id
 n_usp -->
-<input type="hidden" name="instances_id" value="{{ $emprestimo ?? ''->instances->tombo ?? $instances->id }}">
+<input type="hidden" name="instances_id" value="{{ $emprestimo->instances->id ?? $instances->id }}">
+
 <div class="form-group">
     <div class="form-row">
         <div class="form-group col"><h6 class="font-weight-bold">Tombo:</h6>
-            {{ $emprestimo ?? ''->instances->tombo ?? $instances->tombo }}</div>
+            {{ $emprestimo->instances->tombo ?? $instances->tombo }}</div>
         <div class="form-group col"><h6 class="font-weight-bold">Título:</h6>
         </div>
         </div>
