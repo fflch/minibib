@@ -29,13 +29,15 @@
         @foreach($records as $record)
         <tr class="table alert alert-dark">
           <th scope="col" ><div class="text-uppercase">{{$record->titulo }}</div></th>
-          <th scope="col" ><div style="width: 18rem;" class="text-center font-weight-bold">Ações:</div></th>
+          <th scope="col" ><div style="width: 18rem;" class="text-center font-weight-bold">@can('admin')Ações:@endcan('admin')</div></th>
         </tr>
       </thead>
       <tbody>
       <tr>
         <td><div class="font-weight-bold">Autores:</div>{{$record->autores }}</td>
+        @can('admin')
         <td><div class="text-center">
+
           <form class="row-sm" method="POST" action="/records/{{$record->id}}">
           <a class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar" href="/records/{{$record->id}}/edit"><i class="far fa-edit"></i></a>
           <a class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Ver" href="/records/{{$record->id}}"><i class="fas fa-external-link-alt"></i></a>
@@ -47,6 +49,7 @@
           </form>
           </div>
         </td>
+        @endcan('admin')
         </td>
       </tr>
       <tr>
@@ -62,7 +65,11 @@
         <div class="font-weight-bold">Links de Tombos Associados:</div>
           <ul class="list-inline">
             @foreach ($record->instances as $instance) 
-            <a class="list-inline-item" href="{{ route('instance.show', $instance->id) }}">{{ $instance->tombo }} </a>
+              @can('admin')
+                <a class="list-inline-item" href="{{ route('instance.show', $instance->id) }}">{{ $instance->tombo }} </a>
+              @else
+                {{ $instance->tombo }}
+              @endcan('admin')
             @endforeach
           </ul>
         </div>   

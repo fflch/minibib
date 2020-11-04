@@ -17,6 +17,7 @@ class RecordController extends Controller
      */
     public function index(Request $request)
     {
+        #$this->authorize('admin');
         # Buscar por tombo, título e autor 
         if(isset($request->busca)) {
             $records = Record::whereHas('instances', function (Builder $query) use ($request) {
@@ -36,6 +37,7 @@ class RecordController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
         return view('records.create')->with('record',new Record);
     }
 
@@ -47,6 +49,7 @@ class RecordController extends Controller
      */
     public function store(RecordRequest $request)
     {
+        $this->authorize('admin');
         $validated = $request->validated();
 
         Record::create($validated);
@@ -62,6 +65,7 @@ class RecordController extends Controller
      */
     public function show(Record $record)
     {
+        $this->authorize('admin');
         return view('records.show')->with('record',$record);
     }
 
@@ -73,6 +77,7 @@ class RecordController extends Controller
      */
     public function edit(Record $record)
     {
+        $this->authorize('admin');
         return view('records.edit')->with('record',$record);
     }
 
@@ -85,6 +90,7 @@ class RecordController extends Controller
      */
     public function update(RecordRequest $request, Record $record)
     {
+        $this->authorize('admin');
         $validated = $request->validated();
         $record->update($validated);
 
@@ -99,6 +105,7 @@ class RecordController extends Controller
      */
     public function destroy(Record $record)
     {
+        $this->authorize('admin');
         $record->delete();
         return redirect('/records');
     }

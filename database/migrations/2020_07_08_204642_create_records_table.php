@@ -22,7 +22,6 @@ class CreateRecordsTable extends Migration
             $table->text('editora')->nullable();
             $table->text('assunto')->nullable();
             $table->text('local_publicacao')->nullable();
-            $table->text('localizacao')->nullable();
             $table->string('edicao')->nullable();
             $table->string('ano')->nullable();;
             $table->text('idioma')->nullable();;

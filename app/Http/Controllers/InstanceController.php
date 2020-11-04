@@ -16,6 +16,7 @@ class InstanceController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('admin');
         if($request->busca) {
             $instances = Instance::with('record:id,titulo')
                 ->where('tombo','LIKE',"%{$request->busca}%")
@@ -34,6 +35,7 @@ class InstanceController extends Controller
      */
     public function create($record)
     {
+        $this->authorize('admin');
         $record = Record::find($record, ['id','titulo']);
         return view('instance.create')->with(['record' => $record]);
     }
@@ -46,6 +48,7 @@ class InstanceController extends Controller
      */
     public function store(InstanceRequest $request)
     {
+        $this->authorize('admin');
         $validated = $request->validated();
 
         Instance::create($validated);
@@ -61,6 +64,7 @@ class InstanceController extends Controller
      */
     public function show($instance)
     {
+        $this->authorize('admin');
         $instance = Instance::with('record:id,titulo')->find($instance);
         return view('instance.show')->with([
             'instance' => $instance,
@@ -75,6 +79,7 @@ class InstanceController extends Controller
      */
     public function edit($instance)
     {
+        $this->authorize('admin');
         $instance = Instance::with('record:id,titulo')->find($instance);
         return view('instance.edit')->with([
             'instance' => $instance
@@ -90,6 +95,7 @@ class InstanceController extends Controller
      */
     public function update(InstanceRequest $request, Instance $instance)
     {
+        $this->authorize('admin');
         $validated = $request->validated();
         $instance->update($validated);
 
@@ -104,6 +110,7 @@ class InstanceController extends Controller
      */
     public function destroy(Instance $instance)
     {
+        $this->authorize('admin');
         $instance->delete();
         return redirect('/instance');
     }

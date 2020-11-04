@@ -32,7 +32,7 @@
     <div class="container bg-light">
       <div class="row">
         <div class="col p-4 text-break"><h6 class="font-weight-bold">Assunto:</h6>{{ $record->assunto }}</div>
-        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Idioma:</h6> {{ $record->idioma }}</div>
+        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Idioma:</h6> {{ \App\Utils\Idioma::lista()[$record->idioma] }}</div>
         <div class="col p-4 col-xl-3 isbn"><h6 class="font-weight-bold">ISBN:</h6> {{ $record->isbn }}</div>
       </div>
       <div class="row">

@@ -36,7 +36,6 @@ class RecordFactory extends Factory
             'assunto' => $this->faker->word,
             'idioma' => $idioma[array_rand($idioma)],
             'isbn' => $this->faker->isbn13,
-            'localizacao' => $this->faker->company,
             'local_publicacao' => $this->faker->state,
             'issn' => $this->faker->ean8,
             'desc_fisica' => $this->faker->text

@@ -1,6 +1,6 @@
 <?php
 
-$submenu1 =  [
+$records =  [
     [
         'text' => 'Listar',
         'url'  => '/records'
@@ -11,14 +11,7 @@ $submenu1 =  [
     ],
 ];
 
-$submenu2 =  [
-    [
-        'text' => 'Listar',
-        'url'  => '/instance'
-    ],
-];
-
-$submenu3 =  [
+$users =  [
     [
         'text' => 'Listar',
         'url'  => '/users'
@@ -33,26 +26,19 @@ $submenu3 =  [
 return [
     'title'=> 'USPdev',
     'dashboard_url' => '/',
-    'logout_method' => 'GET',
+    'logout_method' => 'POST',
     'logout_url' => '/logout',
     'login_url' => '/login',
     'menu' => [
         [
-            'text' => 'Item 1',
-            'url'  => '/',
-            'can'  => 'admin',
-        ],
-        [
             'text'    => 'Material',
-            'submenu' => $submenu1,
-        ],
-        [
-            'text'    => 'Acervo',
-            'submenu' => $submenu2,
+            'submenu' => $records,
+            'can'     => 'admin'
         ],
         [
             'text' => 'Usuários',
-            'submenu' => $submenu3,
+            'submenu' => $users,
+            'can'     => 'nao_usado'
         ],
     ]
 ];

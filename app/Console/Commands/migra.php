@@ -107,7 +107,6 @@ class migra extends Command
                     $record->editora = $this->getEditora($biblio_records);
                     $record->assunto = $this->getAssunto($biblio_records);
                     $record->local_publicacao = $this->getLocalPublicacao($biblio_records);
-                    $record->localizacao = $this->getLocalizacao($biblio_records);
                     $record->edicao = $this->getEdicao($biblio_records);
                     $record->ano = $this->getAnoPublicacao($biblio_records);
                     $record->idioma = $this->getIdioma($biblio_records);

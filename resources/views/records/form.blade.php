@@ -73,16 +73,16 @@
             <select name="idioma" class="form-control" id="idioma">
 
             <option value="" selected="">- Selecione -</option>
-            @foreach ($record->idiomasOptions() as $option)
+            @foreach ($record->idiomasOptions() as $key=>$option)
 
                 {{-- 1. Situação em que não houve tentativa de submissão e é uma edição --}}
                 @if (old('idioma') == '' and isset($record->idioma))
-                <option value="{{$option}}" {{ ( $record->idioma == $option) ? 'selected' : ''}}>
+                <option value="{{$key}}" {{ ( $record->idioma == $key) ? 'selected' : ''}}>
                     {{$option}}
                 </option>
                 {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
                 @else
-                <option value="{{$option}}" {{ ( old('idioma') == $option) ? 'selected' : ''}}>
+                <option value="{{$key}}" {{ ( old('idioma') == $key) ? 'selected' : ''}}>
                     {{$option}}
                 </option>
                 @endif

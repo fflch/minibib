@@ -5,8 +5,15 @@ use App\Http\Controllers\RecordController;
 use App\Http\Controllers\InstanceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\LoginController;
 
-Route::get('/', [RecordController::class,'index']);
+Route::get('/', [RecordController::class,'index'])->name('home');
+Route::get('/home', [RecordController::class,'index']);
+
+// Login
+Route::get('login', [LoginController::class, 'redirectToProvider']);
+Route::get('callback', [LoginController::class, 'handleProviderCallback']);
+Route::post('logout', [LoginController::class, 'logout']);
 
 // Rotas para Record
 Route::resource('records', RecordController::class);

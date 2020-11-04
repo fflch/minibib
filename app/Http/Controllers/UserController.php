@@ -15,6 +15,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $this->authorize('nao_usado');
+
         if(isset($request->busca)) {
             $usuario = User::where('codpes','LIKE',"%{$request->busca}%")->paginate(10);
         } else {
@@ -30,6 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('nao_usado');
         return view('users.create')->with('usuario',new User);
     }
 
@@ -41,6 +44,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('nao_usado');
         $validated = $request->validated();
         $validated['password'] = bcrypt($validated['password']);
         User::create($validated);
@@ -56,6 +60,7 @@ class UserController extends Controller
      */
     public function show(User $usuario)
     {
+        $this->authorize('nao_usado');
         return view('users.show')->with('usuario',$usuario);
     }
 
@@ -67,6 +72,7 @@ class UserController extends Controller
      */
     public function edit(User $usuario)
     {
+        $this->authorize('nao_usado');
         return view('users.edit')->with('usuario',$usuario);
     }
 
@@ -79,6 +85,7 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, User $usuario)
     {
+        $this->authorize('nao_usado');
         $validated = $request->validated();
         $usuario->update($validated);
 
@@ -93,6 +100,7 @@ class UserController extends Controller
      */
     public function destroy(User $usuario)
     {
+        $this->authorize('nao_usado');
         $usuario->delete();
         return redirect('/users');
     }

@@ -28,6 +28,12 @@ class AuthServiceProvider extends ServiceProvider
         
         $this->registerPolicies();
 
-        //
+        Gate::define('nao_usado', function ($user) {
+            return FALSE;
+        });
+
+        Gate::define('admin', function ($user) {
+            return TRUE;
+        });
     }
 }
