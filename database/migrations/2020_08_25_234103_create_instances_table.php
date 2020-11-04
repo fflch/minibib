@@ -17,8 +17,9 @@ class CreateInstancesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('record_id');
             $table->timestamps();
-            $table->string('tombo');
-            $table->foreign('record_id')->references('id')->on('records');
+            $table->string('tombo')->nullable();
+            $table->string('localizacao')->nullable();
+            $table->foreign('record_id')->references('id')->on('records')->onDelete('cascade');
         });
     }
 

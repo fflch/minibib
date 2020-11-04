@@ -21,8 +21,8 @@ class CreateEmprestimosTable extends Migration
             $table->date('data_devolucao')->nullable();
             $table->string('n_usp');
             $table->timestamps();
-            $table->foreign('instance_id')->references('id')->on('instances');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('instance_id')->references('id')->on('instances')->onDelete('cascade');;
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');;
         });
     }
 

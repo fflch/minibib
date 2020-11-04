@@ -59,7 +59,7 @@
     <div class="col-4">
       <div class="list-group">
       <li class="list-group-item text-primary">Links de Tombos Associados</li>
-      @foreach ($record->record as $instance) 
+      @foreach ($record->instances as $instance) 
       <a href="{{ route('instance.show', $instance->id) }}" class="list-group-item list-group-item-action">{{ $instance->tombo }} </a>
       @endforeach
       </div>
