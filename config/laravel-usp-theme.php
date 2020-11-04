@@ -24,11 +24,11 @@ $users =  [
 
 
 return [
-    'title'=> 'USPdev',
-    'dashboard_url' => '/',
+    'title' => config('app.name'),
+    'dashboard_url' => config('app.url'),
     'logout_method' => 'POST',
-    'logout_url' => '/logout',
-    'login_url' => '/login',
+    'logout_url' => config('app.url') . '/logout',
+    'login_url' => config('app.url') . '/login',
     'menu' => [
         [
             'text'    => 'Material',
