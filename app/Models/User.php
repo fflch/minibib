@@ -43,11 +43,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function emprestimo(){
-        return $this->belongsTo(Emprestimo::class);
+    public function emprestimos(){
+        return $this->hasMany(Emprestimo::class);
     }
 
-    public function instance(){
-        return $this->belongsTo(Instance::class);
-    }
 }

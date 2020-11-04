@@ -34,12 +34,9 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($instances)
+    public function create()
     {
-        $instances = Instance::find($instances, ['id','tombo']);
-        return view('emprestimos.create')->with([
-            'instances' => $instances
-            ]);
+        return view('emprestimos.create')->with('emprestimo', new Emprestimo);
     }
 
     /**
@@ -51,7 +48,7 @@ class EmprestimoController extends Controller
     public function store(EmprestimoRequest $request)
     {
         $validated = $request->validated();
-
+        //$emprestimo->data_devolucao = $request->input('data_devolucao')->addDays(20); input para adicionar datas
         $emprestimo->n_usp = $request->n_usp; // pessoa q ta levando o livro
         $emprestimo->user_id = 1;  //Emprestando;
 

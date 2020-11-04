@@ -30,4 +30,11 @@ class InstanceRequest extends FormRequest
             'tombo'     => 'required',
         ];
     }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'tombo' => preg_replace('/[^0-9]/', '', $this->tombo),
+        ]);
+    }
 }
