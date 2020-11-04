@@ -17,8 +17,8 @@ class Instance extends Model
         return $this->belongsTo(Record::class);
     }  
 
-    public function instances()
+    public function tombo()
     {
-        return $this->hasMany(Emprestimo::class);
+        return $this->belongsTo(Emprestimo::class);
     } 
 }
