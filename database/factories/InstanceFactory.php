@@ -25,6 +25,7 @@ class InstanceFactory extends Factory
         return [
             'record_id' => Record::factory()->create()->id,
             'tombo' => $this->faker->unique()->numberBetween($min = 1000, $max = 90000),
+            'localizacao' => $this->faker->localIpv4,
         ];
     }
 }

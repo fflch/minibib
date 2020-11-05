@@ -54,16 +54,12 @@
             <label for="local_publicacao">Local de publicação</label>
             <input type="text" class="form-control" id="local_publicacao" name="local_publicacao" value="{{old('local_publicacao',$record->local_publicacao)}}">
         </div>
-        <div class="form-group col-md-6">
-            <label for="localizacao">Localização</label>
-            <input type="text" class="form-control" id="localizacao" name="localizacao" value="{{old('localizacao',$record->localizacao)}}">
-        </div>
-    </div>
-    <div class="form-row">
         <div class="form-group col-md-4">
             <label for="edicao">Edição</label>
             <input type="text" class="form-control" id="edicao" name="edicao" value="{{old('edicao',$record->edicao)}}">
         </div>
+    </div>
+    <div class="form-row">
             <div class="form-group col-md-4">
             <label for="ano">Ano</label>
             <input type="text" class="form-control" id="ano" name="ano" value="{{old('ano',$record->ano)}}">

@@ -16,8 +16,9 @@ class InstanceSeeder extends Seeder
     {
         //
         $registro = [
-            'record_id' => '1',
-            'tombo' => '4569852',
+            'record_id'   => '1',
+            'tombo'       => '4569852',
+            'localizacao' => 'BS.X10/2'
         ];
 
         Instance::create($registro);
