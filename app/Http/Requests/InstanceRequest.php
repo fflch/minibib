@@ -26,8 +26,9 @@ class InstanceRequest extends FormRequest
     {
         $instance = new Instance;
         return [
-            'record_id' => 'required|integer',
-            'tombo'     => 'required',
+            'record_id'   => 'required|integer',
+            'tombo'       => 'required',
+            'localizacao' => 'required',
         ];
     }
 
