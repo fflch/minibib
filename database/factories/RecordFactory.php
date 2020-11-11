@@ -24,7 +24,7 @@ class RecordFactory extends Factory
     {
         $record = new Record;
         $tipo = $record->tipoOptions();
-        $idioma = $record->idiomasOptions();
+        $idioma = array_keys($record->idiomasOptions());
 
         return [
             'autores' => $this->faker->name,
@@ -34,7 +34,7 @@ class RecordFactory extends Factory
             'editora' => $this->faker->word,
             'edicao' => $this->faker->randomDigit,
             'assunto' => $this->faker->word,
-            'idioma' => $this->faker->randomElement($idioma= array_keys($idioma)),
+            'idioma' => $idioma[array_rand($idioma)],
             'isbn' => $this->faker->isbn13,
             'local_publicacao' => $this->faker->state,
             'issn' => $this->faker->ean8,
