@@ -22,7 +22,7 @@ class RecordSeeder extends Seeder
             'editora' => 'Campo Azul',
             'edicao' => '3º',
             'assunto' => 'Literatura',
-            'idioma' => 'português do Brasil',
+            'idioma' => 'pt_BR',
             'isbn' => '9788533307650',
             'local_publicacao' => 'São Paulo',
             'issn' => '17129842',
