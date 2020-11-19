@@ -19,6 +19,6 @@ class Instance extends Model
 
     public function tombo()
     {
-        return $this->belongsTo(Emprestimo::class);
+        return $this->belongsToMany(Emprestimo::class);
     } 
 }

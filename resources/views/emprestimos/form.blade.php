@@ -3,7 +3,7 @@ data_emprestimo
 data_devolucao
 user_id
 n_usp -->
-<input type="hidden" name="instances_id" value="{{ $emprestimo->emprestimo->id ?? '' }}">
+<input type="hidden" name="instances_id" value="{{ $emprestimo->emprestimo->id }}">
 
 <div class="form-group">
     <div class="form-row">
