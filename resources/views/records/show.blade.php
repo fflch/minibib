@@ -32,12 +32,12 @@
     <div class="container bg-light">
       <div class="row">
         <div class="col p-4 text-break"><h6 class="font-weight-bold">Assunto:</h6>{{ $record->assunto }}</div>
-        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Idioma:</h6> {{ \App\Utils\Idioma::lista()[$record->idioma] }}</div>
-        <div class="col p-4 col-xl-3 isbn"><h6 class="font-weight-bold">ISBN:</h6> {{ $record->isbn }}</div>
+        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Idioma:</h6> {{ \App\Utils\Idioma::lista()[$record->idioma] ?? 'Sem Idioma Cadastrado'}}</div>
+        <div class="col p-4 col-xl-3 "><h6 class="font-weight-bold">ISBN:</h6><div class="isbn">{{ $record->isbn}}</div></div>
       </div>
       <div class="row">
         <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Local de publicação:</h6>{{ $record->local_publicacao}}</div>
-        <div class="col p-4 col-xl-3 issn"><h6 class="font-weight-bold">ISSN:</h6>{{ $record->issn}}</div>
+        <div class="col p-4 col-xl-3 "><h6 class="font-weight-bold">ISSN:</h6><div class="issn">{{ $record->issn}}</div></div>
       </div>
     </div>
     <div class="container bg-light">

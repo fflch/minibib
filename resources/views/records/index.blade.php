@@ -50,9 +50,9 @@
       @endcan('admin')
         </td>
       </tr>
-      <tr>
-        <td ><div class="font-weight-bold">Idioma:</div> {{ \App\Utils\Idioma::lista()[$record->idioma] }}</td>
-        <td ><div class="font-weight-bold">Ano de Publicação:</div> {{ $record->ano }}</td>
+      <tr>          
+        <td><div class="font-weight-bold">Idioma:</div> {{ \App\Utils\Idioma::lista()[$record->idioma] ?? 'Sem Idioma Cadastrado'}} </td>
+        <td><div class="font-weight-bold">Ano de Publicação:</div> {{ $record->ano }}</td>
       </tr>
       <tr>
         <td><div class="font-weight-bold">Categoria:</div>{{ $record->tipo }}</td>
