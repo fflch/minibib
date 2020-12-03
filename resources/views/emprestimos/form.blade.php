@@ -3,15 +3,15 @@ data_emprestimo
 data_devolucao
 user_id
 n_usp -->
-<input type="hidden" name="instances_id" value="{{ $emprestimo->emprestimo->id }}">
+<input type="hidden" name="instance_id" value="{{ $instance->id }}">
 
 <div class="form-group">
     <div class="form-row">
     
         <div class="form-group col"><h6 class="font-weight-bold">Tombo:</h6>
-            {{ $emprestimo->emprestimo->tombo ?? '' }}</div>
+            {{ $instance->tombo }}</div>
     
-        <div class="form-group col"><h6 class="font-weight-bold">Título:</h6>
+        <div class="form-group col"><h6 class="font-weight-bold">Título: </h6> {{ $record->titulo }}
         </div>
         </div>
     </div>
@@ -25,7 +25,7 @@ n_usp -->
     <div class="form-row">
         <div class="form-group">
             <label for="n_usp">Número USP do Aluno:</label>
-            <input type="text" class="form-control" id="n_usp" name="n_usp" value="n_usp">
+            <input type="text" class="form-control" id="n_usp" name="n_usp" value="">
         </div>    
     </div>
 </div>    

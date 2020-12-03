@@ -17,7 +17,7 @@ class Emprestimo extends Model
     }
 
     public function emprestimo(){
-        return $this->belongsToMany(Instance::class);
+        return $this->belongsTo(Instance::class);
     }
 
     public function getDataEmprestimoAttribute($value) {

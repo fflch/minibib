@@ -35,10 +35,14 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Instance $instance)
     {
         $this->authorize('nao_usado');
-        return view('emprestimos.create')->with('emprestimo', new Emprestimo);
+        $record = Record::find($instance->record_id);
+        return view('emprestimos.create')->with([
+            'instance' => $instance,
+            'record'   => $record,
+            ]);
     }
 
     /**
@@ -50,10 +54,11 @@ class EmprestimoController extends Controller
     public function store(EmprestimoRequest $request)
     {
         $this->authorize('nao_usado');
+        
         $validated = $request->validated();
+        $validated['data_emprestimo']= date("Y-m-d");
+        $validated['user_id']= 1;
         //$emprestimo->data_devolucao = $request->input('data_devolucao')->addDays(20); input para adicionar datas
-        $emprestimo->n_usp = $request->n_usp; // pessoa q ta levando o livro
-        $emprestimo->user_id = 1;  //Emprestando;
 
         Emprestimo::create($validated);
 
@@ -69,6 +74,7 @@ class EmprestimoController extends Controller
     public function show($emprestimo)
     {
         $this->authorize('nao_usado');
+        $emprestimo = Emprestimo::with('instance:instance_id,tombo')->find($emprestimo);
         return view('emprestimos.show')->with([
             'emprestimo' => $emprestimo,
         ]);
@@ -99,8 +105,7 @@ class EmprestimoController extends Controller
     public function update(Request $request, Emprestimo $emprestimo)
     {
         $this->authorize('nao_usado');
-        $validated = $request->validated();
-        $emprestimo->update($validated);
+        $emprestimo->update($request->validated());
 
         return redirect("emprestimo/$emprestimo->id");
     }
