@@ -16,7 +16,7 @@ class Emprestimo extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function emprestimo(){
+    public function instance(){
         return $this->belongsTo(Instance::class);
     }
 

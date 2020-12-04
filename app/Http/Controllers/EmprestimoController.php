@@ -26,7 +26,7 @@ class EmprestimoController extends Controller
         } else {
             $emprestimos = Emprestimo::paginate(15);
         }
-        return view ('emprestimos.index')->with('emprestimos', $emprestimos); 
+        return view ('emprestimos.index')->with('emprestimos', $emprestimos);
 
     }
 
@@ -54,7 +54,7 @@ class EmprestimoController extends Controller
     public function store(EmprestimoRequest $request)
     {
         $this->authorize('nao_usado');
-        
+
         $validated = $request->validated();
         $validated['data_emprestimo']= date("Y-m-d");
         $validated['user_id']= 1;
@@ -71,10 +71,9 @@ class EmprestimoController extends Controller
      * @param  \App\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function show($emprestimo)
+    public function show(Emprestimo $emprestimo)
     {
         $this->authorize('nao_usado');
-        $emprestimo = Emprestimo::with('instance:instance_id,tombo')->find($emprestimo);
         return view('emprestimos.show')->with([
             'emprestimo' => $emprestimo,
         ]);

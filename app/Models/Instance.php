@@ -15,10 +15,10 @@ class Instance extends Model
 
     public function record(){
         return $this->belongsTo(Record::class);
-    }  
+    }
 
-    public function instances()
+    public function emprestimos()
     {
         return $this->hasMany(Emprestimo::class);
-    } 
+    }
 }
