@@ -10,7 +10,7 @@
         </div>
         <div class="form-group col-md-6 font-weight-bold">
             <label for="localizacao">Localização:</label>
-            <input type="text" class="form-control" id="localizacao" name="localizacao" value="{{old('localizacao',$instance->localizacao)}}">
+            <input type="text" class="form-control" id="localizacao" name="localizacao" value="{{ $instance->localizacao ?? old('localizacao')}}">
         </div>
     </div>
 </div>
