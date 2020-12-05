@@ -8,6 +8,7 @@ use App\Http\Requests\EmprestimoRequest;
 use App\Models\Instance;
 use App\Models\User;
 use App\Models\Record;
+use Carbon\Carbon;
 
 class EmprestimoController extends Controller
 {
@@ -18,7 +19,7 @@ class EmprestimoController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('nao_usado');
+        $this->authorize('admin');
         if(isset($request->busca)) {
             $emprestimos = Emprestimo::whereHas('instances', function (Builder $query) use ($request) {
                 $query->where('tombo','LIKE',"%{$request->busca}%");
@@ -35,13 +36,14 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Instance $instance)
+    public function create(Instance $instance, Emprestimo $emprestimo)
     {
-        $this->authorize('nao_usado');
+        $this->authorize('admin');
         $record = Record::find($instance->record_id);
         return view('emprestimos.create')->with([
             'instance' => $instance,
             'record'   => $record,
+            'emprestimo' => $emprestimo,
             ]);
     }
 
@@ -53,10 +55,12 @@ class EmprestimoController extends Controller
      */
     public function store(EmprestimoRequest $request)
     {
-        $this->authorize('nao_usado');
+        $this->authorize('admin');
 
         $validated = $request->validated();
-        $validated['data_emprestimo']= date("Y-m-d");
+        $validated['data_emprestimo']= Carbon::today();
+        dd($validated);
+        //$validated['data_emprestimo']= date("Y-m-d");
         $validated['user_id']= 1;
         //$emprestimo->data_devolucao = $request->input('data_devolucao')->addDays(20); input para adicionar datas
 
@@ -73,7 +77,7 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
-        $this->authorize('nao_usado');
+        $this->authorize('admin');
         return view('emprestimos.show')->with([
             'emprestimo' => $emprestimo,
         ]);
@@ -87,7 +91,7 @@ class EmprestimoController extends Controller
      */
     public function edit($emprestimo)
     {
-        $this->authorize('nao_usado');
+        $this->authorize('admin');
         $emprestimo = Emprestimo::with('instances:id,tombo')->find($emprestimo);
         return view('emprestimos.show')->with([
             'emprestimo' => $emprestimo,
@@ -103,7 +107,7 @@ class EmprestimoController extends Controller
      */
     public function update(Request $request, Emprestimo $emprestimo)
     {
-        $this->authorize('nao_usado');
+        $this->authorize('admin');
         $emprestimo->update($request->validated());
 
         return redirect("emprestimo/$emprestimo->id");
@@ -117,7 +121,7 @@ class EmprestimoController extends Controller
      */
     public function destroy(Emprestimo $emprestimo)
     {
-        $this->authorize('nao_usado');
+        $this->authorize('admin');
         $emprestimo->delete();
         return redirect('/emprestimo');
     }
