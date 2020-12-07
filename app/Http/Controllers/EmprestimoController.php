@@ -58,11 +58,9 @@ class EmprestimoController extends Controller
         $this->authorize('admin');
 
         $validated = $request->validated();
-        $validated['data_emprestimo']= Carbon::today();
-        dd($validated);
-        //$validated['data_emprestimo']= date("Y-m-d");
+        $validated['data_emprestimo']= Carbon::now()->toDateString();
+        $validated['data_devolucao']= Carbon::parse($validated['data_emprestimo'])->addWeeks(2)->toDateString();
         $validated['user_id']= 1;
-        //$emprestimo->data_devolucao = $request->input('data_devolucao')->addDays(20); input para adicionar datas
 
         Emprestimo::create($validated);
 
@@ -89,11 +87,13 @@ class EmprestimoController extends Controller
      * @param  \App\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function edit($emprestimo)
+    public function edit(Instance $instance, Emprestimo $emprestimo)
     {
         $this->authorize('admin');
-        $emprestimo = Emprestimo::with('instances:id,tombo')->find($emprestimo);
-        return view('emprestimos.show')->with([
+        $record = Record::find($instance->record_id);
+        return view('emprestimos.edit')->with([
+            'instance' => $instance,
+            'record'   => $record,
             'emprestimo' => $emprestimo,
         ]);
     }

@@ -28,7 +28,7 @@ class Emprestimo extends Model
        $this->attributes['data_emprestimo'] = implode('-',array_reverse(explode('/',$value)));
     }
 
-    public function getDataFinalAttribute($value) {
+    public function getDataDevolucaoAttribute($value) {
         return implode('/',array_reverse(explode('-',$value)));
     }
 
