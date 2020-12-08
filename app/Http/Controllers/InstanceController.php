@@ -6,6 +6,7 @@ use App\Models\Instance;
 use Illuminate\Http\Request;
 use App\Http\Requests\InstanceRequest;
 use App\Models\Record;
+use App\Models\Emprestimo;
 
 class InstanceController extends Controller
 {
@@ -113,5 +114,19 @@ class InstanceController extends Controller
         $this->authorize('admin');
         $instance->delete();
         return redirect('/instance');
+    }
+
+    public function emprestado(Emprestimo $emprestimo)
+    {
+        $this->authorize('admin');
+        $emprestimo['data_devolucao'] == NULL;
+        return view('instance.emprestado')->with([
+            'emprestimo' => $emprestimo,
+        ]);
+
+        // $emprestimo = Emprestimo::first('data_devolucao' = NULL);
+        // return view('instance.emprestado')->with([
+        //     'emprestimo' => $emprestimo,
+        // ]);
     }
 }

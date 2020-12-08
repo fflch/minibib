@@ -22,6 +22,7 @@ Route::resource('records', RecordController::class);
 Route::resource('instance', InstanceController::class)->except(['create']);
 // Rota para Instance que recebe o id do record
 Route::get('instance/create/{record}', [InstanceController::class,'create'])->name('instance.create');
+Route::get('emprestado', [InstanceController::class,'emprestado']);
 
 // Rotas para Users
 Route::resource('users', UserController::class);
