@@ -26,13 +26,14 @@
       </thead>
       <tbody>
       @foreach($emprestimos as $emprestimo)
-        <tr>           
+        <tr>
           <td><div class="font-weight-bold">Data do Empréstimo:</div>{{ $emprestimo->data_emprestimo}} </td>
-          <td><div class="font-weight-bold">Tombo:</div>{{ $emprestimo->tombo }} </td>
+          <td><div class="font-weight-bold">Tombo:</div>{{
+            $emprestimo->instance->tombo }} </td>
         </tr>
-          <td><div class="font-weight-bold">Data Devolução:</div>{{ $emprestimo->data_devolucao}} </td>          
-          <td><div class="font-weight-bold">Nº USP do Aluno:</div> {{ $emprestimo->n_usp}}</td>          
-          <td><div class="font-weight-bold">Código do Usuário:</div> {{ $emprestimo->user_id }}</td>            
+          <td><div class="font-weight-bold">Data Devolução:</div>{{ $emprestimo->data_devolucao}} </td>
+          <td><div class="font-weight-bold">Nº USP do Aluno:</div> {{ $emprestimo->n_usp}}</td>
+          <td><div class="font-weight-bold">Código do Usuário:</div> {{ $emprestimo->user_id }}</td>
         </tr>
       @endforeach
       </tbody>

@@ -36,15 +36,13 @@ class EmprestimoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Instance $instance, Emprestimo $emprestimo)
+    public function create(Instance $instance)
     {
         $this->authorize('admin');
-        $record = Record::find($instance->record_id);
         return view('emprestimos.create')->with([
             'instance' => $instance,
-            'record'   => $record,
-            'emprestimo' => $emprestimo,
-            ]);
+            'emprestimo' => New Emprestimo,
+        ]);
     }
 
     /**
@@ -59,7 +57,6 @@ class EmprestimoController extends Controller
 
         $validated = $request->validated();
         $validated['data_emprestimo']= Carbon::now()->toDateString();
-        $validated['data_devolucao']= Carbon::parse($validated['data_emprestimo'])->addWeeks(2)->toDateString();
         $validated['user_id']= 1;
 
         Emprestimo::create($validated);
