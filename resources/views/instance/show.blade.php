@@ -22,7 +22,8 @@
 </br>
 <form class="row-sm" method="POST" action="/instance/{{$instance->id}}">
   <a class="btn btn-success btn-md" href="{{ route('records.show', $instance->record->id) }}" role="button">Voltar</a>
-  <a class="btn btn-outline-success btn-md" href="/instance/{{$instance->id}}/edit" role="button">Editar</a>
+  <a class="btn btn-outline-success btn-md" href="/instance/{{$instance->id}}/edit" role="button">Editar Tombo</a>
+  <a class="btn btn-primary btn-md" href="/emprestimo/create/{{$instance->id}}" role="button">Emprestar Material</a>
   @csrf
 </form>
 
