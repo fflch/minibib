@@ -116,12 +116,13 @@ class InstanceController extends Controller
         return redirect('/instance');
     }
 
-    public function emprestado(Emprestimo $emprestimo)
+    public function emprestado(Emprestimo $emprestimo, Instance $instance)
     {
         $this->authorize('admin');
         $emprestimo['data_devolucao'] == NULL;
         return view('instance.emprestado')->with([
             'emprestimo' => $emprestimo,
+            'instance'   => $instance,
         ]);
 
         // $emprestimo = Emprestimo::first('data_devolucao' = NULL);

@@ -16,7 +16,7 @@
           $emprestimo->instance->tombo }}</div>
         <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Data da devolução:</h6> {{ $emprestimo->data_devolucao  }}</div>
       </div>
-      <div class="col"><h6 class="font-weight-bold">ID do usuário:</h6> {{ $emprestimo->user->user_id  }}</div>
+      <div class="col"><h6 class="font-weight-bold">ID do usuário:</h6> {{ $emprestimo->user_id  }}</div>
     </div>
   </div>
 </div>

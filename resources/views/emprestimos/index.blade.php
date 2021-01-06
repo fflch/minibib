@@ -20,20 +20,33 @@
 
 <div class="card">
   <div class="card-body">
-    <table class="table">
+    <table class="table bg-light">
       <thead class="thead">
-        <h3>Empréstimos Registrados</h3>
+        <h3 >Empréstimos Registrados</h3>
       </thead>
       <tbody>
       @foreach($emprestimos as $emprestimo)
         <tr>
-          <td><div class="font-weight-bold">Data do Empréstimo:</div>{{ $emprestimo->data_emprestimo}} </td>
-          <td><div class="font-weight-bold">Tombo:</div>{{
-            $emprestimo->instance->tombo }} </td>
+          <th>Tombo do Empréstimo: {{ $emprestimo->instance->tombo }} </th>
+          <td>
+            <form class="row-sm" method="POST" action="/emprestimo/{{$emprestimo->id}}">
+            @if (empty($emprestimo->data_devolucao))
+            <a class="btn btn-outline-success btn-sm" href="/emprestimo/{{$emprestimo->id}}/edit">Devolver</i></a>
+            @endif
+              <a class="btn btn-outline-success btn-sm" href="/emprestimo/{{$emprestimo->id}}">Ver</i></a>
+              @csrf
+            </form>
+          </td>
         </tr>
-          <td><div class="font-weight-bold">Data Devolução:</div>{{ $emprestimo->data_devolucao}} </td>
-          <td><div class="font-weight-bold">Nº USP do Aluno:</div> {{ $emprestimo->n_usp}}</td>
-          <td><div class="font-weight-bold">Código do Usuário:</div> {{ $emprestimo->user_id }}</td>
+        <tr>
+          <td class="border-top-0 ">Nº USP do Aluno: {{ $emprestimo->n_usp}}</td>
+          @if (empty($emprestimo->data_devolucao))
+          <td class="border-top-0 font-weight-bolder text-danger">Empréstimo Ativo</td>
+          @else
+          <td class="border-top-0 ">Data Devolução: {{ $emprestimo->data_devolucao }}</td>
+          @endif
+          <td class="border-top-0 ">Data do Empréstimo: {{ $emprestimo->data_emprestimo}}</td>
+          <td class="border-top-0 ">Código do Usuário: {{ $emprestimo->user_id }}</td>
         </tr>
       @endforeach
       </tbody>
