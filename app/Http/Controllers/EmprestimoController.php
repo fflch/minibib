@@ -19,7 +19,7 @@ class EmprestimoController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('admin');
+        $this->authorize('nao_usado');
         if(isset($request->busca)) {
             $emprestimos = Emprestimo::whereHas('instances', function (Builder $query) use ($request) {
                 $query->where('tombo','LIKE',"%{$request->busca}%");
@@ -38,7 +38,7 @@ class EmprestimoController extends Controller
      */
     public function create(Instance $instance)
     {
-        $this->authorize('admin');
+        $this->authorize('nao_usado');
         return view('emprestimos.create')->with([
             'instance' => $instance,
             'emprestimo' => New Emprestimo,
@@ -53,7 +53,7 @@ class EmprestimoController extends Controller
      */
     public function store(EmprestimoRequest $request)
     {
-        $this->authorize('admin');
+        $this->authorize('nao_usado');
 
         $validated = $request->validated();
         $validated['data_emprestimo']= Carbon::now()->toDateString();
@@ -72,7 +72,7 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
-        $this->authorize('admin');
+        $this->authorize('nao_usado');
         return view('emprestimos.show')->with([
             'emprestimo' => $emprestimo,
         ]);
@@ -86,7 +86,7 @@ class EmprestimoController extends Controller
      */
     public function edit(Instance $instance, Emprestimo $emprestimo)
     {
-        $this->authorize('admin');
+        $this->authorize('nao_usado');
         return view('emprestimos.edit')->with([
             'emprestimo' => $emprestimo,
             'instance' => $instance,
@@ -102,7 +102,7 @@ class EmprestimoController extends Controller
      */
     public function update(EmprestimoRequest $request, Emprestimo $emprestimo)
     {
-        $this->authorize('admin');
+        $this->authorize('nao_usado');
         $validated = $request->validated();
         
         $emprestimo->update($request->validated());
@@ -120,7 +120,7 @@ class EmprestimoController extends Controller
      */
     public function destroy(Emprestimo $emprestimo)
     {
-        $this->authorize('admin');
+        $this->authorize('nao_usado');
         $emprestimo->delete();
         return redirect('/emprestimo');
     }
