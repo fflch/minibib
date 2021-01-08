@@ -13,10 +13,10 @@
       <tbody>
 @foreach($emprestimo as $emprestimo)
         <tr>           
-          <td><div class="font-weight-bold">Tombo:</div>{{ $emprestimo->tombo }} </td>
+          <td><div class="font-weight-bold">Tombo:</div>{{ $instance->tombo }} </td>
         </tr>
-          <td><div class="font-weight-bold">Data Devolução:</div>{{ $emprestimo->data_devolucao }} </td>          
-          <td><div class="font-weight-bold">Nº USP do Aluno:</div> {{ $emprestimo->localizacao }}</td>              
+          <td><div class="font-weight-bold">Data Devolução:</div>{{ $instance->emprestimo->data_devolucao }} </td>          
+          <td><div class="font-weight-bold">Nº USP do Aluno:</div> {{ $instance->emprestimo->localizacao }}</td>              
         </tr>
 @endforeach
       </tbody>

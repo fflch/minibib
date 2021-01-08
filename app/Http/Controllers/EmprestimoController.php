@@ -72,7 +72,7 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
-        $this->authorize('admin');
+        $this->authorize('nao_usado');
         return view('emprestimos.show')->with([
             'emprestimo' => $emprestimo,
         ]);
@@ -87,11 +87,9 @@ class EmprestimoController extends Controller
     public function edit(Instance $instance, Emprestimo $emprestimo)
     {
         $this->authorize('admin');
-        $record = Record::find($instance->record_id);
         return view('emprestimos.edit')->with([
-            'instance' => $instance,
-            'record'   => $record,
             'emprestimo' => $emprestimo,
+            'instance' => $instance,
         ]);
     }
 
@@ -102,9 +100,12 @@ class EmprestimoController extends Controller
      * @param  \App\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Emprestimo $emprestimo)
+    public function update(EmprestimoRequest $request, Emprestimo $emprestimo)
     {
         $this->authorize('admin');
+        $validated = $request->validated();
+        $validated['data_devolucao']= Carbon::now()->toDateString();
+        $validated['user_id']= 1;
         $emprestimo->update($request->validated());
 
         return redirect("emprestimo/$emprestimo->id");
