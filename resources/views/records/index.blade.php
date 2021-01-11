@@ -64,12 +64,26 @@
           <ul class="list-inline">
             @foreach ($record->instances as $instance) 
               <li>
-                @can('admin')
-                  Tombo: <a class="list-inline-item" href="{{ route('instances.show', $instance->id) }}">{{ $instance->tombo }}</a> -
+                <i class="fas fa-map-marker-alt"></i> {{ $instance->localizacao }}
+                <i class="fas fa-tags"></i> {{ $instance->tombo }}
+                
+                <i class="fas fa-book"></i>
+                @if($instance->emprestimos->where('data_devolucao',null)->first())
+                  <span style="color: red">Indisponível</span>
                 @else
-                  {{ $instance->tombo }} -
-                @endcan('admin')
-                Localização: {{ $instance->localizacao }}
+                  Disponínel
+                @endif
+
+                  @can('admin')
+                    <i class="far fa-edit"></i>
+                    </i> <a class="list-inline-item" href="{{ route('instances.show', $instance->id) }}">Editar</a>
+
+                    @if(!$instance->emprestimos->where('data_devolucao',null)->first())
+                      <i class="fas fa-book"></i>
+                      <a href="/emprestimos/create/{{$instance->id}}" role="button">Emprestar</a>
+                    @endif
+                    
+                  @endcan('admin')
               </li>
             @endforeach
           </ul>

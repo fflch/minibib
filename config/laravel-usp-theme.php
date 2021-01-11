@@ -37,7 +37,7 @@ return [
         ],
         [
             'text'    => 'Emprestados',
-            'url' => '/emprestados',
+            'url' => '/emprestimos',
             'can'     => 'admin'
         ],
         [

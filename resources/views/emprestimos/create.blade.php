@@ -6,7 +6,7 @@
 @section('content')
 @include('flash')
 
-<form method="POST" action="/emprestimo">
+<form method="POST" action="/emprestimos">
 @csrf
 <div class="card">
     <h5 class="card-header font-weight-bold">Novo Empréstimo</h5>

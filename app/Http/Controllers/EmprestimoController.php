@@ -20,14 +20,10 @@ class EmprestimoController extends Controller
     public function index(Request $request)
     {
         $this->authorize('admin');
-        if(isset($request->busca)) {
-            $emprestimos = Emprestimo::whereHas('instances', function (Builder $query) use ($request) {
-                $query->where('tombo','LIKE',"%{$request->busca}%");
-            })->orWhere('n_usp','LIKE',"%{$request->busca}%")->paginate(15);
-        } else {
-            $emprestimos = Emprestimo::paginate(15);
-        }
-        return view ('emprestimos.index')->with('emprestimos', $emprestimos);
+        $emprestimos = Emprestimo::where('data_devolucao',null)->get();
+        return view('emprestimos.index',[
+            'emprestimos' => $emprestimos
+        ]);
 
     }
 
@@ -61,7 +57,7 @@ class EmprestimoController extends Controller
 
         Emprestimo::create($validated);
 
-        return redirect('/emprestimo');
+        return redirect('/emprestimos');
     }
 
     /**
@@ -72,10 +68,6 @@ class EmprestimoController extends Controller
      */
     public function show(Emprestimo $emprestimo)
     {
-        $this->authorize('nao_usado');
-        return view('emprestimos.show')->with([
-            'emprestimo' => $emprestimo,
-        ]);
     }
 
     /**
@@ -94,21 +86,18 @@ class EmprestimoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Usando o método update para devolução
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Emprestimo  $emprestimo
      * @return \Illuminate\Http\Response
      */
-    public function update(EmprestimoRequest $request, Emprestimo $emprestimo)
+    public function update(Request $request, Emprestimo $emprestimo)
     {
         $this->authorize('admin');
-        $validated = $request->validated();
-        $validated['data_devolucao']= Carbon::now()->toDateString();
-        $validated['user_id']= 1;
-        $emprestimo->update($request->validated());
-
-        return redirect("emprestimo/$emprestimo->id");
+        $emprestimo->data_devolucao = Carbon::now();
+        $emprestimo->save();
+        return redirect('/emprestimos');
     }
 
     /**
@@ -121,6 +110,6 @@ class EmprestimoController extends Controller
     {
         $this->authorize('admin');
         $emprestimo->delete();
-        return redirect('/emprestimo');
+        return redirect('/');
     }
 }
