@@ -24,10 +24,9 @@ class EmprestimoRequest extends FormRequest
      */
     public function rules()
     {
-        $instances = new Emprestimo;
         return [
-            'instance_id'     => 'required',
-            'n_usp'           => 'required', 
+            'instance_id'     => 'required|integer',
+            'n_usp'           => 'required|integer', 
         ];
     }
 }

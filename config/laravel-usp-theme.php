@@ -36,6 +36,11 @@ return [
             'can'     => 'admin'
         ],
         [
+            'text'    => 'Emprestados',
+            'url' => '/emprestados',
+            'can'     => 'admin'
+        ],
+        [
             'text' => 'Usuários',
             'submenu' => $users,
             'can'     => 'nao_usado'

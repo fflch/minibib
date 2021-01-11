@@ -57,7 +57,7 @@ class EmprestimoController extends Controller
 
         $validated = $request->validated();
         $validated['data_emprestimo']= Carbon::now()->toDateString();
-        $validated['user_id']= 1;
+        $validated['user_id']= auth()->user()->id;
 
         Emprestimo::create($validated);
 

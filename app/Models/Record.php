@@ -36,4 +36,12 @@ class Record extends Model
         return $this->hasMany(Instance::class);
     }
 
+    public function getIdiomaAttribute($value)
+    {
+        if(array_key_exists($value,Idioma::lista())){
+            return Idioma::lista()[$value];
+        }
+        return 'Sem Idioma Cadastrado';
+    }
+
 }

@@ -19,15 +19,13 @@ Route::post('logout', [LoginController::class, 'logout']);
 Route::resource('records', RecordController::class);
 
 // Rotas para Instance
-Route::resource('instance', InstanceController::class)->except(['create']);
-// Rota para Instance que recebe o id do record
-Route::get('instance/create/{record}', [InstanceController::class,'create'])->name('instance.create');
-Route::get('emprestado', [InstanceController::class,'emprestado']);
+Route::resource('instances', InstanceController::class)->except(['create']);
+Route::get('instances/create/{record}', [InstanceController::class,'create'])->name('instances.create');
 
 // Rotas para Users
 Route::resource('users', UserController::class);
 
 // Rotas para Emprestimo
-Route::resource('emprestimo', EmprestimoController::class)->except(['create']);
-Route::get('emprestimo/create/{instance}', [EmprestimoController::class, 'create'])->name('emprestimo.create');
+Route::resource('emprestimos', EmprestimoController::class)->except(['create']);
+Route::get('emprestimos/create/{instance}', [EmprestimoController::class, 'create'])->name('emprestimos.create');
 

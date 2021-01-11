@@ -17,16 +17,6 @@ class InstanceController extends Controller
      */
     public function index(Request $request)
     {
-        $this->authorize('admin');
-        if($request->busca) {
-            $instances = Instance::with('record:id,titulo')
-                ->where('tombo','LIKE',"%{$request->busca}%")
-                ->paginate(10);
-        } else {
-            $instances = Instance::with('record:id,titulo')
-                ->paginate(10);
-        }
-        return view('instance.index')->with("instances",$instances);
     }
 
     /**
@@ -38,7 +28,7 @@ class InstanceController extends Controller
     {
         $this->authorize('admin');
         $record = Record::find($record, ['id','titulo']);
-        return view('instance.create')->with(['record' => $record]);
+        return view('instances.create')->with(['record' => $record]);
     }
 
     /**
@@ -67,7 +57,7 @@ class InstanceController extends Controller
     {
         $this->authorize('admin');
         $instance = Instance::with('record:id,titulo')->find($instance);
-        return view('instance.show')->with([
+        return view('instances.show')->with([
             'instance' => $instance,
         ]);
     }
@@ -82,7 +72,7 @@ class InstanceController extends Controller
     {
         $this->authorize('admin');
         $instance = Instance::with('record:id,titulo')->find($instance);
-        return view('instance.edit')->with([
+        return view('instances.edit')->with([
             'instance' => $instance
         ]);
     }
@@ -113,21 +103,6 @@ class InstanceController extends Controller
     {
         $this->authorize('admin');
         $instance->delete();
-        return redirect('/instance');
-    }
-
-    public function emprestado(Emprestimo $emprestimo, Instance $instance)
-    {
-        $this->authorize('admin');
-        $emprestimo['data_devolucao'] == NULL;
-        return view('instance.emprestado')->with([
-            'emprestimo' => $emprestimo,
-            'instance'   => $instance,
-        ]);
-
-        // $emprestimo = Emprestimo::first('data_devolucao' = NULL);
-        // return view('instance.emprestado')->with([
-        //     'emprestimo' => $emprestimo,
-        // ]);
+        return redirect('/instances');
     }
 }

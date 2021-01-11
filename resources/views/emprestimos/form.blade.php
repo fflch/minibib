@@ -25,7 +25,7 @@ n_usp -->
 </div>
 <div class="col-sm form-group">
     <button type="submit" class="btn btn-success">Confirmar Empréstimo</button>
-    <a class="btn btn-success" href="/instance/{{$instance->id}}" role="button">Voltar</a>
+    <a class="btn btn-success" href="/instances/{{$instance->id}}" role="button">Voltar</a>
 </div>
 
 

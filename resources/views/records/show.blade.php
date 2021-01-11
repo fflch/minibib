@@ -32,7 +32,7 @@
     <div class="container bg-light">
       <div class="row">
         <div class="col p-4 text-break"><h6 class="font-weight-bold">Assunto:</h6>{{ $record->assunto }}</div>
-        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Idioma:</h6> {{ \App\Utils\Idioma::lista()[$record->idioma] ?? 'Sem Idioma Cadastrado'}}</div>
+        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Idioma:</h6> {{ $record->idioma }}</div>
         <div class="col p-4 col-xl-3 "><h6 class="font-weight-bold">ISBN:</h6><div class="isbn">{{ $record->isbn}}</div></div>
       </div>
       <div class="row">
@@ -53,13 +53,13 @@
     <div class="col-4">
       <a class="btn btn-outline-success btn-md" href="/records" role="button">Voltar</a>
       <a class="btn btn-outline-success btn-md" href="/records/{{$record->id}}/edit" role="button">Editar</a>
-      <a class="btn btn-outline-primary btn-md" href="{{ route('instance.create', $record->id) }}" role="button">Cadastrar Tombo</a>
+      <a class="btn btn-outline-primary btn-md" href="{{ route('instances.create', $record->id) }}" role="button">Cadastrar Tombo</a>
     </div>
     <div class="col-4">
       <div class="list-group">
       <li class="list-group-item text-primary">Tombos Patrimoniados:</li>
       @foreach ($record->instances as $instance) 
-      <a href="{{ route('instance.show', $instance->id) }}" class="list-group-item list-group-item-action">{{ $instance->tombo }} </a>
+      <a href="{{ route('instances.show', $instance->id) }}" class="list-group-item list-group-item-action">{{ $instance->tombo }} </a>
       @endforeach
       </div>
     </div>

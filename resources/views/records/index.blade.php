@@ -42,7 +42,7 @@
           <a class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar" href="/records/{{$record->id}}/edit"><i class="far fa-edit"></i></a>
           <a class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Ver" href="/records/{{$record->id}}"><i class="fas fa-external-link-alt"></i></a>
             @csrf
-            <a class="btn btn-outline-primary btn-sm" href="{{ route('instance.create',
+            <a class="btn btn-outline-primary btn-sm" href="{{ route('instances.create',
             $record->id) }}">Cadastrar Tombo</br><i class="fas fa-barcode"></i></a>
           </form>
           </div>
@@ -51,7 +51,7 @@
         </td>
       </tr>
       <tr>          
-        <td><div class="font-weight-bold">Idioma:</div> {{ \App\Utils\Idioma::lista()[$record->idioma] ?? 'Sem Idioma Cadastrado'}} </td>
+        <td><div class="font-weight-bold">Idioma:</div> {{ $record->idioma }} </td>
         <td><div class="font-weight-bold">Ano de Publicação:</div> {{ $record->ano }}</td>
       </tr>
       <tr>
@@ -60,14 +60,17 @@
       </tr>
       <tr>
         <td>
-        <div class="font-weight-bold">Tombos Patrimoniados:</div>
+        <div class="font-weight-bold">Exemplares:</div>
           <ul class="list-inline">
             @foreach ($record->instances as $instance) 
-              @can('admin')
-                <a class="list-inline-item" href="{{ route('instance.show', $instance->id) }}">{{ $instance->tombo }} </a>
-              @else
-                {{ $instance->tombo }}
-              @endcan('admin')
+              <li>
+                @can('admin')
+                  Tombo: <a class="list-inline-item" href="{{ route('instances.show', $instance->id) }}">{{ $instance->tombo }}</a> -
+                @else
+                  {{ $instance->tombo }} -
+                @endcan('admin')
+                Localização: {{ $instance->localizacao }}
+              </li>
             @endforeach
           </ul>
         </div>   

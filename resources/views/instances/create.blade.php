@@ -5,12 +5,12 @@
 @section('content')
 @include('flash')
 
-<form method="POST" action="/instance">
+<form method="POST" action="/instances">
 @csrf
 <div class="card">
     <h5 class="card-header font-weight-bold">Acervo</h5>
     <div class="card-body">
-    @include('instance.form')
+    @include('instances.form')
     </div>
 </div>
 </form>

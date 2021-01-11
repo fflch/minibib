@@ -19,8 +19,6 @@ class CreateInstancesTable extends Migration
             $table->timestamps();
             $table->string('tombo')->nullable();
             $table->string('localizacao')->nullable();
-
-            //$table->string('emprestado')->default('nao');
             $table->foreign('record_id')->references('id')->on('records')->onDelete('cascade');
         });
     }
