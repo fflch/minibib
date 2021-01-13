@@ -7,8 +7,8 @@
 
 <form method="POST" action="/records"> 
 @csrf
-<div class="card">
-    <h5 class="card-header">Cadastro de Material</h5>
+<div class="card bg-light">
+    <h5 class="card-header border-info bg-light">Cadastro de Material</h5>
     <div class="card-body">
     @include('records.form')
     </div>

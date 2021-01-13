@@ -7,8 +7,8 @@
 
 <form method="POST" action="/instances">
 @csrf
-<div class="card">
-    <h5 class="card-header font-weight-bold">Acervo</h5>
+<div class="card bg-light">
+    <h5 class="card-header border-info bg-light font-weight-bold">Acervo</h5>
     <div class="card-body">
     @include('instances.form')
     </div>

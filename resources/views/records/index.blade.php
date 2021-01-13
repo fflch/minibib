@@ -25,9 +25,9 @@
 <div class="container-fluid">
   <div class="table-responsive-sm">
     <table class="table text-justify bg-light">
-      <thead class="thead ">
+      <thead class="thead border-info">
         @foreach($records as $record)
-        <tr class="table alert alert-dark">
+        <tr class="table alert alert-secondary border-info">
           <th scope="col" ><div class="text-uppercase">{{$record->titulo }}</div></th>
           <th scope="col" ><div style="width: 18rem;" class="text-center font-weight-bold">@can('admin')Ações:@endcan('admin')</div></th>
         </tr>
