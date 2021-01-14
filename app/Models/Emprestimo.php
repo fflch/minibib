@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Instance;
+use Uspdev\Replicado\Pessoa;
 
 class Emprestimo extends Model
 {
@@ -34,5 +35,9 @@ class Emprestimo extends Model
 
     public function setDataDevolucaoAttribute($value) {
        $this->attributes['data_devolucao'] = implode('-',array_reverse(explode('/',$value)));
+    }
+
+    public function getNomeAttribute(){
+        return Pessoa::nomeCompleto($this->n_usp);
     }
 }

@@ -4,6 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Emprestimo;
+use App\Models\Instance;
+use App\Rules\checkIfIsAvailable;
+use Illuminate\Validation\Rule;
 
 class EmprestimoRequest extends FormRequest
 {
@@ -24,9 +27,12 @@ class EmprestimoRequest extends FormRequest
      */
     public function rules()
     {
+        # Existe instance_id nas instâncias?
+        $instance = Instance::where('id',$this->instance_id)->pluck('id')->toArray();
+
         return [
-            'instance_id'     => 'required|integer',
-            'n_usp'           => 'required|integer', 
+            'instance_id'     => ['required','integer', new checkIfIsAvailable(), Rule::in($instance)],
+            'n_usp'           => 'required|integer|codpes', 
         ];
     }
 }

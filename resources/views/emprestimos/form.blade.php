@@ -19,7 +19,7 @@ n_usp -->
     <div class="form-row">
         <div class="form-group">
             <label for="n_usp"><h5 class="font-weight-bold">Número USP do Aluno:</h5></label>
-            <input type="text" class="form-control" id="n_usp" name="n_usp" value=""> {{ old('n_usp',$emprestimo->n_usp) }}
+            <input type="text" class="form-control" id="n_usp" name="n_usp" value="{{ old('n_usp',$emprestimo->n_usp) }}"> 
         </div>
     </div>
 </div>

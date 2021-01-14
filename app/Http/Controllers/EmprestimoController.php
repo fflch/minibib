@@ -42,7 +42,7 @@ class EmprestimoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Método que realiza empréstimo
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response

@@ -25,7 +25,9 @@
         </td>
       </tr>
       <tr>
-        <td class="border-top-0 ">Nº USP do Aluno(a): {{ $emprestimo->n_usp}}</td>
+        <td class="border-top-0 ">
+          Emprestado para: {{ $emprestimo->n_usp }}  - {{ $emprestimo->nome }}<br>
+        </td>
         <td class="border-top-0 ">
           Data do Empréstimo: {{ $emprestimo->data_emprestimo }}
           ({{ \Carbon\Carbon::createFromFormat('d/m/Y', $emprestimo->data_emprestimo)->diffInDays(Carbon\Carbon::now()) }} dias)
