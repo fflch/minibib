@@ -41,6 +41,6 @@ class checkIfIsAvailable implements Rule
      */
     public function message()
     {
-        return 'Não foi possível fazer o empréstimo, pois exemplar está emprestado';
+        return 'Não foi possível completar a operação, este exemplar encontra-se emprestado.';
     }
 }

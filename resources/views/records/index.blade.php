@@ -11,7 +11,7 @@
 <form method="get" action="/records">
 <div class="row">
     <div class=" col-sm input-group">
-    <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}">
+    <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Pesquisa por título, autor e tombo..">
     <span class="input-group-btn">
         <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
     </span>
