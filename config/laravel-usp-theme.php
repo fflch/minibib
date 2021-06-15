@@ -45,5 +45,10 @@ return [
             'submenu' => $users,
             'can'     => 'nao_usado'
         ],
+        [
+            'text'    => 'Estatísticas',
+            'url' => '/statistics',
+            'can'     => 'admin'
+        ],
     ]
 ];
