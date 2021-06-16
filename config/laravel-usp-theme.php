@@ -25,6 +25,7 @@ $users =  [
 
 return [
     'title' => config('app.name'),
+    'skin' => env('USP_THEME_SKIN', 'uspdev'),
     'dashboard_url' => config('app.url'),
     'logout_method' => 'POST',
     'logout_url' => config('app.url') . '/logout',
