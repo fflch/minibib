@@ -5,6 +5,7 @@ use App\Http\Controllers\RecordController;
 use App\Http\Controllers\InstanceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmprestimoController;
+use App\Http\Controllers\StatisticController;
 
 Route::get('/', [RecordController::class,'index'])->name('home');
 Route::get('/home', [RecordController::class,'index']);
@@ -23,3 +24,5 @@ Route::resource('users', UserController::class);
 Route::resource('emprestimos', EmprestimoController::class)->except(['create']);
 Route::get('emprestimos/create/{instance}', [EmprestimoController::class, 'create'])->name('emprestimos.create');
 
+//Rotas para Estatísticas
+Route::get('/statistics', [StatisticController::class,'contar']);
