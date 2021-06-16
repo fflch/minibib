@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8edb86db78591cab87370681b19de5ae",
+    "content-hash": "a47b619d083bc5183141902348290c82",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -5740,16 +5740,16 @@
         },
         {
             "name": "uspdev/laravel-usp-theme",
-            "version": "1.0.21",
+            "version": "2.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/uspdev/laravel-usp-theme.git",
-                "reference": "50e4e50e804be01779458629763ad3cdcbffeec9"
+                "reference": "47c9821a424203f9748e3313a2986b7b3068f9da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uspdev/laravel-usp-theme/zipball/50e4e50e804be01779458629763ad3cdcbffeec9",
-                "reference": "50e4e50e804be01779458629763ad3cdcbffeec9",
+                "url": "https://api.github.com/repos/uspdev/laravel-usp-theme/zipball/47c9821a424203f9748e3313a2986b7b3068f9da",
+                "reference": "47c9821a424203f9748e3313a2986b7b3068f9da",
                 "shasum": ""
             },
             "type": "library",
@@ -5778,9 +5778,9 @@
             "description": "usp theme for laravel",
             "support": {
                 "issues": "https://github.com/uspdev/laravel-usp-theme/issues",
-                "source": "https://github.com/uspdev/laravel-usp-theme/tree/1.0.21"
+                "source": "https://github.com/uspdev/laravel-usp-theme/tree/2.0.11"
             },
-            "time": "2020-10-26T14:33:59+00:00"
+            "time": "2021-06-10T21:26:13+00:00"
         },
         {
             "name": "uspdev/laravel-usp-validators",

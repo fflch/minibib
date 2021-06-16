@@ -17,7 +17,7 @@
         "laravel/ui": "^3.0",
         "scriptotek/marc": "^2.2",
         "uspdev/laravel-usp-faker": "^1.0",
-        "uspdev/laravel-usp-theme": "^1.0",
+        "uspdev/laravel-usp-theme": "^2.0",
         "uspdev/laravel-usp-validators": "^1.0",
         "uspdev/senhaunica-socialite": "^3.0"
     },
