@@ -15,6 +15,7 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
+        "rap2hpoutre/laravel-log-viewer": "^1.7",
         "scriptotek/marc": "^2.2",
         "uspdev/laravel-usp-faker": "^1.0",
         "uspdev/laravel-usp-theme": "^2.0",
