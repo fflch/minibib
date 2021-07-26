@@ -26,3 +26,6 @@ Route::get('emprestimos/create/{instance}', [EmprestimoController::class, 'creat
 
 //Rotas para Estatísticas
 Route::get('/statistics', [StatisticController::class,'contar']);
+
+# Logs  
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('can:admin');
