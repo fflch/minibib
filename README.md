@@ -6,7 +6,7 @@ O sistema, baseado em CRUD, é fundamentado em 3 relações:
 
 O acervo pode ser utilizado para consulta online, além de servir como sistema interno de empréstimos na biblioteca, com base no tombo/localização do exemplar. 
 
-O sistema permite, aos administradores logados (nesse sistema via Senha Única), o cadastramento e manuseio de materiais para o acervo da biblioteca. Para cadastrar, os administradores preenchem um formulário com as principais informações do material, uma vez criados os materiais ficam listados na página principal Index. Na Index, há um campo de busca por título, autor e tombo; cada material permite ações como edição, visualização detalhada e o registro de tombo. 
+O sistema permite, aos administradores logados (nesse sistema via Senha Única), o cadastramento e manuseio de materiais para o acervo da biblioteca. Para cadastrar, os administradores preenchem um formulário com as principais informações do material, uma vez criados os materiais ficam listados na página principal. Na página principal, há um campo de busca por título, autor e tombo; cada material permite ações como edição, visualização detalhada e o registro de tombo. 
 
 Os exemplares (instances) registram a localização física na biblioteca e tombo do material (record), os respectivos exemplares de cada material ficam listados na página principal. Dessa forma, a página principal serve como consulta online para o público, e controle interno para os funcionários, mostrando a disponibilidade do exemplar, permitindo sua edição e empréstimo. 
 
