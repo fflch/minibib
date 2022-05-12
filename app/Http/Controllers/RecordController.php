@@ -11,13 +11,10 @@ use Illuminate\Database\Eloquent\Builder;
 class RecordController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * PÁGINA INICIAL (LISTA E PESQUISA CADASTROS)
      */
     public function index(Request $request)
     {
-        #$this->authorize('admin');
         # Buscar por tombo, título e autor 
         if(isset($request->busca)) {
             $records = Record::whereHas('instances', function (Builder $query) use ($request) {
@@ -31,9 +28,7 @@ class RecordController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * CADASTRO DE MATERIAL
      */
     public function create()
     {
@@ -42,10 +37,7 @@ class RecordController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * REQUISITA E ARMAZENA DADOS INSERIDOS NO CADASTRO
      */
     public function store(RecordRequest $request)
     {
@@ -58,10 +50,7 @@ class RecordController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Record  $record
-     * @return \Illuminate\Http\Response
+     * LISTA / EXIBE CADASTRO 
      */
     public function show(Record $record)
     {
@@ -70,10 +59,7 @@ class RecordController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Record  $record
-     * @return \Illuminate\Http\Response
+     * EDITA RECORD (MATERIAL)
      */
     public function edit(Record $record)
     {
@@ -82,11 +68,7 @@ class RecordController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Record  $record
-     * @return \Illuminate\Http\Response
+     * EDITA RECORD (MATERIAL)
      */
     public function update(RecordRequest $request, Record $record)
     {
@@ -98,14 +80,14 @@ class RecordController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Record  $record
-     * @return \Illuminate\Http\Response
+     * DELETA RECORD (MATERIAL)
      */
     public function destroy(Record $record)
     {
         $this->authorize('admin');
+        if ($record->instances->isNotEmpty()){
+            return redirect('/records')->with('alert-danger', 'Registro ainda contém exemplares. Por favor, delete exemplares antes!');
+        }
         $record->delete();
         return redirect('/records');
     }

@@ -8,6 +8,7 @@
 
 @section('content')
 
+@include('flash')
 <form method="get" action="/records">
 <div class="row">
     <div class=" col-sm input-group">
@@ -32,19 +33,42 @@
           <th scope="col" ><div style="width: 18rem;" class="text-center font-weight-bold">@can('admin')Ações:@endcan('admin')</div></th>
         </tr>
       </thead>
-      <tbody>
+    <tbody>
       <tr>
         <td><div class="font-weight-bold">Autores:</div>{{$record->autores }}</td>
         @can('admin')
         <td><div class="text-center">
 
-          <form class="row-sm" method="POST" action="/records/{{$record->id}}">
-          <a class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar" href="/records/{{$record->id}}/edit"><i class="far fa-edit"></i></a>
-          <a class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Ver" href="/records/{{$record->id}}"><i class="fas fa-external-link-alt"></i></a>
-            @csrf
-            <a class="btn btn-outline-primary btn-sm" href="{{ route('instances.create',
-            $record->id) }}">Cadastrar Tombo</br><i class="fas fa-barcode"></i></a>
+        <form class="row-sm" method="POST" action="/records/{{$record->id}}">
+          @csrf
+          <button type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar"> 
+            <a href="/records/{{$record->id}}/edit">
+            <i class="far fa-edit"></i>
+            </a> 
+          </button>
+
+          <button type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Ver">
+            <a href="/records/{{$record->id}}">
+            <i class="fa fa-eye"></i>
+            </a> 
+          </button>
+
+          <form method="POST" action="/records/{{$record->id}}">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" title="Deletar" onclick="return confirm('Tem certeza que deseja deletar?');"> 
+                    <i class="fa fa-trash"></i> 
+                    </button>
           </form>
+
+          <button class="btn btn-outline-primary btn-sm">
+            <a href="{{ route('instances.create',$record->id) }}">
+            Cadastrar Tombo</br>
+            <i class="fas fa-barcode"></i>
+            </a>
+          </button>
+
+        </form>
           </div>
         </td>
       @endcan('admin')
@@ -76,12 +100,20 @@
 
                   @can('admin')
                     <i class="far fa-edit"></i>
-                    </i> <a class="list-inline-item" href="{{ route('instances.show', $instance->id) }}">Editar</a>
+                    <a class="list-inline-item" href="{{ route('instances.show', $instance->id) }}">Editar</a>
 
                     @if(!$instance->emprestimos->where('data_devolucao',null)->first())
                       <i class="fas fa-book"></i>
                       <a href="/emprestimos/create/{{$instance->id}}" role="button">Emprestar</a>
                     @endif
+
+                    <form method="POST" action="/instances/{{$instance->id}}">
+                    <i class="fa fa-trash"></i>
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-link" onclick="return confirm('Tem certeza que deseja deletar?');"> Deletar </button>
+                    </form>
+
                     
                   @endcan('admin')
               </li>
@@ -91,7 +123,7 @@
         </td>
       </tr>
       @endforeach
-      </tbody>
+    </tbody>
     </table>
   </div>
 </div>
