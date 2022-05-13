@@ -11,18 +11,14 @@ use App\Models\Emprestimo;
 class InstanceController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Não possui index porque Instance está inserida em Record
      */
     public function index(Request $request)
     {
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Cria formulário de instance (tombo)
      */
     public function create($record)
     {
@@ -32,10 +28,7 @@ class InstanceController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * Requisita os dados inseridos em instance
      */
     public function store(InstanceRequest $request)
     {
@@ -48,10 +41,7 @@ class InstanceController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Instance  $instance
-     * @return \Illuminate\Http\Response
+     * Lista
      */
     public function show($instance)
     {
@@ -63,10 +53,7 @@ class InstanceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Instance  $instance
-     * @return \Illuminate\Http\Response
+     * Edita instance (tombo)
      */
     public function edit($instance)
     {
@@ -78,11 +65,7 @@ class InstanceController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Instance  $instance
-     * @return \Illuminate\Http\Response
+     * Edita instance (tombo)
      */
     public function update(InstanceRequest $request, Instance $instance)
     {
@@ -94,15 +77,12 @@ class InstanceController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Instance  $instance
-     * @return \Illuminate\Http\Response
+     * Deleta instance (tombo)
      */
     public function destroy(Instance $instance)
     {
         $this->authorize('admin');
         $instance->delete();
-        return redirect('/instances');
+        return redirect('/records');
     }
 }
