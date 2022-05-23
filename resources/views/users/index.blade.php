@@ -1,6 +1,6 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') Sistema USP @endsection
+@section('title') Biblioteca Teiiti Suzuki @endsection
 
 @section('content')
 
@@ -43,8 +43,7 @@
         </td>
       </tr>        
       <tr>
-        <td><div class="font-weight-bold">Nº USP:</div> {{ $usuario->codpes }}</td>          
-        <td><div class="font-weight-bold">Status:</div> {{ $usuario->status }}</td>   
+        <td><div class="font-weight-bold">Nº USP:</div> {{ $usuario->codpes }}</td>            
       </tr>
       @endforeach
       </tbody>

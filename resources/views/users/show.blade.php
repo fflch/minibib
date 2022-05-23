@@ -1,6 +1,6 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') Sistema USP @endsection
+@section('title') Biblioteca Teiiti Suzuki @endsection
 
 @section('content')
 
@@ -9,7 +9,6 @@
     <div class="container">
       <div class="row">
         <div class="col p-auto bg-light text-uppercase font-weight-bold text-info">{{ $usuario->name }}</div>
-        <div class="col p-auto bg-light"><h6 class="font-weight-bold">Status:</h6>{{ $usuario->status }}</div>
       </div>
     </div>
   </div>

@@ -13,26 +13,8 @@
         <div class="form-group col-md-8 font-weight-bold">
             <label for="email">E-mail USP:</label>
             <input type="text" class="form-control" id="email" name="email" placeholder="email@usp.br" value="{{old('email',$usuario->email)}}">
-            <label for="status" class="required"><b>Status: </b></label>          
-            <select name="status" class="form-control" id="status">
 
-            <option value="" selected="">- Selecione -</option>
-            @foreach ($usuario->statusOptions() as $option)
-
-                {{-- 1. Situação em que não houve tentativa de submissão e é uma edição --}}
-                @if (old('status') == '' and isset($usuario->status))
-                <option value="{{$option}}" {{ ( $usuario->status == $option) ? 'selected' : ''}}>
-                    {{$option}}
-                </option>
-                {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
-                @else
-                <option value="{{$option}}" {{ ( old('status') == $option) ? 'selected' : ''}}>
-                    {{$option}}
-                </option>
-                @endif
-                
-            @endforeach
-            </select> 
+            
         </div>
         <div class="form-group col-md-4 font-weight-bold">
             <label for="password">Senha Única:</label>
