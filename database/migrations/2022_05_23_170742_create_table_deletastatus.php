@@ -26,6 +26,8 @@ class CreateTableDeletastatus extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('deletestatus');
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('status');
+        });
     }
 }

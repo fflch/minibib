@@ -17,9 +17,6 @@ Route::resource('records', RecordController::class);
 Route::resource('instances', InstanceController::class)->except(['create']);
 Route::get('instances/create/{record}', [InstanceController::class,'create'])->name('instances.create');
 
-// Rotas para Users
-Route::resource('users', UserController::class);
-
 // Rotas para Emprestimo
 Route::resource('emprestimos', EmprestimoController::class)->except(['create']);
 Route::get('emprestimos/create/{instance}', [EmprestimoController::class, 'create'])->name('emprestimos.create');
@@ -27,5 +24,5 @@ Route::get('emprestimos/create/{instance}', [EmprestimoController::class, 'creat
 //Rotas para Estatísticas
 Route::get('/statistics', [StatisticController::class,'contar']);
 
-# Logs  
+# Logs
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('can:admin');
