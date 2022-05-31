@@ -11,18 +11,10 @@ $records =  [
     ],
 ];
 
-$users =  [
-    [
-        'text' => 'Listar',
-        'url'  => '/users'
-    ],
-    [
-        'text' => 'Cadastrar',
-        'url'  => '/users/create',
-    ],
-];
-
 $right_menu = [
+    [
+    'key' => 'senhaunica-socialite',
+    ],
     [
         'text' => '<i class="fas fa-hard-hat"></i>',
         'title' => 'Logs',
@@ -50,11 +42,6 @@ return [
             'text'    => 'Emprestados',
             'url' => '/emprestimos',
             'can'     => 'admin'
-        ],
-        [
-            'text' => 'Usuários',
-            'submenu' => $users,
-            'can'     => 'nao_usado'
         ],
         [
             'text'    => 'Estatísticas',

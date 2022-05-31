@@ -32,8 +32,5 @@ class AuthServiceProvider extends ServiceProvider
             return FALSE;
         });
 
-        Gate::define('admin', function ($user) {
-            return TRUE;
-        });
     }
 }

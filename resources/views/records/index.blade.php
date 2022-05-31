@@ -1,6 +1,6 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') Sistema USP @endsection
+@section('title') Biblioteca Teiiti Suzuki @endsection
 
 @section('javascripts_head')
 <script type="text/javascript" src="{{asset('js/record.js')}}"></script>
@@ -39,8 +39,6 @@
         @can('admin')
         <td><div class="text-center">
 
-        <form class="row-sm" method="POST" action="/records/{{$record->id}}">
-          @csrf
           <button type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar"> 
             <a href="/records/{{$record->id}}/edit">
             <i class="far fa-edit"></i>
@@ -53,14 +51,6 @@
             </a> 
           </button>
 
-          <form method="POST" action="/records/{{$record->id}}">
-                    @method('DELETE')
-                    @csrf
-                    <button type="submit" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" title="Deletar" onclick="return confirm('Tem certeza que deseja deletar?');"> 
-                    <i class="fa fa-trash"></i> 
-                    </button>
-          </form>
-
           <button class="btn btn-outline-primary btn-sm">
             <a href="{{ route('instances.create',$record->id) }}">
             Cadastrar Tombo</br>
@@ -68,7 +58,14 @@
             </a>
           </button>
 
-        </form>
+
+        <form method="POST" action="/records/{{$record->id}}">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" title="Deletar" onclick="return confirm('Tem certeza que deseja deletar?');"> 
+                    <i class="fa fa-trash"></i> 
+                    </button>
+          </form>
           </div>
         </td>
       @endcan('admin')
