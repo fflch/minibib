@@ -1,13 +1,14 @@
+{{-- IDENTIDADE VISUAL USP FFLCH --}}
 @extends('laravel-usp-theme::master')
 
-@section('title') Sistema USP @endsection
+@section('title') Biblioteca Teiiti Suzuki @endsection
 
 @section('javascripts_head')
 <script type="text/javascript" src="{{asset('js/record.js')}}"></script>
 @endsection
 
+{{-- EXIBIR DADOS CADASTRADOS --}}
 @section('content')
-
 
 <div class="card bg-light">
   <div class="card-header border-info bg-light">
@@ -32,7 +33,7 @@
     <div class="container bg-light">
       <div class="row">
         <div class="col p-4 text-break"><h6 class="font-weight-bold">Assunto:</h6>{{ $record->assunto }}</div>
-        <div class="col p-4 col-xl-3"><h6 class="font-weight-bold">Idioma:</h6> {{ $record->idioma }}</div>
+        <div class="col p-auto"><h6 class="font-weight-bold">Idioma:</h6> {{ $record->idioma_completo }}</div>
         <div class="col p-4 col-xl-3 "><h6 class="font-weight-bold">ISBN:</h6><div class="isbn">{{ $record->isbn}}</div></div>
       </div>
       <div class="row">
@@ -48,6 +49,8 @@
   </div>
 </div>
 </br>
+
+{{-- BOTÕES CRUD E LISTAGEM INSTANCES--}}
 <div class="container">
   <div class="row justify-content-around">
     <div class="col-4">
@@ -55,6 +58,8 @@
       <a class="btn btn-outline-success btn-md" href="/records/{{$record->id}}/edit" role="button">Editar</a>
       <a class="btn btn-outline-primary btn-md" href="{{ route('instances.create', $record->id) }}" role="button">Cadastrar Tombo</a>
     </div>
+
+
     <div class="col-4">
       <div class="list-group">
       <li class="list-group-item text-primary">Tombos Patrimoniados:</li>
@@ -63,6 +68,7 @@
       @endforeach
       </div>
     </div>
+
   </div>
 </div>
 <br>
