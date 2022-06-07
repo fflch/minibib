@@ -39,30 +39,29 @@
         @can('admin')
         <td><div class="text-center">
 
-          <button type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar"> 
+          <button dusk="edit_record" type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar"> 
             <a href="/records/{{$record->id}}/edit">
             <i class="far fa-edit"></i>
             </a> 
           </button>
 
-          <button type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Ver">
+          <button dusk="show_record" type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Ver">
             <a href="/records/{{$record->id}}">
             <i class="fa fa-eye"></i>
             </a> 
           </button>
 
-          <button class="btn btn-outline-primary btn-sm">
-            <a href="{{ route('instances.create',$record->id) }}">
+          <a href="{{ route('instances.create',$record->id) }}">
+          <button dusk="create_instance" class="btn btn-outline-primary btn-sm">
             Cadastrar Tombo</br>
             <i class="fas fa-barcode"></i>
-            </a>
           </button>
-
+          </a>
 
         <form method="POST" action="/records/{{$record->id}}">
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" title="Deletar" onclick="return confirm('Tem certeza que deseja deletar?');"> 
+                    <button dusk="delete_record" type="submit" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" title="Deletar" onclick="return confirm('Tem certeza que deseja deletar?');"> 
                     <i class="fa fa-trash"></i> 
                     </button>
           </form>
@@ -72,7 +71,7 @@
         </td>
       </tr>
       <tr>          
-        <td><div class="font-weight-bold">Idioma:</div> {{ $record->idioma }} </td>
+        <td><div class="font-weight-bold">Idioma:</div> {{ $record->idioma_completo }} </td>
         <td><div class="font-weight-bold">Ano de Publicação:</div> {{ $record->ano }}</td>
       </tr>
       <tr>
@@ -97,7 +96,7 @@
 
                   @can('admin')
                     <i class="far fa-edit"></i>
-                    <a class="list-inline-item" href="{{ route('instances.show', $instance->id) }}">Editar</a>
+                    <a class="list-inline-item" href="{{ route('instances.show', $instance->id) }}" dusk="edit_instance">Editar</a>
 
                     @if(!$instance->emprestimos->where('data_devolucao',null)->first())
                       <i class="fas fa-book"></i>
@@ -108,7 +107,7 @@
                     <i class="fa fa-trash"></i>
                     @method('DELETE')
                     @csrf
-                    <button type="submit" class="btn btn-link" onclick="return confirm('Tem certeza que deseja deletar?');"> Deletar </button>
+                    <button type="submit" class="btn btn-link" onclick="return confirm('Tem certeza que deseja deletar?');" dusk="delete_instance"> Deletar </button>
                     </form>
 
                     
