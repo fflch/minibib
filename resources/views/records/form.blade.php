@@ -5,7 +5,7 @@
 {{-- FORMULÁRIO CADASTRO DE MATERIAL (RECORD) --}}
 <div class="form-group">
     <div class="form-group">
-        <label for="tipo" class="required">Escolha o tipo: </label>          
+        <label for="tipo" class="required">Escolha o tipo: </label>
             <select name="tipo" class="form-control" id="tipo">
 
             <option value="" selected="">- Selecione -</option>
@@ -22,9 +22,9 @@
                     {{$option}}
                 </option>
                 @endif
-                
+
             @endforeach
-            </select> 
+            </select>
         <label for="autores">Autores</label>
         <input type="text" class="form-control" id="autores" name="autores" value="{{old('autores',$record->autores)}}">
     </div>
@@ -58,22 +58,24 @@
             <input type="text" class="form-control" id="ano" name="ano" value="{{old('ano',$record->ano)}}">
         </div>
         <div class="form-group col-md-4">
-        <label for="idioma" class="required">Escolha o Idioma: </label>          
+        <label for="idioma" class="required">Escolha o Idioma: </label>
             <select name="idioma" class="form-control" id="idioma">
-                @foreach(\App\Utils\Idioma::lista() as $key=>$idioma)  
+            @foreach ($record->idiomasOptions() as $key=>$option)
+
                 {{-- 1. Situação em que não houve tentativa de submissão e é uma edição --}}
-                    @if(old('idioma') == $key)
-                        <option value="{{$key}}" selected> {{$idioma}} </option>
-                    @else
-                    {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
-                        @if($record->idioma==$key)
-                            <option value="{{ $key }}" selected> {{$idioma}} </option>
-                        @else
-                            <option value="{{$key}}">- Selecione -</option>
-                        @endif
-                    @endif
-                @endforeach
-            </select> 
+                @if (old('idioma') == '' and isset($record->idioma))
+                <option value="{{$key}}" {{ ( $record->idioma == $key) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+                {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
+                @else
+                <option value="{{$key}}" {{ ( old('idioma') == $key) ? 'selected' : ''}}>
+                    {{$option}}
+                </option>
+                @endif
+
+            @endforeach
+            </select>
         </div>
         <div class="form-group col-md-6">
             <label for="isbn">ISBN</label>
