@@ -20,7 +20,13 @@ class EmprestimoController extends Controller
     public function index(Request $request)
     {
         $this->authorize('admin');
-        $emprestimos = Emprestimo::where('data_devolucao',null)->get();
+
+        if(isset($request->busca)) {
+            $emprestimos = Emprestimo::where('n_usp','LIKE',"%{$request->busca}%")->get();
+        } else {
+            $emprestimos = Emprestimo::paginate(15);
+        }
+
         return view('emprestimos.index',[
             'emprestimos' => $emprestimos
         ]);

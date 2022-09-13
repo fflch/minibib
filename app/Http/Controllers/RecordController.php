@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\RecordRequest;
 use App\Models\Instance;
 use Illuminate\Database\Eloquent\Builder;
+use App\Utils\Idioma;
 
 class RecordController extends Controller
 {

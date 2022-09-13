@@ -1,8 +1,20 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') Sistema USP @endsection
+@section('title') Biblioteca Teiiti Suzuki @endsection
 
 @section('content')
+
+<form method="get" action="/emprestimos">
+<div class="row">
+    <div class=" col-sm input-group">
+    <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Pesquisa por número USP">
+    <span class="input-group-btn">
+        <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
+    </span>
+    </div>
+</div>
+</form>
+</br>
 
 <div class="card bg-light">
   <div class="card-header border-info bg-light">

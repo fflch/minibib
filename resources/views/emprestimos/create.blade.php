@@ -1,7 +1,7 @@
 
 @extends('laravel-usp-theme::master')
 
-@section('title') Sistema USP @endsection
+@section('title') Biblioteca Teiiti Suzuki @endsection
 
 @section('content')
 @include('flash')

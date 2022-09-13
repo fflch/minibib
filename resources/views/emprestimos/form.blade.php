@@ -1,8 +1,3 @@
-<!-- instance_id
-data_emprestimo
-data_devolucao
-user_id
-n_usp -->
 <input type="hidden" name="instance_id" value="{{ $instance->id }}">
 
 <div class="form-group">

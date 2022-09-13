@@ -15,6 +15,6 @@
     </div>
 </div>
 <div class="col-sm form-group">
-    <button type="submit" class="btn btn-success">Salvar</button>
+    <button dusk="save_instance" type="submit" class="btn btn-success">Salvar</button>
     <a class="btn btn-success" href="/records/{{ $instance->record->id ?? $record->id }}" role="button">Voltar</a>
 </div>

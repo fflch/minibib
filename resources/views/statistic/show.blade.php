@@ -1,6 +1,6 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') Sistema USP @endsection
+@section('title') Biblioteca Teiiti Suzuki @endsection
 
 @section('content')
 
@@ -8,7 +8,7 @@
   <div class="card-header border-info bg-light">
     <div class="container">
       <div class="row">
-        <div class="col p-auto bg-light text-uppercase font-weight-bold text-info">Soma de Itens Cadastrados:</div>
+        <div class="col p-auto bg-light text-uppercase font-weight-bold text-info">Soma de Exemplares Cadastrados:</div>
         <div class="col p-auto bg-light text-uppercase font-weight-bold text-info">Soma de Materiais Cadastrados:</div>
       </div>
     </div>
