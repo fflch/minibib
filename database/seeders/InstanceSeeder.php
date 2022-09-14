@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Instance;
+use App\Models\Record;
 
 class InstanceSeeder extends Seeder
 {
