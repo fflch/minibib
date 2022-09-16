@@ -18,7 +18,6 @@ class UserSeeder extends Seeder
             'codpes' => '11170411',
             'name'   => 'Joaquim Navarro',
             'email'  => 'joaquim@usp.br',
-            'status' => 'Ativo',
         ];
 
         User::create($usuario);
