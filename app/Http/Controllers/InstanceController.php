@@ -82,6 +82,9 @@ class InstanceController extends Controller
     public function destroy(Instance $instance)
     {
         $this->authorize('admin');
+        if ($instance->emprestimos->isNotEmpty()){
+            return redirect('/records')->with('alert-danger', 'Exemplar está emprestado. Por favor, desfaça o empréstimo do exemplar antes!');
+        }
         $instance->delete();
         return redirect('/records');
     }
