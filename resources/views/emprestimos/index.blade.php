@@ -12,10 +12,11 @@
         <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
     </span>
     </div>
-</div>
+</div> <br>
+
+{{ $emprestimos->appends(request()->query())->links() }} 
 </form>
 </br>
-
 <div class="card bg-light">
   <div class="card-header border-info bg-light">
     <h3>Emprestados</h3> 

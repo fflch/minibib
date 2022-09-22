@@ -22,9 +22,9 @@ class EmprestimoController extends Controller
         $this->authorize('admin');
 
         if(isset($request->busca)) {
-            $emprestimos = Emprestimo::where('n_usp','LIKE',"%{$request->busca}%")->get();
+            $emprestimos = Emprestimo::whereNull('data_devolucao')->where('n_usp','LIKE',"%{$request->busca}%")->paginate(15);
         } else {
-            $emprestimos = Emprestimo::paginate(15);
+            $emprestimos = Emprestimo::whereNull('data_devolucao')->paginate(15);
         }
 
         return view('emprestimos.index',[
