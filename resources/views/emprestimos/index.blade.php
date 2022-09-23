@@ -14,17 +14,16 @@
     </div>
 </div> <br>
 
-{{ $emprestimos->appends(request()->query())->links() }} 
+{{ $emprestimos->appends(request()->query())->links() }}
 </form>
 </br>
 <div class="card bg-light">
   <div class="card-header border-info bg-light">
-    <h3>Emprestados</h3> 
+    <h3>Emprestados</h3>
   </div>
-  <table class="table">    
+  <table class="table">
     <tbody>
     @foreach($emprestimos as $emprestimo)
-      @if($emprestimo->data_devolucao == null)
       <tr>
         <th>
           Material: <a href="/records/{{ $emprestimo->instance->record->id }}">{{ $emprestimo->instance->record->titulo }} </a> <br>
@@ -47,7 +46,6 @@
           ({{ \Carbon\Carbon::createFromFormat('d/m/Y', $emprestimo->data_emprestimo)->diffInDays(Carbon\Carbon::now()) }} dias)
         </td>
       </tr>
-      @endif
     @endforeach
     </tbody>
   </table>
