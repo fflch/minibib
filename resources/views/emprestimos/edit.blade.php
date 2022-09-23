@@ -7,7 +7,7 @@
 
 <form method="POST" action="/emprestimos/{{$emprestimo->id}}">
 @csrf
-@method('patch')
+@method('PATCH')
 <div class="card bg-light">
     <h5 class="card-header border-info bg-light font-weight-bold">Devolução de Empréstimo</h5>
     <div class="card-body">

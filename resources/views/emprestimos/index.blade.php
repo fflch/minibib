@@ -12,15 +12,16 @@
         <button type="submit" class="btn btn-success"><i class="fas fa-search"></i></button>
     </span>
     </div>
-</div>
+</div> <br>
+
+{{ $emprestimos->appends(request()->query())->links() }}
 </form>
 </br>
-
 <div class="card bg-light">
   <div class="card-header border-info bg-light">
-    <h3>Emprestados</h3> 
+    <h3>Emprestados</h3>
   </div>
-  <table class="table">    
+  <table class="table">
     <tbody>
     @foreach($emprestimos as $emprestimo)
       <tr>
@@ -32,7 +33,7 @@
         <td>
           <form class="row-sm" method="POST" action="/emprestimos/{{$emprestimo->id}}">
             @csrf
-            <a class="btn btn-outline-success btn-sm" href="/emprestimos/{{$emprestimo->id}}/edit">Devolver</i></a>
+            <a class="btn btn-outline-success btn-sm" href="/emprestimos/{{$emprestimo->id}}/edit">Devolver</a>
           </form>
         </td>
       </tr>
