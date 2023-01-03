@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\Contracts\Auditable;
 use App\Models\Instance;
 use App\Utils\Idioma;
+use App\Utils\MapRecords;
 
-class Record extends Model
+class Record extends Model implements Auditable
 {
     use HasFactory;
+    use \OwenIt\Auditing\Auditable;
 
     protected $guarded = ['id'];
 
@@ -44,5 +47,7 @@ class Record extends Model
         return 'Sem Idioma Cadastrado';
     }
 
-
+    public function mapeamento($chave) {
+        return MapRecords::map($chave);
+    }
 }

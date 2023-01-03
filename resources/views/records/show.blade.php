@@ -45,6 +45,16 @@
       <div class="row">
         <div class="text-break p-xl-4 bg-light text-justify"><h6 class="font-weight-bold">Descrição Física:</h6>{{ $record->desc_fisica }}</div>
       </div>
+        @can('admin')
+          <div class="alert alert-info" role="alert">
+            <details>
+              <summary>Visualizar histórico de mudanças</summary>
+              <br>
+              @include('records.partials.audit', ['model'=>$record])
+            </details>
+          </div>
+        @endcan
+        <br>
     </div>  
   </div>
 </div>

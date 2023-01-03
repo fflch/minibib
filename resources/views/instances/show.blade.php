@@ -16,6 +16,16 @@
           {{ $instance->tombo }}</div>
         <div class="col p-4"><h6 class="font-weight-bold">Localização:</h6> {{ $instance->localizacao }}</div>
       </div>
+      @can('admin')
+          <div class="alert alert-info" role="alert">
+            <details>
+              <summary>Visualizar histórico de mudanças</summary>
+              <br>
+              @include('instances.partials.audit', ['model'=>$instance])
+            </details>
+          </div>
+        @endcan
+        <br>
     </div>
  </div>
 </div>

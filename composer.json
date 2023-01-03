@@ -15,6 +15,7 @@
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
+        "owen-it/laravel-auditing": "^13.0",
         "rap2hpoutre/laravel-log-viewer": "^1.7",
         "scriptotek/marc": "^2.2",
         "symfony/process": "^5.4",
