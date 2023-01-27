@@ -21,14 +21,16 @@ class EmprestimoController extends Controller
     {
         $this->authorize('admin');
 
-        if(isset($request->busca)) {
-            $emprestimos = Emprestimo::whereNull('data_devolucao')->where('n_usp','LIKE',"%{$request->busca}%")->paginate(15);
-        } else {
-            $emprestimos = Emprestimo::whereNull('data_devolucao')->paginate(15);
-        }
+        $nusp = $request->busca;
+        $emprestimos = Emprestimo::whereNull('data_devolucao')
+                        ->when($nusp, function ($query, $nusp) {
+                            return $query->where('n_usp','LIKE',"%$nusp%");
+                        })
+                        ->orderBy('data_emprestimo','desc')
+                        ->paginate(30);
 
         return view('emprestimos.index',[
-            'emprestimos' => $emprestimos
+            'emprestimos' => $emprestimos,
         ]);
 
     }
