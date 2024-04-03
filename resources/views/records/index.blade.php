@@ -1,6 +1,6 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') Biblioteca Teiiti Suzuki @endsection
+@section('title') {{ config('app.name') }} @endsection
 
 @section('javascripts_head')
 <script type="text/javascript" src="{{asset('js/record.js')}}"></script>
@@ -39,16 +39,16 @@
         @can('admin')
         <td><div class="text-center">
 
-          <button dusk="edit_record" type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar"> 
+          <button dusk="edit_record" type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Editar">
             <a href="/records/{{$record->id}}/edit">
             <i class="far fa-edit"></i>
-            </a> 
+            </a>
           </button>
 
           <button dusk="show_record" type="submit" class="btn btn-outline-success btn-lg" data-toggle="tooltip" title="Ver">
             <a href="/records/{{$record->id}}">
             <i class="fa fa-eye"></i>
-            </a> 
+            </a>
           </button>
 
           <a href="{{ route('instances.create',$record->id) }}">
@@ -61,8 +61,8 @@
         <form method="POST" action="/records/{{$record->id}}">
                     @method('DELETE')
                     @csrf
-                    <button dusk="delete_record" type="submit" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" title="Deletar" onclick="return confirm('Tem certeza que deseja deletar?');"> 
-                    <i class="fa fa-trash"></i> 
+                    <button dusk="delete_record" type="submit" class="btn btn-outline-danger btn-lg" data-toggle="tooltip" title="Deletar" onclick="return confirm('Tem certeza que deseja deletar?');">
+                    <i class="fa fa-trash"></i>
                     </button>
           </form>
           </div>
@@ -70,7 +70,7 @@
       @endcan('admin')
         </td>
       </tr>
-      <tr>          
+      <tr>
         <td><div class="font-weight-bold">Idioma:</div> {{ $record->idioma_completo }} </td>
         <td><div class="font-weight-bold">Ano de Publicação:</div> {{ $record->ano }}</td>
       </tr>
@@ -82,11 +82,11 @@
         <td>
         <div class="font-weight-bold">Exemplares:</div>
           <ul class="list-inline">
-            @foreach ($record->instances as $instance) 
+            @foreach ($record->instances as $instance)
               <li>
                 <i class="fas fa-map-marker-alt"></i> {{ $instance->localizacao }}
                 <i class="fas fa-tags"></i> {{ $instance->tombo }}
-                
+
                 <i class="fas fa-book"></i>
                 @if($instance->emprestimos->where('data_devolucao',null)->first())
                   <span style="color: red">Indisponível</span>
@@ -110,12 +110,12 @@
                     <button type="submit" class="btn btn-link" onclick="return confirm('Tem certeza que deseja deletar?');" dusk="delete_instance"> Deletar </button>
                     </form>
 
-                    
+
                   @endcan('admin')
               </li>
             @endforeach
           </ul>
-        </div>   
+        </div>
         </td>
       </tr>
       @endforeach
@@ -123,7 +123,7 @@
     </table>
   </div>
 </div>
- 
+
 
 
 @endsection('content')
