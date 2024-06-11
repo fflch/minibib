@@ -50,7 +50,7 @@
     </tbody>
   </table>
 </div>
-
-
+<br />
+{{ $emprestimos->appends(request()->query())->links() }}
 
 @endsection('content')

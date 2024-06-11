@@ -123,7 +123,6 @@
     </table>
   </div>
 </div>
-
-
+{{ $records->appends(request()->query())->links() }}
 
 @endsection('content')
