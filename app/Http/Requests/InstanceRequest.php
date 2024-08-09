@@ -47,4 +47,11 @@ class InstanceRequest extends FormRequest
             'tombo' => preg_replace('/[^0-9]/', '', $this->tombo),
         ]);
     }
+
+    public function messages(){
+        return[
+            'tombo.required' => 'Insira o Tombo',
+            'localizacao.required' => 'Insira a localização'
+        ];
+    }
 }

@@ -21,6 +21,7 @@ class Record extends Model implements Auditable
             'Livro',
             'Panfleto',
             'Tese',
+            'Dissertação',
             'Periódico',
             'Artigo de Periódico',
             'Manuscrito',
@@ -44,7 +45,7 @@ class Record extends Model implements Auditable
         if(array_key_exists($this->idioma,Idioma::lista())){
             return Idioma::lista()[$this->idioma];
         }
-        return 'Sem Idioma Cadastrado';
+        // return 'Sem Idioma Cadastrado';
     }
 
     public function mapeamento($chave) {

@@ -26,7 +26,7 @@ class RecordRequest extends FormRequest
     public function rules()
     {
         $record = new Record;
-        return [
+        $rules = [
             'autores'      => 'required',
             'titulo'       => 'required',
             'desc_fisica'       => 'nullable',
@@ -40,6 +40,18 @@ class RecordRequest extends FormRequest
             'ano'          => 'required|integer',
             'idioma'       => ['required', Rule::in(array_keys($record->idiomasOptions()))],
             'tipo'         => ['required', Rule::in($record->tipoOptions())]
+        ];
+        return $rules;
+    }
+
+    public function messages(){
+        return[
+            'autores.required' => 'O campo "autor" é obrigatório. Caso não haja, coloque "N/A"',
+            'titulo.required' => 'O título é obrigatório',
+            'ano.integer' => 'Insira um ano válido',
+            'ano.required' => 'O ano é obrigatório',
+            'idioma.required' => 'Insira um idioma válido',
+            'tipo.required' => 'Insira o tipo' 
         ];
     }
 }
