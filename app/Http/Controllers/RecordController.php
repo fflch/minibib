@@ -22,10 +22,15 @@ class RecordController extends Controller
                 $query->where('tombo','LIKE',"%{$request->busca}%");
             })->orWhere('titulo','LIKE',"%{$request->busca}%")
               ->orWhere('autores','LIKE',"%{$request->busca}%")->paginate(15);
+              $recordsCount = Record::whereHas('instances', function (Builder $query) use ($request) {
+                $query->where('tombo','LIKE',"%{$request->busca}%");
+            })->orWhere('titulo','LIKE',"%{$request->busca}%")
+              ->orWhere('autores','LIKE',"%{$request->busca}%")->count();
         } else {
             $records = Record::paginate(15);
+            $recordsCount = Record::count();
         }
-        return view('records.index')->with('records',$records);
+        return view('records.index')->with(['records' => $records, 'recordsCount' => $recordsCount]);
     }
 
     /**
