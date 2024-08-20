@@ -27,7 +27,7 @@ class RecordController extends Controller
             })->orWhere('titulo','LIKE',"%{$request->busca}%")
               ->orWhere('autores','LIKE',"%{$request->busca}%")->count();
         } else {
-            $records = Record::paginate(15);
+            $records = Record::orderBy('id','desc')->paginate(15);
             $recordsCount = Record::count();
         }
         return view('records.index')->with(['records' => $records, 'recordsCount' => $recordsCount]);
@@ -95,6 +95,6 @@ class RecordController extends Controller
             return redirect('/records')->with('alert-danger', 'Registro ainda contém exemplares. Por favor, delete exemplares antes!');
         }
         $record->delete();
-        return redirect('/records');
+        return redirect('/records')->with('alert-warning','Registro deletado');
     }
 }

@@ -43,7 +43,7 @@
         <td>
           <div class="row" style="margin-bottom:10px;">
             <div class="col-md-6">
-              <a href="{{ route('instances.create', $record->id) }}" id="x" class="btn btn-outline-primary">Cadastrar Exemplar <br /><i class="fa fa-barcode"></i></a>
+              <a href="{{ route('instances.create', $record->id) }}" id="x" dusk="create_instance" class="btn btn-outline-primary">Cadastrar Exemplar <br /><i class="fa fa-barcode"></i></a>
             </div>
             <div class="col-md-6">
               <a href="/records/{{$record->id}}" class="btn btn-outline-primary" style="width:7rem;">Visualizar Material <br /><i class="fa fa-eye"></i></a>
@@ -51,13 +51,13 @@
           </div>
           <div class="row">
             <div class="col-md-6">
-              <a href="/records/{{$record->id}}/edit" class="btn btn-outline-success" style="width:8.4rem;">Editar <br /><i class="fa fa-edit"></i></a>
+              <a href="/records/{{$record->id}}/edit" dusk="edit_record" class="btn btn-outline-success" style="width:8.4rem;">Editar <br /><i class="fa fa-edit"></i></a>
             </div>
             <div class="col-md-6">
               <form method="post" action="/records/{{$record->id}}">
                 @csrf
                 @method('DELETE')
-                <button onclick="return confirm('Tem certeza que deseja excluir este arquivo?');" class="btn btn-outline-danger" style="width:7rem;">Excluir <br/><i class="fa fa-trash"></i></button>
+                <button onclick="return confirm('Tem certeza que deseja excluir este arquivo?');" dusk="delete_record" class="btn btn-outline-danger" style="width:7rem;">Excluir <br/><i class="fa fa-trash"></i></button>
               </form>
             </div>
           </div>
@@ -102,7 +102,7 @@
                         <i class="fa fa-trash"></i>
                         @method('DELETE')
                         @csrf
-                        <button type="submit" class="btn btn-link" onclick="return confirm('Tem certeza que deseja deletar?');" dusk="delete_instance"> Deletar exemplar  </button>
+                        <button type="submit" dusk="delete_record" class="btn btn-link" onclick="return confirm('Tem certeza que deseja deletar?');" dusk="delete_instance"> Deletar exemplar  </button>
                       </form>
                       <hr>
                   @endcan('admin')

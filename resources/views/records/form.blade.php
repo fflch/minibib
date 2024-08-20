@@ -99,31 +99,31 @@
 
 {{--BOTÕES SALVAR E VOLTAR--}}
     <div class="col-sm form-group">
-        <button dusk="save_record" type="submit" class="btn btn-success">Salvar</button>
+        <button dusk="save_record" type="submit" dusk="save_record" class="btn btn-success">Salvar</button>
         <a class="btn btn-success" href="/records" role="button">Voltar</a>
 </div>
 
 <script>
-        // Adiciona um listener de evento para garantir que o DOM está carregado
-        document.addEventListener('DOMContentLoaded', function() {
-            const select = document.getElementById('tipo');
-            const campoAdicional = document.getElementById('campoAdicional');
+    // Adiciona um listener de evento para garantir que o DOM está carregado
+    document.addEventListener('DOMContentLoaded', function() {
+        const select = document.getElementById('tipo');
+        const campoAdicional = document.getElementById('campoAdicional');
 
-            // Verifica se o select e o campo adicional foram encontrados
-            if (select && campoAdicional) {
-                select.addEventListener('change', function() {
-                    // Obtém o índice da opção selecionada
-                    const selectedIndex = select.selectedIndex;
+        // Verifica se o select e o campo adicional foram encontrados
+        if (select && campoAdicional) {
+            select.addEventListener('change', function() {
+                // Obtém o índice da opção selecionada
+                const selectedIndex = select.selectedIndex;
 
-                    // Verifica se a opção selecionada é a quarta (índice 3)
-                    if (selectedIndex === 4 || selectedIndex === 3) { // Ajuste o índice conforme necessário
-                        campoAdicional.style.display = 'block'; // Mostra o campo adicional
-                    } else {
-                        campoAdicional.style.display = 'none'; // Esconde o campo adicional
-                    }
-                });
-            } else {
-                console.error('Elemento não encontrado: #opcoes ou #campoAdicional');
-            }
-        });
-    </script>
+                // Verifica se a opção selecionada é a quarta (índice 3)
+                if (selectedIndex === 4 || selectedIndex === 3) { // Ajuste o índice conforme necessário
+                    campoAdicional.style.display = 'block'; // Mostra o campo adicional
+                } else {
+                    campoAdicional.style.display = 'none'; // Esconde o campo adicional
+                }
+            });
+        } else {
+            console.error('Elemento não encontrado: #opcoes ou #campoAdicional');
+        }
+    });
+</script>
