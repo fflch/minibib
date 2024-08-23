@@ -8,6 +8,7 @@ use OwenIt\Auditing\Contracts\Auditable;
 use App\Models\Instance;
 use App\Utils\Idioma;
 use App\Utils\MapRecords;
+use Illuminate\Support\Facades\Schema;
 
 class Record extends Model implements Auditable
 {
@@ -15,6 +16,7 @@ class Record extends Model implements Auditable
     use \OwenIt\Auditing\Auditable;
 
     protected $guarded = ['id'];
+
 
     public function tipoOptions(){
         return [
@@ -30,6 +32,12 @@ class Record extends Model implements Auditable
             'Música (Som)',
             'Partitura'
         ];
+    }
+
+    public static function campos(){
+        $recordCampos = Schema::getColumnListing('records'); //pega o as colunas
+        $colunasRestantes = array_slice($recordCampos, 3); //pula os 3 primeiros campos: id, created, updated
+        return $colunasRestantes;
     }
 
     public function idiomasOptions(){

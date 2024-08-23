@@ -123,7 +123,6 @@ class ImportCsv extends Command
                 $record = new Record;
                 $record->autores = $Newautores;
                 $record->titulo = $Newtitulo;
-                // $record->desc_fisica = $Newdesc_fisica;
                 $record->editora = $Neweditora;
                 $record->assunto = $Newassunto;
                 $record->local_publicacao = $NewlocalPub;

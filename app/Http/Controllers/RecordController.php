@@ -8,6 +8,10 @@ use App\Http\Requests\RecordRequest;
 use App\Models\Instance;
 use Illuminate\Database\Eloquent\Builder;
 use App\Utils\Idioma;
+use Maatwebsite\Excel\Excel;
+use App\Exports\ExcelExport;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
 {
@@ -96,5 +100,18 @@ class RecordController extends Controller
         }
         $record->delete();
         return redirect('/records')->with('alert-warning','Registro deletado');
+    }
+
+    public function exportExcel(Excel $excel, Record $record, Request $request){
+        $campos = $record::campos();
+        $records = Record::select($campos)
+        ->where('titulo','like','%'.$request->busca.'%')
+        ->orwhere('autores','like','%'.$request->busca.'%')
+        ->get();
+        $newRecords = $records->toArray();
+        
+        $export = new ExcelExport($newRecords, $campos);
+        return $excel->download($export, "acervo.xlsx");
+        
     }
 }

@@ -10,19 +10,40 @@
 
 @include('flash')
 
-<form method="get" action="/records">
-  <div class="row">
-    <div class=" col-sm input-group">
-      <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Pesquisa por título, autor e tombo..">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-success" style="padding:10px; margin-left:6px;"><i class="fas fa-search"></i></button>
-      </span>
+<!-- <div class="col-sm">
+  <form method="get" action="/records">
+    <div class="row">
+      <div class=" col-sm input-group">
+        <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Pesquisa por título, autor e tombo..">
+        <span class="input-group-btn">
+          <button type="submit" class="btn btn-success" style="padding:10px; margin-left:6px;"><i class="fas fa-search"></i></button>
+        </span>
+      </div>
     </div>
+  </form>
+</div>
+</div> -->
+
+
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-10">
+      <form method="get" action="/records">
+        <input type="text" style="padding:8px; width:96%; border:1px solid rgb(0, 0, 0, 0.2); border-radius:3px;" placeholder="Pesquisar por autor, titulo e exemplar..." name="busca" value="{{ Request()->busca }}">
+        <button type="submit" class="btn btn-success" style="padding:12px;"><i class="fas fa-search"></i></button>
+      </div>
+      <div class="col-2">
+        <a href="/excel?busca={{ request()->busca }}" class="btn btn-success" type="submit" style="padding:8px;"><i class="fas fa-file-export" style="margin-left:2px;"></i> Exportar para Excel
+        </a>
+      </div>
+    </form>
   </div>
-</form>
+</div>
 
 
-{{ $records->appends(request()->query())->links() }}
+  {{-- {{ $records->appends(request()->query())->links() }} --}}
+
 <div class="container-fluid">
   <div class="table-responsive-sm">
     <table class="table text-justify bg-light">
