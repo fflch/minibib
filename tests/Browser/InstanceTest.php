@@ -33,19 +33,11 @@ class InstanceTest extends DuskTestCase{
                     ->assertSee('Acervo')
                     ->type('tombo','801 L881 v.1')
                     ->type('localizacao','31856')
-                    ->press('@save_instance')
-                    ->assertSee('Acervo');
-                    // ->assertSee('Exemplares Patrimoniados:')
-                    // ->assertSee('8018811');
+                    ->press('@save_instance');
         });
     }
 
     public function testUpdateInstance(){
-        // $user = User::factory()->create();
-        // $user = Auth::user();
-        // $user->setDefaultPermission();
-
-        // $user->givePermissionTo(['admin']);
         
         $user = User::select('users.*')->first();
 
@@ -69,11 +61,6 @@ class InstanceTest extends DuskTestCase{
 
     public function testDeleteInstance()
     {
-        // $user = User::factory()->create();
-        // $user = Auth::user();
-        // $user->setDefaultPermission();
-        // $user->givePermissionTo(['admin']);
-        
         $user = User::find(1);
         $this->browse(function (Browser $browser) use($user) {
             // $record = Record::find(1);

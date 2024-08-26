@@ -35,7 +35,7 @@ class Record extends Model implements Auditable
     }
 
     public static function campos(){
-        $recordCampos = Schema::getColumnListing('records'); //pega o as colunas
+        $recordCampos = Schema::getColumnListing('records'); //pega o as colunas/campos da DB
         $colunasRestantes = array_slice($recordCampos, 3); //pula os 3 primeiros campos: id, created, updated
         return $colunasRestantes;
     }
@@ -53,7 +53,6 @@ class Record extends Model implements Auditable
         if(array_key_exists($this->idioma,Idioma::lista())){
             return Idioma::lista()[$this->idioma];
         }
-        // return 'Sem Idioma Cadastrado';
     }
 
     public function mapeamento($chave) {

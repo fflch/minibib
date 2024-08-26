@@ -109,9 +109,9 @@ class RecordController extends Controller
         ->orwhere('autores','like','%'.$request->busca.'%')
         ->get();
         $newRecords = $records->toArray();
-        
+        $nome = md5($request->busca);
         $export = new ExcelExport($newRecords, $campos);
-        return $excel->download($export, "acervo.xlsx");
+        return $excel->download($export, "$nome.xlsx");
         
     }
 }

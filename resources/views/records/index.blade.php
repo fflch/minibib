@@ -10,22 +10,6 @@
 
 @include('flash')
 
-<!-- <div class="col-sm">
-  <form method="get" action="/records">
-    <div class="row">
-      <div class=" col-sm input-group">
-        <input type="text" class="form-control" name="busca" value="{{ Request()->busca }}" placeholder="Pesquisa por título, autor e tombo..">
-        <span class="input-group-btn">
-          <button type="submit" class="btn btn-success" style="padding:10px; margin-left:6px;"><i class="fas fa-search"></i></button>
-        </span>
-      </div>
-    </div>
-  </form>
-</div>
-</div> -->
-
-
-
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-10">
@@ -42,7 +26,7 @@
 </div>
 
 
-  {{-- {{ $records->appends(request()->query())->links() }} --}}
+  {{ $records->appends(request()->query())->links() }}
 
 <div class="container-fluid">
   <div class="table-responsive-sm">
