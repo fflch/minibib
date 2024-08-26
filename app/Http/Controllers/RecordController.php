@@ -8,6 +8,10 @@ use App\Http\Requests\RecordRequest;
 use App\Models\Instance;
 use Illuminate\Database\Eloquent\Builder;
 use App\Utils\Idioma;
+use Maatwebsite\Excel\Excel;
+use App\Exports\ExcelExport;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
 {
@@ -22,10 +26,15 @@ class RecordController extends Controller
                 $query->where('tombo','LIKE',"%{$request->busca}%");
             })->orWhere('titulo','LIKE',"%{$request->busca}%")
               ->orWhere('autores','LIKE',"%{$request->busca}%")->paginate(15);
+              $recordsCount = Record::whereHas('instances', function (Builder $query) use ($request) {
+                $query->where('tombo','LIKE',"%{$request->busca}%");
+            })->orWhere('titulo','LIKE',"%{$request->busca}%")
+              ->orWhere('autores','LIKE',"%{$request->busca}%")->count();
         } else {
-            $records = Record::paginate(15);
+            $records = Record::orderBy('id','desc')->paginate(15);
+            $recordsCount = Record::count();
         }
-        return view('records.index')->with('records',$records);
+        return view('records.index')->with(['records' => $records, 'recordsCount' => $recordsCount]);
     }
 
     /**
@@ -90,6 +99,19 @@ class RecordController extends Controller
             return redirect('/records')->with('alert-danger', 'Registro ainda contém exemplares. Por favor, delete exemplares antes!');
         }
         $record->delete();
-        return redirect('/records');
+        return redirect('/records')->with('alert-warning','Registro deletado');
+    }
+
+    public function exportExcel(Excel $excel, Record $record, Request $request){
+        $campos = $record::campos();
+        $records = Record::select($campos)
+        ->where('titulo','like','%'.$request->busca.'%')
+        ->orwhere('autores','like','%'.$request->busca.'%')
+        ->get();
+        $newRecords = $records->toArray();
+        
+        $export = new ExcelExport($newRecords, $campos);
+        return $excel->download($export, "acervo.xlsx");
+        
     }
 }

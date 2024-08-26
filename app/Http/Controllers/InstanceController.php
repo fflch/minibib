@@ -87,6 +87,6 @@ class InstanceController extends Controller
             return redirect('/records')->with('alert-danger', 'Exemplar está emprestado. Por favor, desfaça o empréstimo do exemplar antes!');
         }
         $instance->delete();
-        return redirect('/records');
+        return redirect('/records')->with('alert-warning','Exemplar deletado.');
     }
 }

@@ -53,10 +53,11 @@ abstract class DuskTestCase extends BaseTestCase
      *
      * @return bool
      */
-    protected function hasHeadlessDisabled()
+    protected function hasHeadlessDisabled(): bool
     {
-        return isset($_SERVER['DUSK_HEADLESS_DISABLED']) ||
-               isset($_ENV['DUSK_HEADLESS_DISABLED']);
+        return true;
+        // return isset($_SERVER['DUSK_HEADLESS_DISABLED']) ||
+        //        isset($_ENV['DUSK_HEADLESS_DISABLED']);
     }
 
     /**
@@ -64,9 +65,10 @@ abstract class DuskTestCase extends BaseTestCase
      *
      * @return bool
      */
-    protected function shouldStartMaximized()
+    protected function shouldStartMaximized(): bool
     {
-        return isset($_SERVER['DUSK_START_MAXIMIZED']) ||
-               isset($_ENV['DUSK_START_MAXIMIZED']);
+        return true;
+        // return isset($_SERVER['DUSK_START_MAXIMIZED']) ||
+        //        isset($_ENV['DUSK_START_MAXIMIZED']);
     }
 }
