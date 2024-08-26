@@ -18,12 +18,7 @@ class ARecordTest extends DuskTestCase
      */
     public function testCreateRecord()
     {
-        // $user = User::factory()->create();
-        // $user->setDefaultPermission();
         $user = User::select('users.*')->first();
-
-        // $user->givePermissionTo(['admin']);
-        
         $this->browse(function (Browser $browser) use($user) {
             $browser->loginAs($user)
                     ->visit('/records/create')
@@ -45,11 +40,7 @@ class ARecordTest extends DuskTestCase
     }
 
     public function testUpdateRecord(){
-        // $user = User::factory()->create();
-        // $user->setDefaultPermission();
-        // $user->givePermissionTo(['admin']);
         $user = User::select('users.*')->first();
-        
         $this->browse(function (Browser $browser) use($user) {
             $browser->loginAs($user)
                     ->visit('/records')
@@ -78,17 +69,12 @@ class ARecordTest extends DuskTestCase
                     ->clear('issn')
                     ->type('issn','---')
                     ->press('@save_record');
-                    // ->assertSee('EU SOU UM GATO');
         });
     }
 
     public function testDeleteRecord()
     {
-        // $user = User::factory()->create();
-        // $user->setDefaultPermission();
-        // $user->givePermissionTo(['admin']);
         $user = User::select('users.*')->first();
-        
         $this->browse(function (Browser $browser) use($user) {
             $browser->loginAs($user)
                     ->visit('/records')

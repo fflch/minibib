@@ -14,14 +14,14 @@ class ImportCsv extends Command
      *
      * @var string
      */
-    protected $signature = 'import'; //php artisan import-csv no terminal para realizar a importação
+    protected $signature = 'import {path}'; //php artisan import no terminal para realizar a importação
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Import data from csv file';
 
     /**
      * Create a new command instance.
@@ -40,23 +40,16 @@ class ImportCsv extends Command
      */
     public function handle()
     {
-        $file = storage_path('../teses_e_dissertacoes_tombo.csv'); //encontrando o diretório do arquivo CSV
-        
+        $file = $this->argument('path') . '/teses_e_dissertacoes_tombo.csv'; //encontrando o diretório do arquivo CSV
+
         if(file_exists($file)) {
             $this->info('Processando CSV...');
-
             $fileHash = md5_file($file);
-            $logFile = storage_path('app/imported_files.log');
-
+            $logFile = storage_path('logs/imported_files.log');
             // Verificar se o hash já está no arquivo de log
             if (File::exists($logFile)) {
                 $importedFiles = File::get($logFile);
                 $importedFilesArray = explode(PHP_EOL, trim($importedFiles));
-
-                // if (in_array($fileHash, $importedFilesArray)) {
-                //     $this->error('Este arquivo CSV já foi importado.');
-                //     return 0;
-                // } ativar somente depois que executou o comando
             }
 
             $csvData = array_map('str_getcsv', file($file)); //Lê o arquivo e converte cada linha em um array
@@ -65,7 +58,6 @@ class ImportCsv extends Command
             $autores = array_search('autores', $cabecalho);
             $titulo = array_search('titulo', $cabecalho);
             $localPub = array_search('local', $cabecalho);
-            // $desc_fisica = array_search('desc_fisica', $cabecalho);
             $editora = array_search('editora', $cabecalho);
             $edicao = array_search('edicao', $cabecalho);
             $assunto = array_search('assunto', $cabecalho);
@@ -102,43 +94,25 @@ class ImportCsv extends Command
                     }
                 }
 
-                $Newautores = $autores !== false ? $row[$autores] : null;
-                $Newtitulo = $titulo !== false ? $row[$titulo] : null;
-                $NewlocalPub = $localPub !== false ? $row[$localPub] : null;
-                // $Newdesc_fisica = $desc_fisica !== false ? $row[$desc_fisica] : null;
-                $Neweditora = $editora !== false ? $row[$editora] : null;
-                $Newedicao = $edicao !== false ? $row[$edicao] : null;
-                $Newassunto = $assunto !== false ? $row[$assunto] : null;
-                // $Newidioma = $idioma !== false ? $row[$idioma] : null;
-                $Newisbn = $isbn !== false ? $row[$isbn] : null;
-                $Newissn = $issn !== false ? $row[$issn] : null;
-                $Newano = $ano !== false ? $row[$ano] : null;
-                // $Newtipo = $tipo !== false ? $row[$tipo] : null;
-                // $Newtipo = $tipo !== false ? ($row[$tipo] === 'M' ? 'Mestrado' : $row[$tipo]) : null;
-                $Neworientador = $orientador !== false ? $row[$orientador] : null;
-                $Newquantidade = $quantidade !== false ? $row[$quantidade] : null;
-                $Newnumero = $numero !== false ? $row[$numero] : null;
-                $Newlocalizacao = $localizacao !== false ? $row[$localizacao] : null;
-
                 $record = new Record;
-                $record->autores = $Newautores;
-                $record->titulo = $Newtitulo;
-                $record->editora = $Neweditora;
-                $record->assunto = $Newassunto;
-                $record->local_publicacao = $NewlocalPub;
-                $record->edicao = $Newedicao;
-                $record->ano = $Newano;
+                $record->autores = $autores !== false ? $row[$autores] : null;
+                $record->titulo = $titulo !== false ? $row[$titulo] : null;
+                $record->editora = $editora !== false ? $row[$editora] : null;
+                $record->assunto = $assunto !== false ? $row[$assunto] : null;
+                $record->local_publicacao = $localPub !== false ? $row[$localPub] : null;
+                $record->edicao = $edicao !== false ? $row[$edicao] : null;
+                $record->ano = $ano !== false ? $row[$ano] : null;
                 $record->idioma = $Newidioma;
-                $record->isbn = $Newisbn;
-                $record->issn = $Newissn;
+                $record->isbn = $isbn !== false ? $row[$isbn] : null;
+                $record->issn = $issn !== false ? $row[$issn] : null;
                 $record->tipo = $Newtipo;
-                $record->orientador = $Neworientador;
+                $record->orientador = $orientador !== false ? $row[$orientador] : null;
                 $record->save();
 
                 $instance = new Instance;
                 $instance->record_id = $record->id;
                 $instance->tombo = rand(1, 10000000);
-                $instance->localizacao = $Newlocalizacao;
+                $instance->localizacao = $localizacao !== false ? $row[$localizacao] : null;
                 $instance->save();
             }
 
