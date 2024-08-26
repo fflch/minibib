@@ -1,6 +1,10 @@
-@section('javascripts_head')
-<script type="text/javascript" src="{{asset('js/record.js')}}"></script>
-@endsection
+
+<style>
+    #campoAdicional{
+        display:none;
+    }
+</style>
+
 
 {{-- FORMULÁRIO CADASTRO DE MATERIAL (RECORD) --}}
 <div class="form-group">
@@ -13,24 +17,29 @@
 
                 {{-- 1. Situação em que não houve tentativa de submissão e é uma edição --}}
                 @if (old('tipo') == '' and isset($record->tipo))
-                <option value="{{$option}}" {{ ( $record->tipo == $option) ? 'selected' : ''}}>
+                <option id="op" value="{{$option}}" {{ ( $record->tipo == $option) ? 'selected' : ''}}>
                     {{$option}}
                 </option>
                 {{-- 2. Situação em que houve tentativa de submissão, o valor de old prevalece --}}
                 @else
-                <option value="{{$option}}" {{ ( old('tipo') == $option) ? 'selected' : ''}}>
+                <option id="op" value="{{$option}}" {{ ( old('tipo') == $option) ? 'selected' : ''}}>
                     {{$option}}
                 </option>
                 @endif
 
             @endforeach
             </select>
-        <label for="autores">Autores</label>
+        <div id="campoAdicional">
+            <label for="orientador">Orientador</label>
+            <input type="text" class="form-control" id="orientador" name="orientador" value="{{old('orientador',$record->orientador)}}">
+        </div>
+
+        <label for="autores" class="required">Autores</label>
         <input type="text" class="form-control" id="autores" name="autores" value="{{old('autores',$record->autores)}}">
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="titulo">Título</label>
+            <label for="titulo" class="required">Título</label>
             <textarea type="text" class="form-control" id="titulo" name="titulo">{{old('titulo',$record->titulo)}}</textarea>
         </div>
         <div class="form-group col-md-6">
@@ -54,7 +63,7 @@
             <input type="text" class="form-control" id="edicao" name="edicao" value="{{old('edicao',$record->edicao)}}">
         </div>
             <div class="form-group col-md-4">
-            <label for="ano">Ano</label>
+            <label for="ano" class="required">Ano</label>
             <input type="text" class="form-control" id="ano" name="ano" value="{{old('ano',$record->ano)}}">
         </div>
         <div class="form-group col-md-4">
@@ -90,6 +99,31 @@
 
 {{--BOTÕES SALVAR E VOLTAR--}}
     <div class="col-sm form-group">
-        <button dusk="save_record" type="submit" class="btn btn-success">Salvar</button>
+        <button dusk="save_record" type="submit" dusk="save_record" class="btn btn-success">Salvar</button>
         <a class="btn btn-success" href="/records" role="button">Voltar</a>
 </div>
+
+<script>
+    // Adiciona um listener de evento para garantir que o DOM está carregado
+    document.addEventListener('DOMContentLoaded', function() {
+        const select = document.getElementById('tipo');
+        const campoAdicional = document.getElementById('campoAdicional');
+
+        // Verifica se o select e o campo adicional foram encontrados
+        if (select && campoAdicional) {
+            select.addEventListener('change', function() {
+                // Obtém o índice da opção selecionada
+                const selectedIndex = select.selectedIndex;
+
+                // Verifica se a opção selecionada é a quarta (índice 3)
+                if (selectedIndex === 4 || selectedIndex === 3) { // Ajuste o índice conforme necessário
+                    campoAdicional.style.display = 'block'; // Mostra o campo adicional
+                } else {
+                    campoAdicional.style.display = 'none'; // Esconde o campo adicional
+                }
+            });
+        } else {
+            console.error('Elemento não encontrado: #opcoes ou #campoAdicional');
+        }
+    });
+</script>
