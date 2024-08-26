@@ -17,7 +17,6 @@ class Record extends Model implements Auditable
 
     protected $guarded = ['id'];
 
-
     public function tipoOptions(){
         return [
             'Livro',
@@ -53,6 +52,10 @@ class Record extends Model implements Auditable
         if(array_key_exists($this->idioma,Idioma::lista())){
             return Idioma::lista()[$this->idioma];
         }
+<<<<<<< HEAD
+=======
+        return 'Sem Idioma Cadastrado';
+>>>>>>> dd09408f5cd95a951443cc50829f89b330c2688c
     }
 
     public function mapeamento($chave) {
