@@ -24,13 +24,7 @@
     </form>
   </div>
 </div>
-<<<<<<< HEAD
-
-
   {{ $records->appends(request()->query())->links() }}
-
-=======
->>>>>>> dd09408f5cd95a951443cc50829f89b330c2688c
 <div class="container-fluid">
   <div class="table-responsive-sm">
     <table class="table text-justify bg-light">
