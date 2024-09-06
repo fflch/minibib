@@ -104,14 +104,23 @@ class RecordController extends Controller
 
     public function exportExcel(Excel $excel, Record $record, Request $request){
         $campos = $record::campos();
-        $records = Record::select($campos)
-        ->where('titulo','like','%'.$request->busca.'%')
-        ->orwhere('autores','like','%'.$request->busca.'%')
+
+        $records = Instance::join('records','instances.record_id','records.id')
+        ->select($campos)
+        ->where('records.titulo','like','%'.$request->busca.'%')
+        ->orwhere('records.autores','like','%'.$request->busca.'%')
+        ->orwhere('instances.tombo','like','%'.$request->busca.'%')
         ->get();
-        $newRecords = $records->toArray();
         
+        if($records->count() < 2){
+            $m = 'Material';
+        }else{
+            $m = 'Materiais';
+        }
+
+        $newRecords = $records->toArray();
         $export = new ExcelExport($newRecords, $campos);
-        return $excel->download($export, "acervo.xlsx");
+        return $excel->download($export, "$m.xlsx");
         
     }
 }

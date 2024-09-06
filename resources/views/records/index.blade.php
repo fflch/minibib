@@ -24,6 +24,7 @@
     </form>
   </div>
 </div>
+  {{ $records->appends(request()->query())->links() }}
 <div class="container-fluid">
   <div class="table-responsive-sm">
     <table class="table text-justify bg-light">

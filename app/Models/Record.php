@@ -9,6 +9,7 @@ use App\Models\Instance;
 use App\Utils\Idioma;
 use App\Utils\MapRecords;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class Record extends Model implements Auditable
 {
@@ -34,9 +35,14 @@ class Record extends Model implements Auditable
     }
 
     public static function campos(){
-        $recordCampos = Schema::getColumnListing('records'); //pega o as colunas
-        $colunasRestantes = array_slice($recordCampos, 3); //pula os 3 primeiros campos: id, created, updated
-        return $colunasRestantes;
+        $recordCampos = Schema::getColumnListing('records'); //pega o as colunas/campos da DB
+        $recordResto = array_slice($recordCampos, 3); //pula os 3 primeiros campos: id, created, updated
+
+        $instancesCampos = Schema::getColumnListing('instances');
+        $instancesResto = array_slice($instancesCampos, 4);
+
+        $camposCompletos = array_merge($recordResto, $instancesResto); //junta os campos do records e instances
+        return $camposCompletos;
     }
 
     public function idiomasOptions(){
