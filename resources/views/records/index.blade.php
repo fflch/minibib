@@ -12,25 +12,15 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
       <form method="get" action="/records">
-        <input type="text" style="padding:8px; width:96%; border:1px solid rgb(0, 0, 0, 0.2); border-radius:3px;" placeholder="Pesquisar por autor, titulo e exemplar..." name="busca" value="{{ Request()->busca }}">
-        <button type="submit" class="btn btn-success" style="padding:12px;"><i class="fas fa-search"></i></button>
-      </div>
-      <div class="col-2">
-        <a href="/excel?busca={{ request()->busca }}" class="btn btn-success" type="submit" style="padding:8px;"><i class="fas fa-file-export" style="margin-left:2px;"></i> Exportar para Excel
-        </a>
+        <input type="text" dusk="procurar" style="padding:8px; width:96%; border:1px solid rgb(0, 0, 0, 0.2); border-radius:3px;" placeholder="Pesquisar por autor, titulo ou exemplar..." name="busca" value="{{ Request()->busca }}">
+        <button type="submit" class="btn btn-success" style="padding:12px;" dusk="search"><i class="fas fa-search"></i></button>
       </div>
     </form>
   </div>
 </div>
-<<<<<<< HEAD
-
-
   {{ $records->appends(request()->query())->links() }}
-
-=======
->>>>>>> dd09408f5cd95a951443cc50829f89b330c2688c
 <div class="container-fluid">
   <div class="table-responsive-sm">
     <table class="table text-justify bg-light">
@@ -85,12 +75,7 @@
         <td>
         <div class="font-weight-bold">Exemplares:</div>
           <ul class="list-inline">
-            @forelse($record->instances as $in)
-                <p>{{$in->tombo}}</p>
-            @empty
-                <p class="text-danger">Não há exemplares cadastrados</p>
-            @endforelse
-            @foreach($record->instances as $instance)
+            @forelse($record->instances as $instance)
               <li>
                 <i class="fas fa-map-marker-alt"></i> {{ $instance->localizacao ? $instance->localizacao : 'Não encontrado'}}
                 <i class="fas fa-tags"></i> {{ $instance->tombo }}
@@ -114,12 +99,14 @@
                       <hr>
                   @endcan('admin')
                 </li>
-                @endforeach
+                @empty
+                <p class="text-danger">Não há exemplares cadastrados</p>
+                @endforelse
               </ul>
             </div>
           </td>
         </tr>
-      @endforeach
+        @endforeach
       </tbody>
     </table>
   </div>
