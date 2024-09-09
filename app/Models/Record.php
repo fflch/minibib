@@ -34,7 +34,13 @@ class Record extends Model implements Auditable
         ];
     }
 
-    public static function campos(){
+    public static function camposMateriais(){
+        $records = Schema::getColumnListing('records');
+        $recordsCampos = array_slice($records, 3);
+        return $recordsCampos;
+    }
+
+    public static function camposCompletos(){
         $recordCampos = Schema::getColumnListing('records'); //pega o as colunas/campos da DB
         $recordResto = array_slice($recordCampos, 3); //pula os 3 primeiros campos: id, created, updated
 

@@ -101,26 +101,4 @@ class RecordController extends Controller
         $record->delete();
         return redirect('/records')->with('alert-warning','Registro deletado');
     }
-
-    public function exportExcel(Excel $excel, Record $record, Request $request){
-        $campos = $record::campos();
-
-        $records = Instance::join('records','instances.record_id','records.id')
-        ->select($campos)
-        ->where('records.titulo','like','%'.$request->busca.'%')
-        ->orwhere('records.autores','like','%'.$request->busca.'%')
-        ->orwhere('instances.tombo','like','%'.$request->busca.'%')
-        ->get();
-        
-        if($records->count() < 2){
-            $m = 'Material';
-        }else{
-            $m = 'Materiais';
-        }
-
-        $newRecords = $records->toArray();
-        $export = new ExcelExport($newRecords, $campos);
-        return $excel->download($export, "$m.xlsx");
-        
-    }
 }

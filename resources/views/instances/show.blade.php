@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('flash')
+
 <div class="card bg-light">
   <div class="card-header border-info bg-light">
     <div class="container">
