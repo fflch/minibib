@@ -16,10 +16,28 @@
   <div class="card-body">
     <div class="container bg-light">
       <div class="row">
-        <div class="col "><h6 class="font-weight-bold">{{ $instance }}</h6></div>        
-        <div class="col "><h6 class="font-weight-bold">{{ $record }}</h6></div>
+        <div class="col"><h6 class="font-weight-bold">{{ $instance }}</h6></div>
+        <div class="col"><h6 class="font-weight-bold">{{ $record }}</h6></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12">
+        <form method="get" action="/statistics/excel/material">
+          <button type="submit" class="btn btn-success"><i class="fas fa-file-export"></i> Exportar Materiais</button>
+        </form>
+      </div>
+        <div class="col-12" style="margin-top:5px; margin-bottom:5px;">
+        <form method="get" action="/statistics/excel/exemplares">
+          <button type="submit" class="btn btn-success"><i class="fas fa-book"></i> Exportar Exemplares</button>
+        </form>
+        </div>
+      <div class="col-12">
+        <form method="get" action="/statistics/excel/materiais_completos">
+          <button type="submit" class="btn btn-success"><i class="fas fa-book"></i> <i class="fas fa-file-export"></i> Exportar Materiais com Exemplares</button>
+        </form>
       </div>
     </div>
   </div>
 </div>
+
 @endsection('content')

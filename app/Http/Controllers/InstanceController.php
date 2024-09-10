@@ -84,9 +84,9 @@ class InstanceController extends Controller
         $this->authorize('admin');
         $emprestimo = Emprestimo::whereNull('data_devolucao')->where('instance_id', $instance->id)->get();
         if ($emprestimo->isNotEmpty()){
-            return redirect('/records')->with('alert-danger', 'Exemplar está emprestado. Por favor, desfaça o empréstimo do exemplar antes!');
+            return redirect("/instances/$instance->id")->with('alert-danger', 'Exemplar está emprestado. Por favor, desfaça o empréstimo do exemplar antes!');
         }
         $instance->delete();
-        return redirect('/records')->with('alert-warning','Exemplar deletado.');
+        return redirect("/records")->with('alert-warning','Exemplar deletado.');
     }
 }

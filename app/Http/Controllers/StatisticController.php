@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Instance;
 use App\Models\Record;
+use Maatwebsite\Excel\Excel;
+use App\Exports\ExcelExport;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 class StatisticController extends Controller
 {
@@ -18,4 +21,30 @@ class StatisticController extends Controller
             'record'   => $record,
         ]);
     }
+
+    //exporta todos os materiais
+    public function exportarMaterial(Excel $excel){
+        $campos = Record::camposMateriais();
+        $records = Record::select($campos)->toBase()->get()->toArray();
+        return $excel->download(new ExcelExport($records, $campos), 'materiais.xlsx');
+    }
+
+    //exporta todos os exemplares
+    public function exportarExemplares(Excel $excel){
+        $campos = Instance::camposExemplares();
+        $instances = Instance::select($campos)->toBase()->get()->toArray();
+        return $excel->download(new ExcelExport($instances, $campos), 'exemplares.xlsx');
+    }
+
+    //lista records com join nas instances
+    public function exportarMateriaisCompletos(Excel $excel){
+        $campos = Record::camposCompletos();
+        $records = Record::join('instances','instances.record_id','records.id')
+            ->select($campos)
+            ->toBase()
+            ->get()
+            ->toArray();
+        return $excel->download(new ExcelExport($records, $campos), 'materiais_completos.xlsx');
+    }
+
 }

@@ -27,4 +27,6 @@ Route::get('/statistics', [StatisticController::class,'contar']);
 # Logs
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('can:admin');
 
-Route::get('/excel', [RecordController::class, 'exportExcel']); 
+Route::get('/statistics/excel/material', [StatisticController::class, 'exportarMaterial']);
+Route::get('/statistics/excel/exemplares', [StatisticController::class, 'exportarExemplares']);
+Route::get('/statistics/excel/materiais_completos', [StatisticController::class, 'exportarMateriaisCompletos']); 
