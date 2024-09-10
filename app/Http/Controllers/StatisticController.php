@@ -23,33 +23,28 @@ class StatisticController extends Controller
     }
 
     //exporta todos os materiais
-    public function exportarMaterial(Excel $excel, Record $record){
-        $campos = $record::camposMateriais();
-        $records = Record::select($campos)->get();
-        $newRecords = $records->toArray();
-        $export = new ExcelExport($newRecords, $campos);
-        return $excel->download($export, 'materiais.xlsx');
-        
+    public function exportarMaterial(Excel $excel){
+        $campos = Record::camposMateriais();
+        $records = Record::select($campos)->toBase()->get()->toArray();
+        return $excel->download(new ExcelExport($records, $campos), 'materiais.xlsx');
     }
 
     //exporta todos os exemplares
-    public function exportarExemplares(Excel $excel, Instance $instance){
-        $campos = $instance::camposExemplares();
-        $instances = Instance::select($campos)->get();
-        $newInstances = $instances->toArray();
-        $export = new ExcelExport($newInstances, $campos);
-        return $excel->download($export, 'exemplares.xlsx');
+    public function exportarExemplares(Excel $excel){
+        $campos = Instance::camposExemplares();
+        $instances = Instance::select($campos)->toBase()->get()->toArray();
+        return $excel->download(new ExcelExport($instances, $campos), 'exemplares.xlsx');
     }
 
     //lista records com join nas instances
-    public function exportarMateriaisCompletos(Excel $excel, Record $record){
-        $campos = $record::camposCompletos();
+    public function exportarMateriaisCompletos(Excel $excel){
+        $campos = Record::camposCompletos();
         $records = Record::join('instances','instances.record_id','records.id')
-        ->select($campos)
-        ->get();
-        $newRecords = $records->toArray();
-        $export = new ExcelExport($newRecords, $campos);
-        return $excel->download($export, 'materiais_completos.xlsx');
+            ->select($campos)
+            ->toBase()
+            ->get()
+            ->toArray();
+        return $excel->download(new ExcelExport($records, $campos), 'materiais_completos.xlsx');
     }
 
 }
