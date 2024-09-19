@@ -34,20 +34,18 @@ class Record extends Model implements Auditable
         ];
     }
 
+    //exporta somente os materiais
     public static function camposMateriais(){
         $records = Schema::getColumnListing('records');
         $recordsCampos = array_slice($records, 3);
         return $recordsCampos;
     }
 
+    //juntaa os campos do records e do instances (materiais_completos)
     public static function camposCompletos(){
         $recordCampos = Schema::getColumnListing('records'); //pega o as colunas/campos da DB
         $recordResto = array_slice($recordCampos, 3); //pula os 3 primeiros campos: id, created, updated
-
-        $instancesCampos = Schema::getColumnListing('instances');
-        $instancesResto = array_slice($instancesCampos, 4);
-
-        $camposCompletos = array_merge($recordResto, $instancesResto); //junta os campos do records e instances
+        $camposCompletos = array_merge($recordResto, Instance::camposDasInstances()); //junta os campos do records e instances
         return $camposCompletos;
     }
 

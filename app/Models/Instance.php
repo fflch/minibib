@@ -17,10 +17,21 @@ class Instance extends Model implements Auditable
 
     protected $guarded = ['id'];
 
-    public static function camposExemplares(){
+    //tombo e localizacao das instances (é chamado no model Record)
+    public static function camposDasInstances(){
         $instances = Schema::getColumnListing('instances');
         $instancesCampos = array_slice($instances, 4);
         return $instancesCampos;
+    }
+
+    //titulo do records com tombo e localizacao das instances
+    public static function camposExemplares(){
+        $records = Schema::getColumnListing('records');
+        $titulo = array_filter($records, function($value){
+            return $value === 'titulo';
+        });
+        $camposExemplares = array_merge($titulo, Instance::camposDasInstances());
+        return $camposExemplares;
     }
     
     public function record(){

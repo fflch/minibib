@@ -22,11 +22,11 @@ Route::resource('emprestimos', EmprestimoController::class)->except(['create']);
 Route::get('emprestimos/create/{instance}', [EmprestimoController::class, 'create'])->name('emprestimos.create');
 
 //Rotas para Estatísticas
-Route::get('/statistics', [StatisticController::class,'contar']);
+Route::get('/statistics', [StatisticController::class,'index']);
 
 # Logs
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index')->middleware('can:admin');
 
-Route::get('/statistics/excel/material', [StatisticController::class, 'exportarMaterial']);
+Route::get('/statistics/excel/materiais', [StatisticController::class, 'exportarMaterial']);
 Route::get('/statistics/excel/exemplares', [StatisticController::class, 'exportarExemplares']);
 Route::get('/statistics/excel/materiais_completos', [StatisticController::class, 'exportarMateriaisCompletos']); 
