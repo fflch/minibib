@@ -37,7 +37,7 @@ class StatisticController extends Controller
             'materiais' => $materiais,
         ]);
     }
-
+    
     //issue: está repetindo o material
     public function exportarMaterial(Excel $excel, Record $record, Request $request){
         $records = Record::select($record::camposMateriais())

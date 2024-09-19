@@ -38,6 +38,7 @@ class Record extends Model implements Auditable
     public static function camposMateriais(){
         $records = Schema::getColumnListing('records');
         $recordsCampos = array_slice($records, 3);
+
         return $recordsCampos;
     }
 

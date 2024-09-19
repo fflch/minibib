@@ -42,9 +42,9 @@
           Emprestado para: {{ $emprestimo->n_usp }}  - {{ $emprestimo->nome }}<br>
         </td>
         <td class="border-top-0 ">
-          
+
           Data do Empréstimo: {{ $emprestimo->data_emprestimo }}
-          (há {{ floor(-$diffInDays = \Carbon\Carbon::now()->diffInDays($emprestimo->data_emprestimo)) }} dias)
+          (há {{ (int)\Carbon\Carbon::createFromFormat('d/m/Y', $emprestimo->data_emprestimo)->diffInDays(\Carbon\Carbon::now()) }} dias )
         </td>
       </tr>
     @endforeach

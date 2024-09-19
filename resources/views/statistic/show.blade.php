@@ -18,7 +18,7 @@
   <div class="card-body">
     <div class="container bg-light">
       <div class="row">
-        <div class="col"><h6 class="font-weight-bold">{{ $instance }}</h6></div> 
+        <div class="col"><h6 class="font-weight-bold">{{ $instance }}</h6></div>
         <div class="col"><h6 class="font-weight-bold">{{ $record }}</h6></div>
       </div>
     </div>
