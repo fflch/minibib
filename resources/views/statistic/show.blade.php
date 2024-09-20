@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('flash')
+
 <div class="card bg-light">
   <div class="card-header border-info bg-light">
     <div class="container">
@@ -22,19 +24,51 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form method="get" action="/statistics/excel/material">
-          <button type="submit" class="btn btn-success"><i class="fas fa-file-export"></i> Exportar Materiais</button>
+        <form method="get" action="/statistics/excel/materiais">
+          <a href="statistics/excel/materiais?busca={{request()->busca}}" type="submit" class="btn btn-success"><i class="fas fa-file-export"></i> Exportar Materiais</a>
         </form>
       </div>
         <div class="col-12" style="margin-top:5px; margin-bottom:5px;">
         <form method="get" action="/statistics/excel/exemplares">
-          <button type="submit" class="btn btn-success"><i class="fas fa-book"></i> Exportar Exemplares</button>
+          <a href="statistics/excel/exemplares?busca={{request()->busca}}" type="submit" class="btn btn-success"><i class="fas fa-book"></i> Exportar Exemplares</a>
         </form>
         </div>
       <div class="col-12">
         <form method="get" action="/statistics/excel/materiais_completos">
-          <button type="submit" class="btn btn-success"><i class="fas fa-book"></i> <i class="fas fa-file-export"></i> Exportar Materiais com Exemplares</button>
+          <a href="statistics/excel/materiais_completos?busca={{request()->busca}}" type="submit" class="btn btn-success"><i class="fas fa-book"></i> <i class="fas fa-file-export"></i> Exportar Materiais com Exemplares</a>
         </form>
+        <br />
+        <form method="get" action="/statistics">
+            <div class="row" style="padding:15px;">
+              <input type="text" class="form-control" placeholder="Pesquisar por título ou isbn" style="max-width:30%; margin-right:5px;" name="busca" value="{{Request()->busca}}">
+              <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+            </div>
+          </form>
+        {{ $materiais->appends(request()->query())->links() }}
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Título</th>
+              <th scope="col">Autor(es)</th>
+              <th scope="col">ISBN</th>
+              <th scope="col">Tombo</th>
+              <th scope="col">Localização</th>
+            </tr>
+          </thead>
+          <tbody>
+            @forelse($materiais as $material)
+            <tr>
+              <td>{{$material->titulo}}</td>
+              <td>{{$material->autores}}</td>
+              <td>{{$material->isbn ?? 'N/A'}}</td>
+              <td>{{$material->tombo}}</td>
+              <td>{{$material->localizacao}}</td>
+            </tr>
+            @empty
+            <p class="text-danger">Não foram encontrados materiais</p>
+            @endforelse
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

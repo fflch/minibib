@@ -8,9 +8,6 @@ use App\Http\Requests\RecordRequest;
 use App\Models\Instance;
 use Illuminate\Database\Eloquent\Builder;
 use App\Utils\Idioma;
-use Maatwebsite\Excel\Excel;
-use App\Exports\ExcelExport;
-use Rap2hpoutre\FastExcel\FastExcel;
 use Illuminate\Support\Facades\Auth;
 
 class RecordController extends Controller
