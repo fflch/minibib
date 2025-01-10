@@ -94,7 +94,7 @@
                         <i class="fa fa-trash"></i>
                         @method('DELETE')
                         @csrf
-                        <button type="submit" dusk="delete_record" class="btn btn-link" onclick="return confirm('Tem certeza que deseja deletar?');" dusk="delete_instance"> Deletar exemplar  </button>
+                        <button type="submit" dusk="delete_exemplar" class="btn btn-link" onclick="return confirm('Tem certeza que deseja deletar?');"> Deletar exemplar  </button>
                       </form>
                       <hr>
                   @endcan('admin')

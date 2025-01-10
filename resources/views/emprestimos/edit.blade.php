@@ -20,7 +20,7 @@
                 <h6 class="font-weight-bold">Nº USP do Aluno: {{ $emprestimo->n_usp }}</h6>
             </div>
         </div>
-            <button class="btn btn-outline-success" type="submit">Confirmar Devolução de Material</button>
+            <button class="btn btn-outline-success" type="submit" dusk="confirmar_devolucao">Confirmar Devolução de Material</button>
     </div>
 </div>
 </form>

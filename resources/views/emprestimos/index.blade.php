@@ -33,7 +33,7 @@
         <td>
           <form class="row-sm" method="POST" action="/emprestimos/{{$emprestimo->id}}">
             @csrf
-            <a class="btn btn-outline-success btn-sm" href="/emprestimos/{{$emprestimo->id}}/edit">Devolver</a>
+            <a class="btn btn-outline-success btn-sm" href="/emprestimos/{{$emprestimo->id}}/edit" dusk="devolver_exemplar">Devolver</a>
           </form>
         </td>
       </tr>
