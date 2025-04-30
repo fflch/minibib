@@ -16,6 +16,7 @@ class ARecordTest extends DuskTestCase
      *
      * @return void
      */
+    //php artisan dusk:chrome-driver --detect-chromedriver
     public function testCreateRecord()
     {
         $user = User::select('users.*')->first();
