@@ -66,7 +66,7 @@
       <div class="row">
         <a class="btn btn-outline-success btn-md" href="/records" role="button">Voltar</a>
         <a class="btn btn-outline-success btn-md" href="/records/{{$record->id}}/edit" role="button">Editar</a>
-        <a class="btn btn-outline-primary btn-md" href="{{ route('instances.create', $record->id) }}" role="button">Cadastrar Exemplar</a>
+        <a class="btn btn-outline-primary btn-md" href="{{ route('instances.create', $record->id) }}" role="button" dusk="cadastrar_exemplar">Cadastrar Exemplar</a>
       </div>
     </div>
 
@@ -74,7 +74,7 @@
       <div class="list-group">
       <li class="list-group-item text-primary">Exemplares Patrimoniados:</li>
       @foreach ($record->instances as $instance)
-      <a href="{{ route('instances.show', $instance->id) }}" class="list-group-item list-group-item-action">{{ $instance->tombo }} </a>
+      <a href="{{ route('instances.show', $instance->id) }}" class="list-group-item list-group-item-action" dusk="instance">{{ $instance->tombo }} </a>
       @endforeach
       </div>
     </div>
