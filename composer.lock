@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "514d86da9bb741a411e1ed7b9dd5a2c3",
+    "content-hash": "fd20d2b3ee1285c82c3c98fdb1933b64",
     "packages": [
         {
             "name": "brick/math",
@@ -7938,25 +7938,25 @@
         },
         {
             "name": "uspdev/senhaunica-socialite",
-            "version": "7.3.19",
+            "version": "4.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/uspdev/senhaunica-socialite.git",
-                "reference": "f4db8f92dd26d3c718ae8a8804e10407b2505891"
+                "reference": "8f78488132fefa7f4198fba71c681195b659502a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/uspdev/senhaunica-socialite/zipball/f4db8f92dd26d3c718ae8a8804e10407b2505891",
-                "reference": "f4db8f92dd26d3c718ae8a8804e10407b2505891",
+                "url": "https://api.github.com/repos/uspdev/senhaunica-socialite/zipball/8f78488132fefa7f4198fba71c681195b659502a",
+                "reference": "8f78488132fefa7f4198fba71c681195b659502a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "^3 | ^4",
-                "kyslik/column-sortable": "^6 | ^7",
+                "doctrine/dbal": "^3 | ^4 ",
+                "kyslik/column-sortable": "^6 | ^7 | ^8",
                 "laravel/socialite": "^5",
                 "php": "^7 | ^8",
                 "socialiteproviders/manager": "^3 | ^4",
-                "spatie/laravel-permission": "^4 | ^5 | ^6"
+                "spatie/laravel-permission": "^4 | ^5 | ^6 | ^7"
             },
             "type": "library",
             "extra": {
@@ -7989,9 +7989,9 @@
             "homepage": "https://github.com/uspdev/senhaunica-socialite",
             "support": {
                 "issues": "https://github.com/uspdev/senhaunica-socialite/issues",
-                "source": "https://github.com/uspdev/senhaunica-socialite/tree/7.3.19"
+                "source": "https://github.com/uspdev/senhaunica-socialite/tree/4.5.8"
             },
-            "time": "2025-04-08T14:01:14+00:00"
+            "time": "2026-03-20T14:12:15+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -8398,39 +8398,39 @@
         },
         {
             "name": "laravel/dusk",
-            "version": "v8.3.2",
+            "version": "v8.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/dusk.git",
-                "reference": "bb701836357bf6f6c6658ef90b5a0f8232affb0f"
+                "reference": "e7fd48762c6a82ad2cd311db07587aa2a97ce143"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/dusk/zipball/bb701836357bf6f6c6658ef90b5a0f8232affb0f",
-                "reference": "bb701836357bf6f6c6658ef90b5a0f8232affb0f",
+                "url": "https://api.github.com/repos/laravel/dusk/zipball/e7fd48762c6a82ad2cd311db07587aa2a97ce143",
+                "reference": "e7fd48762c6a82ad2cd311db07587aa2a97ce143",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-zip": "*",
                 "guzzlehttp/guzzle": "^7.5",
-                "illuminate/console": "^10.0|^11.0|^12.0",
-                "illuminate/support": "^10.0|^11.0|^12.0",
+                "illuminate/console": "^10.0|^11.0|^12.0|^13.0",
+                "illuminate/support": "^10.0|^11.0|^12.0|^13.0",
                 "php": "^8.1",
                 "php-webdriver/webdriver": "^1.15.2",
-                "symfony/console": "^6.2|^7.0",
-                "symfony/finder": "^6.2|^7.0",
-                "symfony/process": "^6.2|^7.0",
+                "symfony/console": "^6.2|^7.0|^8.0",
+                "symfony/finder": "^6.2|^7.0|^8.0",
+                "symfony/process": "^6.2|^7.0|^8.0",
                 "vlucas/phpdotenv": "^5.2"
             },
             "require-dev": {
-                "laravel/framework": "^10.0|^11.0|^12.0",
+                "laravel/framework": "^10.0|^11.0|^12.0|^13.0",
                 "mockery/mockery": "^1.6",
-                "orchestra/testbench-core": "^8.19|^9.0|^10.0",
+                "orchestra/testbench-core": "^8.19|^9.17|^10.8|^11.0",
                 "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^10.1|^11.0|^12.0.1",
                 "psy/psysh": "^0.11.12|^0.12",
-                "symfony/yaml": "^6.2|^7.0"
+                "symfony/yaml": "^6.2|^7.0|^8.0"
             },
             "suggest": {
                 "ext-pcntl": "Used to gracefully terminate Dusk when tests are running."
@@ -8466,9 +8466,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/dusk/issues",
-                "source": "https://github.com/laravel/dusk/tree/v8.3.2"
+                "source": "https://github.com/laravel/dusk/tree/v8.6.0"
             },
-            "time": "2025-02-20T14:42:00+00:00"
+            "time": "2026-04-15T14:50:40+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -10739,12 +10739,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.3"
     },
-    "platform-dev": [],
-    "plugin-api-version": "2.6.0"
+    "platform-dev": {},
+    "plugin-api-version": "2.9.0"
 }

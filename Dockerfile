@@ -1,0 +1,17 @@
+FROM uspdev/uspdev-php-apache:8.3
+
+RUN sed -i 's|/var/www/html|/var/www/html/public|' \
+    /etc/apache2/sites-available/000-default.conf
+
+RUN mkdir -p /var/www/.composer && chown -R www-data:www-data /var/www/.composer
+
+USER www-data
+
+COPY --chown=www-data . .
+
+RUN composer install \
+    --no-dev \
+    --optimize-autoloader \
+    --no-interaction
+
+CMD ["apache2-foreground"]
