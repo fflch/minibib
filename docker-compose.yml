@@ -1,5 +1,6 @@
 services:
   minibib:
+    build: .
     image: minibib:latest
     container_name: minibib
     ports:

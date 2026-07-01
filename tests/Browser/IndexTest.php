@@ -8,7 +8,7 @@ use Tests\DuskTestCase;
 use App\Models\User;
 use App\Models\Record;
 
-class ARecordTest extends DuskTestCase
+class IndexTest extends DuskTestCase
 {
     //use DatabaseMigrations;
     /**
@@ -19,9 +19,14 @@ class ARecordTest extends DuskTestCase
     //php artisan dusk:chrome-driver --detect-chromedriver
     public function testCreateRecord()
     {
-        $user = User::select('users.*')->first();
-        $this->browse(function (Browser $browser) use($user) {
-            $browser->loginAs($user)
+         $this->browse(function (Browser $browser) {
+            //login do usuário
+            $browser->visit('/')
+                ->clickLink('Entrar')
+                ->waitForText('Usuário')
+                ->type('#loginUsuario', '11111')
+                ->press('Login')
+        
                     ->visit('/records/create')
                     ->select('tipo','Livro')
                     ->typeSlowly('autores','Natsume Soseki')
@@ -42,10 +47,8 @@ class ARecordTest extends DuskTestCase
     }
 
     public function testUpdateRecord(){
-        $user = User::select('users.*')->first();
-        $this->browse(function (Browser $browser) use($user) {
-            $browser->loginAs($user)
-                    ->visit('/records')
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/records')
                     ->pause(2000)
                     ->click('@edit_record')
                     ->select('tipo','Livro')
@@ -92,8 +95,7 @@ class ARecordTest extends DuskTestCase
     }
 
     public function testExemplarUpdate(){
-        $user = User::select('users.*')->first();
-        $this->browse(function (Browser $browser) use ($user) {
+        $this->browse(function (Browser $browser) {
             $browser->click('@instance')
                     ->click('@edit_instance')
                     ->typeSlowly('tombo','12345678')
@@ -103,9 +105,10 @@ class ARecordTest extends DuskTestCase
                     ->click('@instance')
                     ->click("@emprestar_material")
                     ->pause(2000)
-                    ->typeSlowly("n_usp","$user->codpes")
+                    ->typeSlowly("n_usp","16816232")
                     ->pause(2000)
                     ->click("@confirmar_emprestimo")
+                    
                     ->click("@devolver_exemplar")
                     ->pause(1000)
                     ->click("@confirmar_devolucao")
@@ -113,7 +116,6 @@ class ARecordTest extends DuskTestCase
                     ->visit('/records')
                     ->pause(3000)
                     ->click("@delete_exemplar")
-                    ->pause(2000)
                     ->acceptDialog()
                     ->pause(3000);
         });
@@ -121,12 +123,9 @@ class ARecordTest extends DuskTestCase
 
     public function testDeleteRecord()
     {
-        $user = User::select('users.*')->first();
-        $this->browse(function (Browser $browser) use($user) {
-            $browser->loginAs($user)
-                    ->visit('/records')
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/records')
                     ->click('@delete_record')
-                    ->pause(4000)
                     ->acceptDialog()
                     ->pause(3000)
                     ->assertPathIs('/records');
