@@ -101,7 +101,7 @@ class CrudTest extends DuskTestCase
                     ->clickLink('Emprestar')
                     ->pause(100)
                     ->waitForText('Número USP')
-                    ->typeSlowly("n_usp","16816232")
+                    ->typeSlowly("n_usp","16829032")
                     ->press('Confirmar Empréstimo')
                     ->pause(100)
                     ->visit('/emprestimos')
