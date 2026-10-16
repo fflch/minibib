@@ -34,14 +34,14 @@
 </br>
 <div class="row" style="margin:5px;">
     <a class="btn btn-success btn-md" href="{{ route('records.show', $instance->record->id) }}" role="button"><i class="fas fa-arrow-left"></i> Voltar</a>
-    <a class="btn btn-outline-success btn-md" href="/instances/{{$instance->id}}/edit" role="button" dusk="edit_instance"><i class="fa fa-pen"></i> Editar Exemplar</a>
+    <a class="btn btn-outline-success btn-md" href="/instances/{{$instance->id}}/edit" role="button"><i class="fa fa-pen"></i> Editar Exemplar</a>
     <form method="post" action="/instances/{{$instance->id}}">
       @method("delete")
       @csrf
-      <button type="submit" class="btn btn-outline-danger" href="/instances/{{$instance->id}}" role="button" dusk="delete_instance" onclick="return confirm('Tem certeza que deseja deletar?');"><i class="fa fa-trash"></i> Deletar Exemplar</button>
+      <button type="submit" class="btn btn-outline-danger" href="/instances/{{$instance->id}}" role="button" onclick="return confirm('Tem certeza que deseja deletar?');"><i class="fa fa-trash"></i> Deletar Exemplar</button>
     </form>
     @if(!$instance->emprestimos->where('data_devolucao',null)->first())
-    <a class="btn btn-primary btn-md" href="/emprestimos/create/{{$instance->id}}" role="button" dusk="emprestar_material"><i class="fa fa-book"></i> Emprestar Material</a>
+    <a class="btn btn-primary btn-md" href="/emprestimos/create/{{$instance->id}}" role="button"><i class="fa fa-book"></i> Emprestar Material</a>
     @endif
 </div>
 

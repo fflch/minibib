@@ -99,7 +99,7 @@
 
 {{--BOTÕES SALVAR E VOLTAR--}}
     <div class="col-sm form-group">
-        <button dusk="save_record" type="submit" dusk="save_record" class="btn btn-success">Salvar</button>
+        <button type="submit" class="btn btn-success">Salvar</button>
         <a class="btn btn-success" href="/records" role="button">Voltar</a>
 </div>
 

@@ -9,7 +9,7 @@
 @csrf
 @method('patch')
 <div class="card bg-light">
-    <h5 class="card-header border-info bg-light" dusk="edit_page">Edição de Cadastro</h5>
+    <h5 class="card-header border-info bg-light">Edição de Cadastro</h5>
     <div class="card-body">
     @include('records.form')
     </div>
