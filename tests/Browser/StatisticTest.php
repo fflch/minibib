@@ -25,6 +25,8 @@ class StatisticTest extends DuskTestCase
                 //Criando Records e exemplares para testar a geração de excel
 
                     ->visit('/records/create')
+                    ->waitFor('#tipo', 10)
+                    ->pause(500)
                     ->select('tipo','Livro')
                     ->type('autores','Socorro Acioli')
                     ->type('titulo','A cabeça do Santo')
@@ -40,17 +42,18 @@ class StatisticTest extends DuskTestCase
                     ->press('Salvar')
                     ->pause(3000)
                     ->visit('/records')
-                   
+
                     ->clickLink('Cadastrar Exemplar')
-                    ->pause(300)
+                    ->waitFor('input[name="tombo"]', 10)
                     ->type('tombo','909090')
                     ->type('localizacao','estante 3.v4')
                     ->pause(100)
                     ->press('Salvar')
-                    >pause(3000)                   
+                    ->pause(3000)
 
                     ->visit('/records/create')
                     ->waitFor('#tipo', 10)
+                    ->pause(500)
                     ->select('tipo','Livro')
                     ->type('autores','Itamar Vieira Junior')
                     ->type('titulo','Torto Arado')
@@ -67,12 +70,12 @@ class StatisticTest extends DuskTestCase
                     ->pause(3000)
 
                     ->clickLink('Cadastrar Exemplar')
-                    ->pause(300)
+                    ->waitFor('input[name="tombo"]', 10)
                     ->type('tombo','101010')
                     ->type('localizacao','estante 4.v4')
                     ->pause(100)
                     ->press('Salvar')
-                    ->pause(1000)
+                    ->pause(3000)
                  
 
                 // verificar a geração de excel de materiais
