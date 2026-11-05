@@ -47,9 +47,10 @@ class StatisticTest extends DuskTestCase
                     ->type('localizacao','estante 3.v4')
                     ->pause(100)
                     ->press('Salvar')
-
+                    >pause(3000)                   
 
                     ->visit('/records/create')
+                    ->waitFor('#tipo', 10)
                     ->select('tipo','Livro')
                     ->type('autores','Itamar Vieira Junior')
                     ->type('titulo','Torto Arado')
