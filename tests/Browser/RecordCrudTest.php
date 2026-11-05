@@ -7,7 +7,7 @@ use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 
-class CrudTest extends DuskTestCase
+class RecordCrudTest extends DuskTestCase
 {
     //use DatabaseMigrations;
     /**
@@ -16,16 +16,16 @@ class CrudTest extends DuskTestCase
      * @return void
      */
     //php artisan dusk:chrome-driver --detect-chromedriver
-    public function testCrudMinibib()
+    public function testCrudRecord()
     {
          $this->browse(function (Browser $browser) {
             //login do usuário
             $browser->visit('/')
-                ->clickLink('Entrar')
-                ->waitForText('Usuário')
-                ->type('#loginUsuario', '11111')
-                ->press('Login')
-                ->AssertSee('Sair')
+                    ->clickLink('Entrar')
+                    ->waitForText('Usuário')
+                    ->type('#loginUsuario', '11111')
+                    ->press('Login')
+                    ->AssertSee('Sair')
 
                 //Create Record
                     ->visit('/records/create')
@@ -45,7 +45,13 @@ class CrudTest extends DuskTestCase
                     ->assertPathIs('/records')
                     ->pause(3000)
 
-                    // Record update
+                // Read Record
+                   ->visit('/records')
+                   ->clickLink('Visualizar Material')
+                   ->assertSee('Capitães da Areia')
+                   ->pause(400)
+
+                // Record update
 
                     ->visit('/records')
                     ->pause(2000)
@@ -76,50 +82,10 @@ class CrudTest extends DuskTestCase
                     ->pause(1000)
                     ->press('Salvar')
                     ->pause(300)
-       
-                  //Exemplar Test Create
-
-                    ->clickLink('Cadastrar Exemplar')
-                    ->pause(300)
-                    ->typeSlowly('tombo','909090')
-                    ->typeSlowly('localizacao','estante 3.v4')
-                    ->pause(100)
-                    ->press('Salvar')
-                    
-                   // Exemplar Test update
-                    
-                    ->visit('/records')
-                    ->clickLink('Visualizar Material')
-                    ->waitForLink('909090')
-                    ->clickLink('909090')
-                    ->clickLink('Editar Exemplar')
-                    ->typeSlowly('tombo','12345678')
-                    ->typeSlowly('localizacao','estante 3.v1')
-                    ->press('Salvar')
-                    ->pause(100)
-                    ->visit('/records')
-                    ->clickLink('Emprestar')
-                    ->pause(100)
-                    ->waitForText('Número USP')
-                    ->typeSlowly("n_usp","16829032")
-                    ->press('Confirmar Empréstimo')
-                    ->pause(100)
-                    ->visit('/emprestimos')
-                    ->pause(100)
-                    ->assertSee('Emprestados')
-                    ->clickLink('Devolver')
-                    ->pause(1000)
-                    ->press('Confirmar Devolução de Material')
-                    ->pause(1000)
-                    ->visit('/records')
-                
-                    
+                                       
                  //delete record
 
-                    ->pause(3000)
-                    ->press('Deletar exemplar')
-                    ->acceptDialog()
-                    ->pause(3000)
+                    ->visit('/records')
                     ->press('Excluir')
                     ->acceptDialog()
                     ->pause(3000)
