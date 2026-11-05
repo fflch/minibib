@@ -60,7 +60,7 @@ class StatisticTest extends DuskTestCase
                     ->type('edicao','1ª edição')
                     ->type('ano','2009')
                     ->select('idioma','pt_BR')
-                    ->type('isbn','978-85-359-1403-4')
+                    ->type('isbn','978-85-8886-218-0')
                     ->type('issn','---')
                     ->press('Salvar')
                     ->pause(3000)
