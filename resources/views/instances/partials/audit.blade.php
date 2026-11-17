@@ -28,5 +28,5 @@
       </td>
     </tr>
   @endforeach
-  </tdoby>
+  </tbody>
 </table>
