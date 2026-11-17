@@ -11,7 +11,7 @@
   @foreach($model->audits as $field => $audit)
     <tr>
       <td> {{ \Carbon\Carbon::parse($audit->getMetadata()['audit_created_at'])->setTimezone('America/Sao_Paulo')->format('d/m/Y H:i') }} </td>
-      <td> {{ $audit->getMetadata()['user_name'] }}</td>
+      <td> {{ $audit->getMetadata()['user_name'] ?? 'Sistema' }}</td>
       <td> 
         @foreach($audit->getModified() as $field2=>$modified)
           @if($field)
